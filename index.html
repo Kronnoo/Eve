@@ -6,55 +6,51 @@
     <title>Para mi Evelyn 💗</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --lila-fuerte: #7e57c2; --lila-claro: #d1c4e9; --fondo: #f8f0fb; }
+        :root { --lila: #7e57c2; --lila-claro: #f3e5f5; --texto: #2d1b4d; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
-            height: 100vh; background: #e1bee7;
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
-            font-family: 'Quicksand', sans-serif; 
-            display: flex; justify-content: center; align-items: center; overflow: hidden;
+            height: 100vh; background: linear-gradient(135deg, #e1bee7 0%, #f3e5f5 100%); 
+            font-family: 'Quicksand', sans-serif; display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
 
         .main-app { 
-            width: 92%; max-width: 400px; height: 90vh; 
-            background: rgba(255, 255, 255, 0.95); 
-            border-radius: 50px; border: 4px solid white; padding: 25px; 
-            display: flex; flex-direction: column; position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1); z-index: 10;
+            width: 95%; max-width: 420px; height: 92vh; background: rgba(255, 255, 255, 0.96); 
+            border-radius: 45px; border: 4px solid white; padding: 25px; display: flex; flex-direction: column;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); position: relative; z-index: 10;
         }
 
-        .screen { display: none; flex-direction: column; height: 100%; text-align: center; animation: fadeIn 0.4s ease; }
+        .screen { display: none; flex-direction: column; height: 100%; text-align: center; animation: fadeIn 0.4s ease forwards; }
         .screen.active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .script-font { font-family: 'Dancing Script', cursive; font-size: 3rem; color: var(--lila-fuerte); margin: 10px 0; }
+        .script-font { font-family: 'Dancing Script', cursive; font-size: 3rem; color: var(--lila); margin: 10px 0; }
 
-        /* Pantalla 1 decorada */
-        .decor-box { background: var(--lila-claro); padding: 20px; border-radius: 30px; margin: 15px 0; border: 2px dashed white; }
-        
-        /* Pantalla 2 con tarjetas llenas */
-        .scrollable-content { overflow-y: auto; flex-grow: 1; padding: 10px 5px; }
-        .card { 
+        .intro-card { background: var(--lila-claro); padding: 25px; border-radius: 30px; margin: 20px 0; border: 2px dashed var(--lila); position: relative; }
+        .intro-card::after { content: '✨'; position: absolute; bottom: -10px; right: 10px; font-size: 25px; }
+
+        .scrollable-content { overflow-y: auto; flex-grow: 1; padding: 10px 5px; margin-bottom: 10px; }
+        .full-card { 
             background: white; padding: 20px; border-radius: 25px; margin-bottom: 20px; 
-            box-shadow: 0 10px 20px rgba(126, 87, 194, 0.1); text-align: left;
-            border-left: 10px solid var(--lila-fuerte);
+            box-shadow: 0 8px 20px rgba(126, 87, 194, 0.12); text-align: left;
+            border-top: 6px solid var(--lila); transition: 0.3s;
         }
-        .card h3 { color: var(--lila-fuerte); font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .full-card h3 { color: var(--lila); font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .full-card p { line-height: 1.6; color: #444; font-size: 0.95rem; }
 
         .polaroid-frame { 
             background: white; padding: 15px 15px 40px 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transform: rotate(-2deg); margin: 20px auto; width: 90%; cursor: pointer; 
         }
-        .polaroid-frame img { width: 100%; height: 240px; object-fit: cover; border-radius: 5px; }
+        .polaroid-frame img { width: 100%; height: 260px; object-fit: cover; border-radius: 5px; }
 
         .btn-next { 
-            background: var(--lila-fuerte); color: white; border: none; padding: 18px; 
-            border-radius: 30px; font-weight: 700; cursor: pointer; margin-top: auto;
-            box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3); font-size: 1rem;
+            background: var(--lila); color: white; border: none; padding: 18px; 
+            border-radius: 35px; font-weight: 700; cursor: pointer; margin-top: auto;
+            box-shadow: 0 8px 20px rgba(126, 87, 194, 0.4); font-size: 1rem;
         }
 
-        .typing-text { line-height: 1.7; font-size: 1.05rem; white-space: pre-wrap; word-wrap: break-word; text-align: left; }
+        .typing-text { line-height: 1.7; font-size: 1.05rem; white-space: pre-wrap; word-wrap: break-word; text-align: left; color: #333; }
         .heart { position: absolute; top: -10%; font-size: 20px; animation: fall linear forwards; z-index: 5; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
     </style>
@@ -64,42 +60,46 @@
 
     <div class="main-app">
         <section id="inicio" class="screen active">
-            <div style="font-size: 70px; margin-top: 20px;">🔓</div>
-            <h1 class="script-font">Para: Evelyn</h1>
-            <div class="decor-box">
-                <p style="color: #444; font-weight: 600;">Esta no es una página cualquiera...</p>
-                <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Es un pedacito de mi corazón para ti. ✨</p>
+            <div style="font-size: 80px; margin-top: 15px;">🌸</div>
+            <h1 class="script-font">Hola, Evelyn... ✨</h1>
+            <div class="intro-card">
+                <p style="color: var(--texto); font-weight: 600; font-size: 1.1rem;">He creado este espacio porque mi corazón tiene mucho que decirte. 💜</p>
             </div>
-            <p style="margin: 20px 0; font-size: 0.9rem; color: #888;">Espero que cada detalle te haga sonreír. 💜</p>
-            <button class="btn-next" onclick="next('sinceridad')">Entrar al sitio 💗</button>
+            <p style="margin: 15px 0; font-size: 0.95rem; color: #666; padding: 0 10px;">
+                Quiero que navegues por aquí y sientas lo importante que eres para mí. Cada detalle fue pensado en ti.
+            </p>
+            <button class="btn-next" onclick="next('sinceridad')">Entrar con amor 🔓💗</button>
         </section>
 
         <section id="sinceridad" class="screen">
-            <h2 class="script-font" style="font-size: 2.2rem;">Sinceridad...</h2>
+            <h2 class="script-font" style="font-size: 2.2rem;">Lo que guardo... 💜</h2>
             <div class="scrollable-content">
-                <div class="card">
-                    <h3>🩹 Mi perdón</h3>
-                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo. Mi inmadurez no me dejó ver lo mucho que te afectaba. ✨💗</p>
+                <div class="full-card">
+                    <h3>🩹 Un perdón honesto</h3>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. Me duele profundamente saber que mis acciones pudieron lastimarte o hacerte dudar de lo que vales, cuando para mí lo eres todo. Hoy entiendo mis errores y mi único deseo es sanar cada herida que pude causar. ✨🫂</p>
                 </div>
-                <div class="card" style="border-left-color: #f48fb1;">
-                    <h3>🏠 Tu lugar seguro</h3>
-                    <p>Sé que te han fallado, pero yo estoy aquí para quedarme. No tengas miedo de ser tú misma conmigo. 🚫💗</p>
+
+                <div class="full-card" style="border-top-color: #b39ddb;">
+                    <h3>🚫 Aquí me quedo</h3>
+                    <p>Sé que te han fallado antes y que a veces es difícil confiar, pero yo no soy como los demás. Me quedaré contigo todo el tiempo que me lo permitas, siendo tu apoyo y tu mejor amigo. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma, porque yo jamás te voy a soltar; estaré para ti en tus mejores días y, sobre todo, en los más difíciles. 🏠💗</p>
                 </div>
-                <div class="card" style="border-left-color: #ce93d8;">
-                    <h3>💎 Eres mi todo</h3>
-                    <p>No hay un día en que no agradezca tenerte. Eres la niña más increíble que conozco. 🍭✨</p>
+
+                <div class="full-card" style="border-top-color: #ce93d8;">
+                    <h3>💎 Mi mayor tesoro</h3>
+                    <p>A partir de hoy, mi prioridad es cuidarte y demostrarte que lo que siento es real y mucho más grande que cualquier error del pasado. Eres la persona más increíble que he conocido, y cada día me esfuerzo por ser el hombre que mereces tener a tu lado. Gracias por tu paciencia, por tu cariño y por seguir aquí conmigo, dándome la oportunidad de amarte como se debe. 🍭✨</p>
                 </div>
             </div>
-            <button class="btn-next" onclick="next('galeria')">Nuestras fotos 📸</button>
+            <button class="btn-next" onclick="next('galeria')">Ver nuestras fotos 📸</button>
         </section>
 
         <section id="galeria" class="screen">
-            <h2 class="script-font">Nosotros 📸</h2>
+            <h2 class="script-font">Tú y Yo 📸</h2>
             <div class="polaroid-frame" onclick="changePhoto()">
-                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Cargando...'">
-                <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú 💗</p>
+                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Cargando+Foto...'">
+                <p style="font-family: 'Dancing Script'; font-size: 1.6rem; margin-top: 10px; color: var(--lila);">Definitivamente tú 💗</p>
             </div>
-            <button class="btn-next" onclick="next('final')">Mi Promesa ✍️</button>
+            <p style="color: #888; font-size: 0.85rem;">(Toca la foto para cambiarla)</p>
+            <button class="btn-next" onclick="next('final')">Mi Promesa Final ✍️</button>
         </section>
 
         <section id="final" class="screen">
