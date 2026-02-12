@@ -61,7 +61,8 @@
         }
         .polaroid-frame img { width: 100%; border-radius: 5px; display: block; height: 250px; object-fit: cover; }
 
-        .blur-char { display: inline-block; opacity: 0; filter: blur(8px); animation: blurReveal 0.5s forwards; }
+        /* AJUSTE PARA PALABRAS CORTADAS */
+        .blur-char { display: inline-block; opacity: 0; filter: blur(8px); animation: blurReveal 0.5s forwards; white-space: pre; }
         @keyframes blurReveal { to { opacity: 1; filter: blur(0); } }
 
         .btn-next {
@@ -71,17 +72,11 @@
         }
 
         .heart {
-            position: absolute;
-            top: -10%;
-            font-size: 20px;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear forwards;
-            z-index: 5;
+            position: absolute; top: -10%; font-size: 20px;
+            user-select: none; pointer-events: none;
+            animation: fall linear forwards; z-index: 5;
         }
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
-        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -100,11 +95,11 @@
             <div class="scrollable-content">
                 <div class="message-bubble">
                     <h3>🩹 Perdón de corazón</h3>
-                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención, y me duele saber que mis acciones pudieron lastimarte. ✨🫂</p>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. ✨🫂</p>
                 </div>
                 <div class="message-bubble">
                     <h3>🚫 No estás sola</h3>
-                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma, porque yo jamás te voy a soltar. 🏠💗</p>
+                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Jamás te voy a soltar. 🏠💗</p>
                 </div>
             </div>
             <button class="btn-next" onclick="next('oraculo')">Algo más ➡️✨</button>
@@ -121,7 +116,7 @@
         <section id="galeria" class="screen">
             <h2 class="script-font">Tú y Yo 📸💗</h2>
             <div class="polaroid-frame" onclick="changePhoto()">
-                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Error+al+cargar+foto'">
+                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Cargando...'">
                 <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú 💗✨</p>
             </div>
             <button class="btn-next" onclick="next('final')">Mi Promesa ✍️🫂</button>
@@ -136,7 +131,7 @@
     </div>
 
     <script>
-        // LISTA ACTUALIZADA CON TUS ARCHIVOS REALES
+        // Nombres de tus archivos reales
         const fotos = ["foto1.png", "foto2.png", "Roblox.png", "Juntos.png", "Eye y yo.png", "1.png"];
         let fotoIdx = 0;
 
@@ -172,7 +167,6 @@
             heart.innerHTML = ['💗','✨','🫂','💜'][Math.floor(Math.random() * 4)];
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.opacity = Math.random();
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }
@@ -198,26 +192,29 @@
                     }
                     
                     const currentP = box.lastChild;
+                    const char = parrafos[pIdx][charIdx];
+                    
+                    // USAMOS SPAN CON INNERTEXT PARA ASEGURAR EMOJIS
                     const span = document.createElement('span');
                     span.classList.add('blur-char');
-                    span.innerHTML = parrafos[pIdx][charIdx] === " " ? "&nbsp;" : parrafos[pIdx][charIdx];
-                    currentP.appendChild(span);
+                    if (char === " ") {
+                        span.innerHTML = "&nbsp;";
+                    } else {
+                        span.innerText = char;
+                    }
                     
+                    currentP.appendChild(span);
                     charIdx++;
+
                     if (charIdx < parrafos[pIdx].length) {
-                        setTimeout(type, 40);
+                        setTimeout(type, 45);
                     } else {
                         pIdx++;
                         charIdx = 0;
-                        setTimeout(type, 500);
+                        setTimeout(type, 800);
                     }
                     box.parentNode.scrollTop = box.parentNode.scrollHeight;
                 } else {
-                    const finalEmojis = document.createElement('p');
-                    finalEmojis.style.fontSize = "1.5rem";
-                    finalEmojis.style.textAlign = "center";
-                    finalEmojis.innerText = "💗✨🫂💎👑";
-                    box.appendChild(finalEmojis);
                     setInterval(createHeart, 300);
                 }
             }
