@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Evelyn &#128151;&#10024;</title>
+    <title>Para mi Evelyn &#128150;&#10024;</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --lila-fuerte: #7e57c2; --texto: #2d1b4d; }
@@ -43,11 +43,11 @@
             <div class="scrollable-content">
                 <div class="message-bubble">
                     <h3>&#129665; Perdón de corazón</h3>
-                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención, y me duele saber que mis acciones pudieron lastimarte. &#10024;&#129302;</p>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. &#10024;&#129302;</p>
                 </div>
                 <div class="message-bubble">
                     <h3>&#128683; No estás sola</h3>
-                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma, porque yo jamás te voy a soltar. &#127968;&#128150;</p>
+                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma. &#127968;&#128150;</p>
                 </div>
             </div>
             <button class="btn-next" onclick="next('oraculo')">Algo más &#10145;&#65039;&#10024;</button>
@@ -64,7 +64,7 @@
         <section id="galeria" class="screen">
             <h2 class="script-font">Tú y Yo &#128248;&#128150;</h2>
             <div class="polaroid-frame" onclick="changePhoto()">
-                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Cargando+fotos...'">
+                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Cargando...'">
                 <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú &#128150;&#10024;</p>
             </div>
             <button class="btn-next" onclick="next('final')">Mi Promesa &#9997;&#65039;&#129302;</button>
@@ -84,7 +84,6 @@
             "Quiero construir mi futuro a tu lado &#127968;&#129302;",
             "No te cambiaría por nadie en este mundo &#128683;&#128142;",
             "Me esfuerzo diario por ser mejor para ti &#129665;&#128150;",
-            "Tus berrinches son mi debilidad favorita &#127853;&#128150;",
             "Eres mi lugar seguro siempre &#127918;&#129302;&#10024;"
         ];
 
@@ -111,7 +110,7 @@
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.innerHTML = ['&#128150;','&#10024;','&#129302;','&#128156;'][Math.floor(Math.random() * 4)];
+            heart.innerHTML = '&#128150;';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
             document.body.appendChild(heart);
@@ -120,12 +119,11 @@
 
         function startTyping() {
             const box = document.getElementById('typing-box');
-            // Usamos códigos HTML para que no fallen jamás
             const parrafos = [
                 "Evelyn, mi niña&#128150;&#128150;...",
-                "Quiero que leas esto con mucha calma&#128575;. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez&#128575;&#128575;&#128575;. No quiero que sientas que estás sola o que me vas a perder.",
-                "Jamás te dejaré con el corazón en las manos&#128575;; me quedaré contigo todo el tiempo que me lo permitas&#128150;&#128150;&#128150;, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo, que nos tenemos&#128150;&#128150;&#128150;&#128150;.",
-                "Gracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre&#128150;&#128150;&#128150;&#128150;, definitivamente eres tú&#10024;&#128150;&#128150;&#129302;."
+                "Quiero que leas esto con mucha calma&#128575;. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez&#128575;&#128575;&#128575;. No quiero que sientas que estás sola.",
+                "Jamás te dejaré con el corazón en las manos&#128575;; me quedaré contigo todo el tiempo que me lo permitas&#128150;&#128150;&#128150;. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito.&#128150;&#128150;&#128150;&#128150;.",
+                "Gracias por elegirme cada día. Te amo para siempre&#128150;&#128150;&#128150;&#128150;, definitivamente eres tú&#10024;&#128150;&#128150;&#129302;."
             ];
             
             let pIdx = 0;
@@ -138,10 +136,7 @@
                         pElement.style.marginBottom = "20px";
                         box.appendChild(pElement);
                     }
-                    
                     const currentP = box.lastChild;
-                    
-                    // Lógica especial para no romper los códigos de los emojis
                     if (parrafos[pIdx].slice(charIdx).startsWith("&#")) {
                         const endIdx = parrafos[pIdx].indexOf(";", charIdx);
                         const emojiCode = parrafos[pIdx].slice(charIdx, endIdx + 1);
@@ -158,7 +153,6 @@
                         currentP.appendChild(span);
                         charIdx++;
                     }
-
                     if (charIdx < parrafos[pIdx].length) {
                         setTimeout(type, 35);
                     } else {
@@ -166,10 +160,7 @@
                         charIdx = 0;
                         setTimeout(type, 700);
                     }
-                    box.parentNode.scrollTop = box.parentNode.scrollHeight;
-                } else {
-                    setInterval(createHeart, 300);
-                }
+                } else { setInterval(createHeart, 300); }
             }
             type();
         }
