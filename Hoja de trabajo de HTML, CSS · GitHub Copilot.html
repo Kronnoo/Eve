@@ -6,27 +6,82 @@
     <title>Para mi Evelyn 💗✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* (Aquí va todo el estilo CSS que te pasé antes, se mantiene igual) */
-        :root { --lila-fuerte: #7e57c2; --texto: #2d1b4d; }
+        :root {
+            --lila-fuerte: #7e57c2;
+            --texto: #2d1b4d;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { height: 100vh; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); font-family: 'Quicksand', sans-serif; display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative; }
-        .main-app { width: 95%; max-width: 420px; height: 92vh; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); border-radius: 40px; border: 3px solid white; padding: 25px; display: flex; flex-direction: column; position: relative; box-shadow: 0 20px 50px rgba(126, 87, 194, 0.3); z-index: 10; }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex; justify-content: center; align-items: center; overflow: hidden;
+            position: relative;
+        }
+
+        .main-app {
+            width: 95%; max-width: 420px; height: 92vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 40px; border: 3px solid white;
+            padding: 25px; display: flex; flex-direction: column;
+            position: relative; box-shadow: 0 20px 50px rgba(126, 87, 194, 0.3);
+            z-index: 10;
+        }
+
         .screen { display: none; flex-direction: column; height: 100%; text-align: center; animation: fadeIn 0.6s ease; }
         .screen.active { display: flex; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .script-font { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: var(--lila-fuerte); margin-bottom: 10px; }
+
         .scrollable-content { overflow-y: auto; flex-grow: 1; padding-right: 5px; margin-bottom: 15px; text-align: left; }
-        .message-bubble { background: white; padding: 20px; border-radius: 25px; margin-bottom: 20px; border-left: 8px solid var(--lila-fuerte); box-shadow: 0 5px 15px rgba(0,0,0,0.06); }
+
+        .message-bubble {
+            background: white; padding: 20px; border-radius: 25px; margin-bottom: 20px;
+            border-left: 8px solid var(--lila-fuerte); box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+        }
+
         .message-bubble h3 { font-size: 1.1rem; color: var(--lila-fuerte); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .magic-wheel { width: 200px; height: 200px; border: 6px dashed var(--lila-fuerte); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; background: white; cursor: pointer; padding: 20px; box-shadow: 0 10px 25px rgba(126, 87, 194, 0.2); }
-        .polaroid-frame { background: white; padding: 15px 15px 45px 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); transform: rotate(-3deg); margin: 25px auto; width: 90%; cursor: pointer; }
-        .polaroid-frame img { width: 100%; border-radius: 5px; display: block; height: 230px; object-fit: cover; }
-        #typing-box p { margin-bottom: 18px; white-space: pre-wrap; word-wrap: break-word; display: block; }
-        .blur-char { display: inline-block; opacity: 0; filter: blur(8px); animation: blurReveal 0.4s forwards; white-space: pre; }
+
+        .magic-wheel {
+            width: 220px; height: 220px; border: 8px dashed var(--lila-fuerte);
+            border-radius: 50%; margin: 20px auto; display: flex; align-items: center;
+            justify-content: center; background: white; cursor: pointer; padding: 20px;
+            box-shadow: 0 10px 25px rgba(126, 87, 194, 0.2);
+        }
+
+        .polaroid-frame {
+            background: white; padding: 15px 15px 45px 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15); transform: rotate(-3deg);
+            margin: 25px auto; width: 90%; cursor: pointer;
+        }
+        .polaroid-frame img { width: 100%; border-radius: 5px; display: block; height: 250px; object-fit: cover; }
+
+        .blur-char { display: inline-block; opacity: 0; filter: blur(8px); animation: blurReveal 0.5s forwards; }
         @keyframes blurReveal { to { opacity: 1; filter: blur(0); } }
-        .btn-next { background: var(--lila-fuerte); color: white; border: none; padding: 16px; border-radius: 50px; font-weight: 700; cursor: pointer; box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3); }
-        .heart-drop { position: absolute; top: -10%; font-size: 24px; user-select: none; pointer-events: none; animation: fall linear forwards; z-index: 5; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        .btn-next {
+            background: var(--lila-fuerte); color: white; border: none;
+            padding: 16px; border-radius: 50px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3); margin-top: auto;
+        }
+
+        .heart {
+            position: absolute;
+            top: -10%;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 5;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -36,20 +91,20 @@
         <section id="inicio" class="screen active">
             <div style="font-size: 80px; margin: 30px 0;">🌸</div>
             <h1 class="script-font">Hola, Evelyn... ✨🫂</h1>
-            <p>He guardado unas palabras aquí que solo tú puedes leer. ✍️💜</p>
+            <p style="margin-bottom: 25px;">He creado este espacio porque mi corazón tiene mucho que decirte. ✍️💜</p>
             <button class="btn-next" onclick="next('sinceridad')">Entrar 🔓💗</button>
         </section>
 
         <section id="sinceridad" class="screen">
-            <h2 class="script-font" style="font-size: 2rem;">Lo que siento... 💜</h2>
+            <h2 class="script-font" style="font-size: 2rem;">Lo que guardo... 💜</h2>
             <div class="scrollable-content">
                 <div class="message-bubble">
-                    <h3>🩹 Mi perdón</h3>
-                    <p>Evelyn, me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. ✨🫂</p>
+                    <h3>🩹 Perdón de corazón</h3>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención, y me duele saber que mis acciones pudieron lastimarte. ✨🫂</p>
                 </div>
                 <div class="message-bubble">
-                    <h3>🚫 Mi promesa</h3>
-                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. No te voy a soltar. 🏠💗</p>
+                    <h3>🚫 No estás sola</h3>
+                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma, porque yo jamás te voy a soltar. 🏠💗</p>
                 </div>
             </div>
             <button class="btn-next" onclick="next('oraculo')">Algo más ➡️✨</button>
@@ -64,9 +119,9 @@
         </section>
 
         <section id="galeria" class="screen">
-            <h2 class="script-font">Nosotros 📸💗</h2>
+            <h2 class="script-font">Tú y Yo 📸💗</h2>
             <div class="polaroid-frame" onclick="changePhoto()">
-                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300?text=Error+en+foto'">
+                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Error+al+cargar+foto'">
                 <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú 💗✨</p>
             </div>
             <button class="btn-next" onclick="next('final')">Mi Promesa ✍️🫂</button>
@@ -74,15 +129,15 @@
 
         <section id="final" class="screen">
             <div class="scrollable-content" style="background: white; border-radius: 25px; padding: 25px; border: 1px solid #ddd;">
-                <div id="typing-box"></div>
+                <div id="typing-box" style="line-height: 1.8; font-size: 1rem; color: #333;"></div>
             </div>
             <button class="btn-next" onclick="location.reload()">Releer 💗✨</button>
         </section>
     </div>
 
     <script>
-        // LISTA DE TUS FOTOS REALES (Asegúrate que se llamen así)
-        const fotos = ["foto1.png", "foto2.png", "Roblox.png", "Juntos.png"];
+        // LISTA ACTUALIZADA CON TUS ARCHIVOS REALES
+        const fotos = ["foto1.png", "foto2.png", "Roblox.png", "Juntos.png", "Eye y yo.png", "1.png"];
         let fotoIdx = 0;
 
         const verdades = [
@@ -113,10 +168,11 @@
 
         function createHeart() {
             const heart = document.createElement('div');
-            heart.classList.add('heart-drop');
+            heart.classList.add('heart');
             heart.innerHTML = ['💗','✨','🫂','💜'][Math.floor(Math.random() * 4)];
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.opacity = Math.random();
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }
@@ -124,26 +180,46 @@
         function startTyping() {
             const box = document.getElementById('typing-box');
             const parrafos = [
-                "Evelyn, mi niña... 🫂💗",
-                "Quiero que leas esto con mucha calma. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No quiero que sientas que estás sola o que me vas a perder 😿.",
-                "Jamás te dejaré con el corazón en las manos; me quedaré contigo todo el tiempo que me lo permitas, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo ✨💎.",
-                "Gracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre, definitivamente eres tú. 👑💗🫂✨"
+                "Evelyn, mi niña💗💗...",
+                "Quiero que leas esto con mucha calma😿. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez😿😿😿. No quiero que sientas que estás sola o que me vas a perder.",
+                "Jamás te dejaré con el corazón en las manos😿; me quedaré contigo todo el tiempo que me lo permitas💗💗💗, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo, que nos tenemos💗💗💗💗.",
+                "Gracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre💗💗💗💗, definitivamente eres tú✨💗💗🫂."
             ];
-            let pIdx = 0; let charIdx = 0;
+            
+            let pIdx = 0;
+            let charIdx = 0;
+
             function type() {
                 if (pIdx < parrafos.length) {
-                    if (charIdx === 0) { const pElement = document.createElement('p'); box.appendChild(pElement); }
+                    if (charIdx === 0) {
+                        const pElement = document.createElement('p');
+                        pElement.style.marginBottom = "20px";
+                        box.appendChild(pElement);
+                    }
+                    
                     const currentP = box.lastChild;
                     const span = document.createElement('span');
                     span.classList.add('blur-char');
-                    const char = parrafos[pIdx][charIdx];
-                    span.innerHTML = char === " " ? "&nbsp;" : char;
+                    span.innerHTML = parrafos[pIdx][charIdx] === " " ? "&nbsp;" : parrafos[pIdx][charIdx];
                     currentP.appendChild(span);
+                    
                     charIdx++;
-                    if (charIdx < parrafos[pIdx].length) { setTimeout(type, 40); }
-                    else { pIdx++; charIdx = 0; setTimeout(type, 600); }
+                    if (charIdx < parrafos[pIdx].length) {
+                        setTimeout(type, 40);
+                    } else {
+                        pIdx++;
+                        charIdx = 0;
+                        setTimeout(type, 500);
+                    }
                     box.parentNode.scrollTop = box.parentNode.scrollHeight;
-                } else { setInterval(createHeart, 300); }
+                } else {
+                    const finalEmojis = document.createElement('p');
+                    finalEmojis.style.fontSize = "1.5rem";
+                    finalEmojis.style.textAlign = "center";
+                    finalEmojis.innerText = "💗✨🫂💎👑";
+                    box.appendChild(finalEmojis);
+                    setInterval(createHeart, 300);
+                }
             }
             type();
         }
