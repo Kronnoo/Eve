@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Evelyn &#128150;</title>
+    <title>Para mi Evelyn 💗</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --lila-fuerte: #7e57c2; --texto: #2d1b4d; }
@@ -40,8 +40,6 @@
             line-height: 1.5; color: var(--texto);
         }
 
-        .message-bubble h3 { font-size: 1.1rem; color: var(--lila-fuerte); margin-bottom: 10px; }
-
         .polaroid-frame { 
             background: white; padding: 15px 15px 45px 15px; 
             box-shadow: 0 15px 30px rgba(0,0,0,0.15); transform: rotate(-3deg); 
@@ -55,7 +53,13 @@
             box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3); margin-top: auto;
         }
 
-        .typing-text { line-height: 1.8; font-size: 1.05rem; white-space: pre-wrap; word-wrap: break-word; color: #333; }
+        .typing-text { 
+            line-height: 1.6; 
+            font-size: 1.05rem; 
+            color: #333; 
+            white-space: pre-wrap;
+            word-break: break-word; /* Para que no se corte el texto */
+        }
 
         .heart { position: absolute; top: -10%; font-size: 20px; user-select: none; pointer-events: none; animation: fall linear forwards; z-index: 5; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
@@ -66,41 +70,41 @@
 
     <div class="main-app">
         <section id="inicio" class="screen active">
-            <div style="font-size: 80px; margin: 30px 0;">&#127800;</div>
-            <h1 class="script-font">Hola, Evelyn... &#10024;</h1>
-            <p>He creado este espacio porque mi corazón tiene mucho que decirte. &#128156;</p>
-            <button class="btn-next" onclick="next('sinceridad')">Entrar &#128150;</button>
+            <div style="font-size: 80px; margin: 30px 0;">🌸</div>
+            <h1 class="script-font">Hola, Evelyn... ✨</h1>
+            <p>He creado este espacio porque mi corazón tiene mucho que decirte. 💜</p>
+            <button class="btn-next" onclick="next('sinceridad')">Entrar 💗</button>
         </section>
 
         <section id="sinceridad" class="screen">
-            <h2 class="script-font">Lo que guardo... &#128156;</h2>
+            <h2 class="script-font">Lo que guardo... 💜</h2>
             <div class="scrollable-content">
                 <div class="message-bubble">
-                    <h3>&#129665; Perdón de corazón</h3>
-                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. &#10024;&#128150;</p>
+                    <h3>🩹 Perdón de corazón</h3>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. ✨💗</p>
                 </div>
                 <div class="message-bubble">
-                    <h3>&#128683; No estás sola</h3>
-                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Jamás te voy a soltar. &#127968;&#128150;</p>
+                    <h3>🚫 No estás sola</h3>
+                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Jamás te voy a soltar. 🏠💗</p>
                 </div>
             </div>
-            <button class="btn-next" onclick="next('galeria')">Ver fotos &#128248;</button>
+            <button class="btn-next" onclick="next('galeria')">Ver fotos 📸</button>
         </section>
 
         <section id="galeria" class="screen">
-            <h2 class="script-font">Tú y Yo &#128248;</h2>
+            <h2 class="script-font">Tú y Yo 📸</h2>
             <div class="polaroid-frame" onclick="changePhoto()">
                 <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Foto'">
-                <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú &#128150;</p>
+                <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú 💗</p>
             </div>
-            <button class="btn-next" onclick="next('final')">Mi Promesa &#9997;&#65039;</button>
+            <button class="btn-next" onclick="next('final')">Mi Promesa ✍️</button>
         </section>
 
         <section id="final" class="screen">
             <div class="scrollable-content" style="background: white; border-radius: 25px; padding: 25px; border: 1px solid #eee;">
                 <div id="typing-box" class="typing-text"></div>
             </div>
-            <button class="btn-next" onclick="location.reload()">Releer &#128150;</button>
+            <button class="btn-next" onclick="location.reload()">Releer 💗</button>
         </section>
     </div>
 
@@ -122,39 +126,56 @@
 
         function startTyping() {
             const box = document.getElementById('typing-box');
-            // AQUÍ ESTÁN TODOS TUS EMOJIS ORIGINALES EN CÓDIGO SEGURO
-            const texto = "Evelyn, mi niña&#128150;&#128150;... \n\nQuiero que leas esto con mucha calma&#128575;. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez&#128575;&#128575;&#128575;. No quiero que sientas que estás sola o que me vas a perder.\n\nJamás te dejaré con el corazón en las manos&#128575;; me quedaré contigo todo el tiempo que me lo permitas&#128150;&#128150;&#128150;, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo, que nos tenemos&#128150;&#128150;&#128150;&#128150;.\n\nGracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre&#128150;&#128150;&#128150;&#128150;, definitivamente eres tú&#10024;&#128150;&#128150;&#128156;.";
+            // Texto con emojis reales y saltos de línea claros
+            const parrafos = [
+                "Evelyn, mi niña💗💗...",
+                "Quiero que leas esto con mucha calma😿. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez😿😿😿. No quiero que sientas que estás sola o que me vas a perder.",
+                "Jamás te dejaré con el corazón en las manos😿; me quedaré contigo todo el tiempo que me lo permitas💗💗💗, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo, que nos tenemos💗💗💗💗.",
+                "Gracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre💗💗💗💗, definitivamente eres tú✨💗💗💜."
+            ];
             
-            let i = 0;
+            let pIdx = 0;
             box.innerHTML = "";
-            function type() {
-                if (i < texto.length) {
-                    if (texto.slice(i).startsWith("&#")) {
-                        const end = texto.indexOf(";", i);
-                        box.innerHTML += texto.slice(i, end + 1);
-                        i = end + 1;
-                    } else if (texto[i] === "\n") {
-                        box.innerHTML += "<br>";
-                        i++;
-                    } else {
-                        box.innerHTML += texto[i];
-                        i++;
+
+            function typeParagraph() {
+                if (pIdx < parrafos.length) {
+                    let pTag = document.createElement('p');
+                    pTag.style.marginBottom = "15px";
+                    box.appendChild(pTag);
+                    
+                    let charIdx = 0;
+                    let currentText = parrafos[pIdx];
+
+                    function typeChar() {
+                        if (charIdx < currentText.length) {
+                            // Detectar si lo que sigue es un emoji (caracter especial)
+                            const char = currentText.match(/./u); 
+                            pTag.innerHTML += currentText[charIdx];
+                            
+                            charIdx++;
+                            setTimeout(typeChar, 30);
+                            box.parentNode.scrollTop = box.parentNode.scrollHeight;
+                        } else {
+                            pIdx++;
+                            setTimeout(typeParagraph, 500);
+                        }
                     }
-                    setTimeout(type, 35);
-                    box.parentNode.scrollTop = box.parentNode.scrollHeight;
+                    typeChar();
                 } else {
-                    setInterval(() => {
-                        const heart = document.createElement('div');
-                        heart.classList.add('heart');
-                        heart.innerHTML = '&#128150;';
-                        heart.style.left = Math.random() * 100 + 'vw';
-                        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                        document.body.appendChild(heart);
-                        setTimeout(() => heart.remove(), 5000);
-                    }, 400);
+                    setInterval(createHeart, 400);
                 }
             }
-            type();
+            typeParagraph();
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '💗';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
         }
     </script>
 </body>
