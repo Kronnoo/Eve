@@ -55,7 +55,7 @@
             box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3); margin-top: auto;
         }
 
-        .typing-text { line-height: 1.8; font-size: 1.05rem; white-space: pre-wrap; word-wrap: break-word; }
+        .typing-text { line-height: 1.8; font-size: 1.05rem; white-space: pre-wrap; word-wrap: break-word; color: #333; }
 
         .heart { position: absolute; top: -10%; font-size: 20px; user-select: none; pointer-events: none; animation: fall linear forwards; z-index: 5; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
@@ -77,7 +77,7 @@
             <div class="scrollable-content">
                 <div class="message-bubble">
                     <h3>&#129665; Perdón de corazón</h3>
-                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. &#128150;</p>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. &#10024;&#128150;</p>
                 </div>
                 <div class="message-bubble">
                     <h3>&#128683; No estás sola</h3>
@@ -97,7 +97,7 @@
         </section>
 
         <section id="final" class="screen">
-            <div class="scrollable-content" style="background: white; border-radius: 25px; padding: 25px;">
+            <div class="scrollable-content" style="background: white; border-radius: 25px; padding: 25px; border: 1px solid #eee;">
                 <div id="typing-box" class="typing-text"></div>
             </div>
             <button class="btn-next" onclick="location.reload()">Releer &#128150;</button>
@@ -122,7 +122,8 @@
 
         function startTyping() {
             const box = document.getElementById('typing-box');
-            const texto = "Evelyn, mi niña &#128150;... \n\nQuiero que leas esto con mucha calma. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No quiero que sientas que estás sola o que me vas a perder.\n\nJamás te dejaré con el corazón en las manos; me quedaré contigo todo el tiempo que me lo permitas &#128150;, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo.\n\nGracias por elegirme cada día. Te amo para siempre &#128150;, definitivamente eres tú &#10024;.";
+            // AQUÍ ESTÁN TODOS TUS EMOJIS ORIGINALES EN CÓDIGO SEGURO
+            const texto = "Evelyn, mi niña&#128150;&#128150;... \n\nQuiero que leas esto con mucha calma&#128575;. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez&#128575;&#128575;&#128575;. No quiero que sientas que estás sola o que me vas a perder.\n\nJamás te dejaré con el corazón en las manos&#128575;; me quedaré contigo todo el tiempo que me lo permitas&#128150;&#128150;&#128150;, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo, que nos tenemos&#128150;&#128150;&#128150;&#128150;.\n\nGracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre&#128150;&#128150;&#128150;&#128150;, definitivamente eres tú&#10024;&#128150;&#128150;&#128156;.";
             
             let i = 0;
             box.innerHTML = "";
@@ -139,7 +140,7 @@
                         box.innerHTML += texto[i];
                         i++;
                     }
-                    setTimeout(type, 30);
+                    setTimeout(type, 35);
                     box.parentNode.scrollTop = box.parentNode.scrollHeight;
                 } else {
                     setInterval(() => {
@@ -150,7 +151,7 @@
                         heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
                         document.body.appendChild(heart);
                         setTimeout(() => heart.remove(), 5000);
-                    }, 300);
+                    }, 400);
                 }
             }
             type();
