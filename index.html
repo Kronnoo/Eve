@@ -3,26 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Evelyn &#128150;&#10024;</title>
+    <title>Para mi Evelyn &#128150;</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --lila-fuerte: #7e57c2; --texto: #2d1b4d; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { height: 100vh; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); font-family: 'Quicksand', sans-serif; display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative; }
-        .main-app { width: 95%; max-width: 420px; height: 92vh; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); border-radius: 40px; border: 3px solid white; padding: 25px; display: flex; flex-direction: column; position: relative; box-shadow: 0 20px 50px rgba(126, 87, 194, 0.3); z-index: 10; }
-        .screen { display: none; flex-direction: column; height: 100%; text-align: center; animation: fadeIn 0.6s ease; }
+        
+        body { 
+            height: 100vh; 
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
+            font-family: 'Quicksand', sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            overflow: hidden; position: relative; 
+        }
+
+        .main-app { 
+            width: 95%; max-width: 420px; height: 92vh; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(15px); border-radius: 40px; 
+            border: 3px solid white; padding: 25px; 
+            display: flex; flex-direction: column; 
+            position: relative; box-shadow: 0 20px 50px rgba(126, 87, 194, 0.3); 
+            z-index: 10; 
+        }
+
+        .screen { display: none; flex-direction: column; height: 100%; text-align: center; animation: fadeIn 0.5s ease forwards; }
         .screen.active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
         .script-font { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: var(--lila-fuerte); margin-bottom: 10px; }
         .scrollable-content { overflow-y: auto; flex-grow: 1; padding-right: 5px; margin-bottom: 15px; text-align: left; }
-        .message-bubble { background: white; padding: 20px; border-radius: 25px; margin-bottom: 20px; border-left: 8px solid var(--lila-fuerte); box-shadow: 0 5px 15px rgba(0,0,0,0.06); }
-        .message-bubble h3 { font-size: 1.1rem; color: var(--lila-fuerte); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .magic-wheel { width: 220px; height: 220px; border: 8px dashed var(--lila-fuerte); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; background: white; cursor: pointer; padding: 20px; box-shadow: 0 10px 25px rgba(126, 87, 194, 0.2); }
-        .polaroid-frame { background: white; padding: 15px 15px 45px 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); transform: rotate(-3deg); margin: 25px auto; width: 90%; cursor: pointer; }
-        .polaroid-frame img { width: 100%; border-radius: 5px; display: block; height: 250px; object-fit: cover; }
-        .blur-char { display: inline-block; opacity: 0; filter: blur(8px); animation: blurReveal 0.5s forwards; white-space: pre; }
-        @keyframes blurReveal { to { opacity: 1; filter: blur(0); } }
-        .btn-next { background: var(--lila-fuerte); color: white; border: none; padding: 16px; border-radius: 50px; font-weight: 700; cursor: pointer; box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3); margin-top: auto; }
+
+        .message-bubble { 
+            background: white; padding: 20px; border-radius: 25px; margin-bottom: 20px; 
+            border-left: 8px solid var(--lila-fuerte); box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            line-height: 1.5; color: var(--texto);
+        }
+
+        .message-bubble h3 { font-size: 1.1rem; color: var(--lila-fuerte); margin-bottom: 10px; }
+
+        .polaroid-frame { 
+            background: white; padding: 15px 15px 45px 15px; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15); transform: rotate(-3deg); 
+            margin: 25px auto; width: 90%; cursor: pointer; 
+        }
+        .polaroid-frame img { width: 100%; border-radius: 5px; height: 250px; object-fit: cover; }
+
+        .btn-next { 
+            background: var(--lila-fuerte); color: white; border: none; 
+            padding: 16px; border-radius: 50px; font-weight: 700; cursor: pointer; 
+            box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3); margin-top: auto;
+        }
+
+        .typing-text { line-height: 1.8; font-size: 1.05rem; white-space: pre-wrap; word-wrap: break-word; }
+
         .heart { position: absolute; top: -10%; font-size: 20px; user-select: none; pointer-events: none; animation: fall linear forwards; z-index: 5; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
     </style>
@@ -33,60 +67,44 @@
     <div class="main-app">
         <section id="inicio" class="screen active">
             <div style="font-size: 80px; margin: 30px 0;">&#127800;</div>
-            <h1 class="script-font">Hola, Evelyn... &#10024;&#128150;</h1>
-            <p style="margin-bottom: 25px;">He creado este espacio porque mi corazón tiene mucho que decirte. &#9997;&#65039;&#128156;</p>
-            <button class="btn-next" onclick="next('sinceridad')">Entrar &#128275;&#128150;</button>
+            <h1 class="script-font">Hola, Evelyn... &#10024;</h1>
+            <p>He creado este espacio porque mi corazón tiene mucho que decirte. &#128156;</p>
+            <button class="btn-next" onclick="next('sinceridad')">Entrar &#128150;</button>
         </section>
 
         <section id="sinceridad" class="screen">
-            <h2 class="script-font" style="font-size: 2rem;">Lo que guardo... &#128156;</h2>
+            <h2 class="script-font">Lo que guardo... &#128156;</h2>
             <div class="scrollable-content">
                 <div class="message-bubble">
                     <h3>&#129665; Perdón de corazón</h3>
-                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. &#10024;&#128150;</p>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención. &#128150;</p>
                 </div>
                 <div class="message-bubble">
                     <h3>&#128683; No estás sola</h3>
-                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma. &#127968;&#128150;</p>
+                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo permitas. Jamás te voy a soltar. &#127968;&#128150;</p>
                 </div>
             </div>
-            <button class="btn-next" onclick="next('oraculo')">Algo más &#10145;&#65039;&#10024;</button>
-        </section>
-
-        <section id="oraculo" class="screen">
-            <h2 class="script-font">Verdades &#127889;&#128142;</h2>
-            <div class="magic-wheel" onclick="spin()">
-                <p id="magic-text" style="text-align: center;">Toca para descubrir una verdad... &#127889;&#128150;</p>
-            </div>
-            <button class="btn-next" onclick="next('galeria')">Fotos &#128248;</button>
+            <button class="btn-next" onclick="next('galeria')">Ver fotos &#128248;</button>
         </section>
 
         <section id="galeria" class="screen">
-            <h2 class="script-font">Tú y Yo &#128248;&#128150;</h2>
+            <h2 class="script-font">Tú y Yo &#128248;</h2>
             <div class="polaroid-frame" onclick="changePhoto()">
-                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Cargando...'">
-                <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú &#128150;&#10024;</p>
+                <img src="foto1.png" id="main-img" onerror="this.src='https://via.placeholder.com/300x350?text=Foto'">
+                <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">Definitivamente tú &#128150;</p>
             </div>
-            <button class="btn-next" onclick="next('final')">Mi Promesa &#9997;&#65039;&#128150;</button>
+            <button class="btn-next" onclick="next('final')">Mi Promesa &#9997;&#65039;</button>
         </section>
 
         <section id="final" class="screen">
-            <div class="scrollable-content" style="background: white; border-radius: 25px; padding: 25px; border: 1px solid #ddd;">
-                <div id="typing-box" style="line-height: 1.8; font-size: 1rem; color: #333;"></div>
+            <div class="scrollable-content" style="background: white; border-radius: 25px; padding: 25px;">
+                <div id="typing-box" class="typing-text"></div>
             </div>
-            <button class="btn-next" onclick="location.reload()">Releer &#128150;&#10024;</button>
+            <button class="btn-next" onclick="location.reload()">Releer &#128150;</button>
         </section>
     </div>
 
     <script>
-        const verdades = [
-            "Eres lo más emocionante que me ha pasado &#128150;&#10024;",
-            "Quiero construir mi futuro a tu lado &#127968;&#128150;",
-            "No te cambiaría por nadie en este mundo &#128683;&#128142;",
-            "Me esfuerzo diario por ser mejor para ti &#129665;&#128150;",
-            "Eres mi lugar seguro siempre &#10024;&#128150;"
-        ];
-
         const fotos = ["foto1.png", "foto2.png", "Roblox.png", "Juntos.png", "Eye y yo.png", "1.png"];
         let fotoIdx = 0;
 
@@ -97,70 +115,43 @@
             if(id === 'final') startTyping();
         }
 
-        function spin() {
-            const el = document.getElementById('magic-text');
-            el.innerHTML = verdades[Math.floor(Math.random() * verdades.length)];
-        }
-
         function changePhoto() {
             fotoIdx = (fotoIdx + 1) % fotos.length;
             document.getElementById('main-img').src = fotos[fotoIdx];
         }
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '&#128150;';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-
         function startTyping() {
             const box = document.getElementById('typing-box');
-            const parrafos = [
-                "Evelyn, mi niña&#128150;&#128150;...",
-                "Quiero que leas esto con mucha calma&#128575;. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez&#128575;&#128575;&#128575;. No quiero que sientas que estás sola.",
-                "Jamás te dejaré con el corazón en las manos&#128575;; me quedaré contigo todo el tiempo que me lo permitas&#128150;&#128150;&#128150;. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito.&#128150;&#128150;&#128150;&#128150;.",
-                "Gracias por elegirme cada día. Te amo para siempre&#128150;&#128150;&#128150;&#128150;, definitivamente eres tú&#10024;&#128150;&#128150;&#128156;."
-            ];
+            const texto = "Evelyn, mi niña &#128150;... \n\nQuiero que leas esto con mucha calma. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez. No quiero que sientas que estás sola o que me vas a perder.\n\nJamás te dejaré con el corazón en las manos; me quedaré contigo todo el tiempo que me lo permitas &#128150;, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo.\n\nGracias por elegirme cada día. Te amo para siempre &#128150;, definitivamente eres tú &#10024;.";
             
-            let pIdx = 0;
-            let charIdx = 0;
-
+            let i = 0;
+            box.innerHTML = "";
             function type() {
-                if (pIdx < parrafos.length) {
-                    if (charIdx === 0) {
-                        const pElement = document.createElement('p');
-                        pElement.style.marginBottom = "20px";
-                        box.appendChild(pElement);
-                    }
-                    const currentP = box.lastChild;
-                    if (parrafos[pIdx].slice(charIdx).startsWith("&#")) {
-                        const endIdx = parrafos[pIdx].indexOf(";", charIdx);
-                        const emojiCode = parrafos[pIdx].slice(charIdx, endIdx + 1);
-                        const span = document.createElement('span');
-                        span.classList.add('blur-char');
-                        span.innerHTML = emojiCode;
-                        currentP.appendChild(span);
-                        charIdx = endIdx + 1;
+                if (i < texto.length) {
+                    if (texto.slice(i).startsWith("&#")) {
+                        const end = texto.indexOf(";", i);
+                        box.innerHTML += texto.slice(i, end + 1);
+                        i = end + 1;
+                    } else if (texto[i] === "\n") {
+                        box.innerHTML += "<br>";
+                        i++;
                     } else {
-                        const char = parrafos[pIdx][charIdx];
-                        const span = document.createElement('span');
-                        span.classList.add('blur-char');
-                        span.innerHTML = char === " " ? "&nbsp;" : char;
-                        currentP.appendChild(span);
-                        charIdx++;
+                        box.innerHTML += texto[i];
+                        i++;
                     }
-                    if (charIdx < parrafos[pIdx].length) {
-                        setTimeout(type, 35);
-                    } else {
-                        pIdx++;
-                        charIdx = 0;
-                        setTimeout(type, 700);
-                    }
-                } else { setInterval(createHeart, 300); }
+                    setTimeout(type, 30);
+                    box.parentNode.scrollTop = box.parentNode.scrollHeight;
+                } else {
+                    setInterval(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('heart');
+                        heart.innerHTML = '&#128150;';
+                        heart.style.left = Math.random() * 100 + 'vw';
+                        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                        document.body.appendChild(heart);
+                        setTimeout(() => heart.remove(), 5000);
+                    }, 300);
+                }
             }
             type();
         }
