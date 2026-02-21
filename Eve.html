@@ -1,339 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Evelyn 💗✨</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap"
-        rel="stylesheet">
+    <title>Para mi Niña Hermosa ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --lila-fuerte: #7e57c2;
-            --texto: #2d1b4d;
+        :root { --lila: #7e57c2; --rosa: #f48fb1; --lila-claro: #f3e5f5; --texto: #4a3475; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            height: 100vh; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
+            font-family: 'Quicksand', sans-serif; display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        .app-container { 
+            width: 95%; max-width: 420px; height: 92vh; background: rgba(255, 255, 255, 0.97); 
+            border-radius: 45px; padding: 25px; display: flex; flex-direction: column;
+            box-shadow: 0 25px 60px rgba(126, 87, 194, 0.2); position: relative; border: 4px solid white;
         }
 
-        body {
-            height: 100vh;
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            font-family: 'Quicksand', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
+        .screen { display: none; flex-direction: column; height: 100%; animation: fadeIn 0.6s ease both; }
+        .screen.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        .main-app {
-            width: 95%;
-            max-width: 420px;
-            height: 92vh;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            border-radius: 40px;
-            border: 3px solid white;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(126, 87, 194, 0.3);
-            z-index: 10;
+        /* --- MENÚ --- */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .menu-card { 
+            background: white; padding: 20px; border-radius: 25px; text-align: center;
+            border: 2px solid var(--lila-claro); cursor: pointer; transition: 0.3s;
         }
+        .menu-card:hover { transform: translateY(-5px); border-color: var(--lila); background: var(--lila-claro); }
+        .menu-card span { font-size: 2rem; display: block; margin-bottom: 10px; }
 
-        .screen {
-            display: none;
-            flex-direction: column;
-            height: 100%;
-            text-align: center;
-            animation: fadeIn 0.6s ease;
+        /* --- TEXTOS --- */
+        .scroll-box { overflow-y: auto; flex-grow: 1; padding-right: 10px; margin-bottom: 20px; text-align: left; }
+        .scroll-box p { line-height: 1.8; color: var(--texto); margin-bottom: 18px; font-size: 1.05rem; }
+        
+        .refugio-item { 
+            background: #fff; border-radius: 25px; padding: 20px; margin-bottom: 20px; 
+            border-left: 5px solid var(--lila); box-shadow: 0 5px 15px rgba(0,0,0,0.03);
         }
+        .refugio-item b { color: var(--lila); font-size: 1.2rem; display: block; margin-bottom: 8px; }
 
-        .screen.active {
-            display: flex;
+        /* --- FRASCO ANIMADO --- */
+        .jar-scene { position: relative; width: 100%; height: 280px; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 20px; }
+        .jar-body {
+            width: 140px; height: 180px; background: rgba(255, 255, 255, 0.4);
+            border: 4px solid white; border-radius: 20px 20px 50px 50px;
+            position: relative; backdrop-filter: blur(4px); z-index: 2;
+            display: flex; flex-wrap: wrap; align-content: flex-end; padding: 15px; gap: 5px; overflow: hidden;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .jar-lid {
+            width: 150px; height: 25px; background: var(--lila);
+            position: absolute; top: 75px; z-index: 3; border-radius: 10px;
+            border: 3px solid white; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        .mini-paper { width: 18px; height: 12px; border-radius: 2px; opacity: 0.6; }
+        .jar-open .jar-lid { transform: translateY(-45px) rotate(-20deg); opacity: 0.9; }
 
-        .script-font {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: var(--lila-fuerte);
-            margin-bottom: 10px;
+        .letter {
+            position: absolute; width: 40px; height: 30px; background: white;
+            bottom: 40px; border: 2px solid var(--lila); border-radius: 5px;
+            z-index: 1; opacity: 0; transition: 0.8s all cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
+        .letter.fly { opacity: 1; bottom: 140px; width: 300px; height: auto; min-height: 120px; z-index: 10; transform: scale(1.1); }
+        #reasonText { font-size: 1.05rem; color: var(--texto); font-weight: 600; text-align: center; display: none; line-height: 1.5; }
+        .letter.fly #reasonText { display: block; }
 
-        .scrollable-content {
-            overflow-y: auto;
-            flex-grow: 1;
-            padding-right: 5px;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .message-bubble {
-            background: white;
-            padding: 20px;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            border-left: 8px solid var(--lila-fuerte);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-        }
-
-        .message-bubble h3 {
-            font-size: 1.1rem;
-            color: var(--lila-fuerte);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .magic-wheel {
-            width: 220px;
-            height: 220px;
-            border: 8px dashed var(--lila-fuerte);
-            border-radius: 50%;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            cursor: pointer;
-            padding: 20px;
-            box-shadow: 0 10px 25px rgba(126, 87, 194, 0.2);
-        }
-
-        .polaroid-frame {
-            background: white;
-            padding: 15px 15px 45px 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            transform: rotate(-3deg);
-            margin: 25px auto;
-            width: 90%;
-            cursor: pointer;
-        }
-
-        .polaroid-frame img {
-            width: 100%;
-            border-radius: 5px;
-            display: block;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        /* EFECTO DIFUMINADO */
-        .blur-char {
-            display: inline-block;
-            opacity: 0;
-            filter: blur(8px);
-            animation: blurReveal 0.5s forwards;
-        }
-
-        @keyframes blurReveal {
-            to {
-                opacity: 1;
-                filter: blur(0);
-            }
-        }
-
-        .btn-next {
-            background: var(--lila-fuerte);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3);
-            margin-top: auto;
-        }
-
-        /* LLUVIA DE CORAZONES */
-        .heart {
-            position: absolute;
-            top: -10%;
-            font-size: 20px;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear forwards;
-            z-index: 5;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-            }
-        }
+        .btn-back { background: none; border: none; color: var(--lila); font-weight: 700; cursor: pointer; margin-bottom: 15px; }
+        .main-btn { background: var(--lila); color: white; border: none; padding: 18px; border-radius: 30px; font-weight: 700; cursor: pointer; }
+        h1 { font-family: 'Dancing Script', cursive; color: var(--lila); font-size: 2.8rem; text-align: center; margin-bottom: 10px; }
+        
+        @keyframes shake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(4deg); } 75% { transform: rotate(-4deg); } }
+        .shake-ani { animation: shake 0.3s infinite; }
     </style>
 </head>
-
 <body>
-    <audio id="bgMusic" loop>
-        <source src="cancion.mp3" type="audio/mpeg">
-    </audio>
 
-    <div class="main-app">
-        <section id="inicio" class="screen active">
-            <div style="font-size: 80px; margin: 30px 0;">🌸</div>
-            <h1 class="script-font">Hola, Evelyn... ✨🫂</h1>
-            <p style="margin-bottom: 25px;">He creado este espacio porque mi corazón tiene mucho que decirte. ✍️💜</p>
-            <button class="btn-next" onclick="next('sinceridad')">Entrar 🔓💗</button>
+    <audio id="musica" loop><source src="cancion.mp3" type="audio/mpeg"></audio>
+
+    <div class="app-container">
+        
+        <section id="pantalla-inicio" class="screen active" style="justify-content: center; align-items: center;">
+            <div style="font-size: 80px; margin-bottom: 20px;">🔓</div>
+            <h1>Para mi niña hermosa💗</h1>
+            <button class="main-btn" style="width: 80%;" onclick="iniciarApp()">Entrar💗</button>
         </section>
 
-        <section id="sinceridad" class="screen">
-            <h2 class="script-font" style="font-size: 2rem;">Lo que guardo... 💜</h2>
-            <div class="scrollable-content">
-                <div class="message-bubble">
-                    <h3>🩹 Perdón de corazón</h3>
-                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de
-                        inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención, y me
-                        duele saber que mis acciones pudieron lastimarte. ✨🫂</p>
+        <section id="pantalla-menu" class="screen">
+            <h1>Hola Amooor💗💗 ✨</h1>
+            <div class="menu-grid">
+                <div class="menu-card" onclick="irA('pantalla-intenciones')"><span>✍️</span><p>Intenciones</p></div>
+                <div class="menu-card" onclick="irA('pantalla-destino')"><span>💍</span><p>Destino</p></div>
+                <div class="menu-card" onclick="irA('pantalla-refugios')"><span>🏠</span><p>Refugios</p></div>
+                <div class="menu-card" onclick="irA('pantalla-frasco')"><span>🏺</span><p>Frasco</p></div>
+            </div>
+            <p style="margin-top: auto; text-align: center; font-size: 0.8rem; color: #aaa;">Contigo todo es mejor 💜</p>
+        </section>
+
+        <section id="pantalla-intenciones" class="screen">
+            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
+            <h1>Mis Intenciones ✨</h1>
+            <div class="scroll-box">
+                <p>Evelyn, quería que supieras que mis intenciones contigo no son de un momento, son de una vida entera. Mi plan no es solo estar contigo cuando todo es risas, sino quedarme a tu lado cuando el mundo se sienta pesado y la calma parezca lejos. 💜</p>
+                <p>Sueño despierto con el día en que ya no tenga que mandarte mensajes de <b>"Buenos días"</b> o <b>"Buenas noches"</b> por el celular. Esos textos son lindos, pero se quedan cortos comparados con las ganas que tengo de susurrártelo al oído cada mañana al verte despertar. 🏠</p>
+                <p>Quiero que desayunemos juntos todos los días, compartir el café, las metas y el silencio, sabiendo que finalmente estamos en casa porque estamos juntos. Te prometí que nos íbamos a quedar, que no te soltaría, y hoy te lo cumplo con más fuerza que nunca porque no hay un lugar en el mundo donde prefiera estar que no sea a tu lado. ☕✨</p>
+                <p>No necesito buscar en ningún otro lado, porque contigo encontré todo lo que no sabía que estaba buscando. Te amo hoy, mañana y siempre. 💗</p>
+            </div>
+        </section>
+
+        <section id="pantalla-refugios" class="screen">
+            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
+            <h1>Mis Refugios 🏠</h1>
+            <div class="scroll-box">
+                <div class="refugio-item">
+                    <b>👁️ Tus Ojos</b>
+                    <p>Son mi ventana favorita al mundo. Me encanta perderme en ellos porque me transmiten una paz que no encuentro en ningún otro lugar. En tu mirada encuentro la calma que necesito y la seguridad de que todo estará bien.</p>
                 </div>
-                <div class="message-bubble">
-                    <h3>🚫 No estás sola</h3>
-                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo
-                        permitas. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma, porque yo
-                        jamás te voy a soltar. 🏠💗</p>
+                <div class="refugio-item">
+                    <b>🫂 Tus Brazos</b>
+                    <p>Es el lugar donde el ruido del mundo desaparece por completo. Cuando me abrazas, siento que nada malo puede pasarme; es mi fortaleza personal y mi refugio cálido donde puedo ser yo mismo.</p>
+                </div>
+                <div class="refugio-item">
+                    <b>👄 Tus Labios</b>
+                    <p>Son el refugio de mis palabras y mis suspiros. Besarte es como volver a casa; es ese recordatorio dulce de por qué vale la pena luchar por nosotros cada día. Son la suavidad que me calma.</p>
                 </div>
             </div>
-            <button class="btn-next" onclick="next('oraculo')">Algo más ➡️✨</button>
         </section>
 
-        <section id="oraculo" class="screen">
-            <h2 class="script-font">Verdades 🎡💎</h2>
-            <div class="magic-wheel" onclick="spin()">
-                <p id="magic-text" style="text-align: center;">Toca para descubrir una verdad... 🎡💗</p>
+        <section id="pantalla-destino" class="screen">
+            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
+            <h1>Nuestro Destino 💍</h1>
+            <div class="scroll-box">
+                <p><b>La Promesa de Mañana:</b> Mi destino no es un lugar en el mapa, es cualquier lugar donde estés t💗ú. Caminar de tu mano significa aceptar que el camino no siempre será plano, pero que enfrentaremos cada reto con la certeza de que somos un equipo💗💗🫂. No quiero un destino fácil, quiero un destino contigo, donde cada paso valga la pena simplemente porque vas a mi lado💗💗.</p>
+                <p><b>Construcción y Crecimiento:</b> Quiero que nos enseñemos a ser mejores versiones de nosotros mismos cada segundo. Mi meta es que nuestra historia sea ese refugio sagrado donde siempre queramos volver, sin importar qué tan fuerte sople el viento afuera. Estoy comprometido a cuidar lo que tenemos y a hacer que nuestro amor crezca sólido💗✨🫂💗.</p>
+                <p><b>Una Vida de Elecciones:</b> Te elijo hoy y te elegiré mañana. Mi destino es cumplir cada palabra que te he dicho, porque una vida entera a tu lado es el único futuro que me emociona vivir y el único puerto donde realmente quiero anclar mi corazón. 💗✨</p>
             </div>
-            <button class="btn-next" onclick="next('galeria')">Fotos 📸</button>
         </section>
 
-        <section id="galeria" class="screen">
-            <h2 class="script-font">Tú y Yo 📸💗</h2>
-            <div class="polaroid-frame" onclick="changePhoto()">
-                <img src="foto1.jpg" id="main-img"
-                    onerror="this.src='https://via.placeholder.com/300x350?text=Sube+tu+foto+a+GitHub'">
-                <p
-                    style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">
-                    Definitivamente tú 💗✨</p>
+        <section id="pantalla-frasco" class="screen">
+            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
+            <h1>Frasco de Cartas ✨</h1>
+            <div class="jar-scene" id="escenaFrasco" onclick="abrirCartita()">
+                <div class="jar-lid" id="tapa"></div>
+                <div class="jar-body" id="cuerpoFrasco"></div>
+                <div class="letter" id="carta"><p id="reasonText"></p></div>
             </div>
-            <button class="btn-next" onclick="next('final')">Mi Promesa ✍️🫂</button>
+            <p style="text-align: center; color: #888;">Toca el frasco para abrir una cartita...</p>
         </section>
 
-        <section id="final" class="screen">
-            <div class="scrollable-content"
-                style="background: white; border-radius: 25px; padding: 25px; border: 1px solid #ddd;">
-                <div id="typing-box" style="line-height: 1.8; font-size: 1rem; color: #333;"></div>
-            </div>
-            <button class="btn-next" onclick="location.reload()">Releer 💗✨</button>
-        </section>
     </div>
 
     <script>
-        const verdades = [
-            "Eres lo más emocionante que me ha pasado 😸✨",
-            "Quiero construir mi futuro a tu lado 🏠🫂",
-            "No te cambiaría por nadie en este mundo 🚫💎",
-            "Me esfuerzo diario por ser mejor para ti 🩹💗",
-            "Tus berrinches son mi debilidad favorita 🍭💗",
-            "Eres mi lugar seguro siempre 🎮🫂✨"
-        ];
+        function iniciarApp() {
+            document.getElementById('musica').play().catch(() => {});
+            irA('pantalla-menu');
+        }
 
-        const fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
-        let fotoIdx = 0;
-
-        function next(id) {
-            document.getElementById('bgMusic').play().catch(() => { });
+        function irA(id) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if (id === 'final') startTyping();
         }
 
-        function spin() {
-            const el = document.getElementById('magic-text');
-            el.innerText = verdades[Math.floor(Math.random() * verdades.length)];
+        const cuerpo = document.getElementById('cuerpoFrasco');
+        const colores = ['#f48fb1', '#ce93d8', '#b39ddb', '#f3e5f5'];
+        for(let i=0; i<15; i++) {
+            let p = document.createElement('div');
+            p.className = 'mini-paper';
+            p.style.backgroundColor = colores[Math.floor(Math.random()*colores.length)];
+            p.style.transform = `rotate(${Math.random()*40 - 20}deg)`;
+            cuerpo.appendChild(p);
         }
 
-        function changePhoto() {
-            fotoIdx = (fotoIdx + 1) % fotos.length;
-            document.getElementById('main-img').src = fotos[fotoIdx];
-        }
+        const sujetos = ["Tu sonrisa", "Tu mirada", "Tu forma de ser", "Tu voz", "Tu ternura", "Tu paciencia", "Tu apoyo"];
+        const verbos = ["me llena de", "me transmite", "me regala", "me inspira una", "me provoca una", "ilumina mi", "es mi fuente de"];
+        const complementos = ["paz infinita 🌸", "alegría constante ✨", "seguridad total 💜", "felicidad pura 💗", "amor incondicional 🫂", "calma en la tormenta 🏠"];
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = ['💗', '✨', '🫂', '💜'][Math.floor(Math.random() * 4)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.opacity = Math.random();
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
+        let animando = false;
+        function abrirCartita() {
+            if(animando) return;
+            animando = true;
+            const escena = document.getElementById('escenaFrasco');
+            const carta = document.getElementById('carta');
+            const texto = document.getElementById('reasonText');
+            const tapa = document.getElementById('tapa');
 
-        function startTyping() {
-            const box = document.getElementById('typing-box');
-            // Texto dividido por párrafos reales
-            const parrafos = [
-                "Evelyn, mi niña💗💗...",
-                "Quiero que leas esto con mucha calma😿. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez😿😿😿. No quiero que sientas que estás sola o que me vas a perder.",
-                "Jamás te dejaré con el corazón en las manos😿; me quedaré contigo todo el tiempo que me lo permitas💗💗💗, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo, que nos tenemos💗💗💗💗.",
-                "Gracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre💗💗💗💗, definitivamente eres tú✨💗💗🫂."
-            ];
-
-            let pIdx = 0;
-            let charIdx = 0;
-
-            function type() {
-                if (pIdx < parrafos.length) {
-                    if (charIdx === 0) {
-                        const pElement = document.createElement('p');
-                        pElement.style.marginBottom = "20px";
-                        box.appendChild(pElement);
-                    }
-
-                    const currentP = box.lastChild;
-                    const span = document.createElement('span');
-                    span.classList.add('blur-char');
-                    span.innerHTML = parrafos[pIdx][charIdx] === " " ? "&nbsp;" : parrafos[pIdx][charIdx];
-                    currentP.appendChild(span);
-
-                    charIdx++;
-                    if (charIdx < parrafos[pIdx].length) {
-                        setTimeout(type, 40);
-                    } else {
-                        pIdx++;
-                        charIdx = 0;
-                        setTimeout(type, 500); // Pausa entre párrafos
-                    }
-                    box.parentNode.scrollTop = box.parentNode.scrollHeight;
-                } else {
-                    // Inyectar emojis finales y empezar lluvia
-                    const finalEmojis = document.createElement('p');
-                    finalEmojis.style.fontSize = "1.5rem";
-                    finalEmojis.style.textAlign = "center";
-                    finalEmojis.innerText = "💗✨🫂💎👑";
-                    box.appendChild(finalEmojis);
-                    setInterval(createHeart, 300);
-                }
-            }
-            type();
+            texto.innerText = `${sujetos[Math.floor(Math.random()*sujetos.length)]} ${verbos[Math.floor(Math.random()*verbos.length)]} ${complementos[Math.floor(Math.random()*complementos.length)]}`;
+            
+            escena.classList.add('jar-open');
+            setTimeout(() => { carta.classList.add('fly'); }, 300);
+            
+            setTimeout(() => {
+                carta.classList.remove('fly');
+                escena.classList.remove('jar-open');
+                setTimeout(() => { animando = false; }, 800);
+            }, 4500);
         }
     </script>
 </body>
-
 </html>
