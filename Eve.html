@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Evelyn 💗✨</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --lila-fuerte: #7e57c2;
+            --texto: #2d1b4d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .main-app {
+            width: 95%;
+            max-width: 420px;
+            height: 92vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            border: 3px solid white;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(126, 87, 194, 0.3);
+            z-index: 10;
+        }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .script-font {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: var(--lila-fuerte);
+            margin-bottom: 10px;
+        }
+
+        .scrollable-content {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 5px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .message-bubble {
+            background: white;
+            padding: 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            border-left: 8px solid var(--lila-fuerte);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .message-bubble h3 {
+            font-size: 1.1rem;
+            color: var(--lila-fuerte);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .magic-wheel {
+            width: 220px;
+            height: 220px;
+            border: 8px dashed var(--lila-fuerte);
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            cursor: pointer;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(126, 87, 194, 0.2);
+        }
+
+        .polaroid-frame {
+            background: white;
+            padding: 15px 15px 45px 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: rotate(-3deg);
+            margin: 25px auto;
+            width: 90%;
+            cursor: pointer;
+        }
+
+        .polaroid-frame img {
+            width: 100%;
+            border-radius: 5px;
+            display: block;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* EFECTO DIFUMINADO */
+        .blur-char {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(8px);
+            animation: blurReveal 0.5s forwards;
+        }
+
+        @keyframes blurReveal {
+            to {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        .btn-next {
+            background: var(--lila-fuerte);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(126, 87, 194, 0.3);
+            margin-top: auto;
+        }
+
+        /* LLUVIA DE CORAZONES */
+        .heart {
+            position: absolute;
+            top: -10%;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 5;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="bgMusic" loop>
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="main-app">
+        <section id="inicio" class="screen active">
+            <div style="font-size: 80px; margin: 30px 0;">🌸</div>
+            <h1 class="script-font">Hola, Evelyn... ✨🫂</h1>
+            <p style="margin-bottom: 25px;">He creado este espacio porque mi corazón tiene mucho que decirte. ✍️💜</p>
+            <button class="btn-next" onclick="next('sinceridad')">Entrar 🔓💗</button>
+        </section>
+
+        <section id="sinceridad" class="screen">
+            <h2 class="script-font" style="font-size: 2rem;">Lo que guardo... 💜</h2>
+            <div class="scrollable-content">
+                <div class="message-bubble">
+                    <h3>🩹 Perdón de corazón</h3>
+                    <p>Evelyn, de verdad me disculpo por haber sido una mala persona contigo en esos momentos de
+                        inmadurez. No darte el lugar que mereces y hacerte sentir sola jamás fue mi intención, y me
+                        duele saber que mis acciones pudieron lastimarte. ✨🫂</p>
+                </div>
+                <div class="message-bubble">
+                    <h3>🚫 No estás sola</h3>
+                    <p>Sé que te han fallado antes, pero yo no soy así. Me quedaré contigo todo el tiempo que me lo
+                        permitas. Quiero que construyamos un futuro donde no tengas miedo de ser tú misma, porque yo
+                        jamás te voy a soltar. 🏠💗</p>
+                </div>
+            </div>
+            <button class="btn-next" onclick="next('oraculo')">Algo más ➡️✨</button>
+        </section>
+
+        <section id="oraculo" class="screen">
+            <h2 class="script-font">Verdades 🎡💎</h2>
+            <div class="magic-wheel" onclick="spin()">
+                <p id="magic-text" style="text-align: center;">Toca para descubrir una verdad... 🎡💗</p>
+            </div>
+            <button class="btn-next" onclick="next('galeria')">Fotos 📸</button>
+        </section>
+
+        <section id="galeria" class="screen">
+            <h2 class="script-font">Tú y Yo 📸💗</h2>
+            <div class="polaroid-frame" onclick="changePhoto()">
+                <img src="foto1.jpg" id="main-img"
+                    onerror="this.src='https://via.placeholder.com/300x350?text=Sube+tu+foto+a+GitHub'">
+                <p
+                    style="font-family: 'Dancing Script'; font-size: 1.5rem; margin-top: 10px; color: var(--lila-fuerte);">
+                    Definitivamente tú 💗✨</p>
+            </div>
+            <button class="btn-next" onclick="next('final')">Mi Promesa ✍️🫂</button>
+        </section>
+
+        <section id="final" class="screen">
+            <div class="scrollable-content"
+                style="background: white; border-radius: 25px; padding: 25px; border: 1px solid #ddd;">
+                <div id="typing-box" style="line-height: 1.8; font-size: 1rem; color: #333;"></div>
+            </div>
+            <button class="btn-next" onclick="location.reload()">Releer 💗✨</button>
+        </section>
+    </div>
+
+    <script>
+        const verdades = [
+            "Eres lo más emocionante que me ha pasado 😸✨",
+            "Quiero construir mi futuro a tu lado 🏠🫂",
+            "No te cambiaría por nadie en este mundo 🚫💎",
+            "Me esfuerzo diario por ser mejor para ti 🩹💗",
+            "Tus berrinches son mi debilidad favorita 🍭💗",
+            "Eres mi lugar seguro siempre 🎮🫂✨"
+        ];
+
+        const fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
+        let fotoIdx = 0;
+
+        function next(id) {
+            document.getElementById('bgMusic').play().catch(() => { });
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            if (id === 'final') startTyping();
+        }
+
+        function spin() {
+            const el = document.getElementById('magic-text');
+            el.innerText = verdades[Math.floor(Math.random() * verdades.length)];
+        }
+
+        function changePhoto() {
+            fotoIdx = (fotoIdx + 1) % fotos.length;
+            document.getElementById('main-img').src = fotos[fotoIdx];
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = ['💗', '✨', '🫂', '💜'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function startTyping() {
+            const box = document.getElementById('typing-box');
+            // Texto dividido por párrafos reales
+            const parrafos = [
+                "Evelyn, mi niña💗💗...",
+                "Quiero que leas esto con mucha calma😿. Sé que no siempre he sabido darte lo que mereces, y de verdad me disculpo por haber sido una mala persona contigo en esos momentos de inmadurez😿😿😿. No quiero que sientas que estás sola o que me vas a perder.",
+                "Jamás te dejaré con el corazón en las manos😿; me quedaré contigo todo el tiempo que me lo permitas💗💗💗, luchando por nosotros contra todo. Quiero que construyamos un futuro donde no existan dudas, solo este amor tan bonito que te tengo, que nos tenemos💗💗💗💗.",
+                "Gracias por elegirme cada día, a pesar de mis fallas. Te amo para siempre💗💗💗💗, definitivamente eres tú✨💗💗🫂."
+            ];
+
+            let pIdx = 0;
+            let charIdx = 0;
+
+            function type() {
+                if (pIdx < parrafos.length) {
+                    if (charIdx === 0) {
+                        const pElement = document.createElement('p');
+                        pElement.style.marginBottom = "20px";
+                        box.appendChild(pElement);
+                    }
+
+                    const currentP = box.lastChild;
+                    const span = document.createElement('span');
+                    span.classList.add('blur-char');
+                    span.innerHTML = parrafos[pIdx][charIdx] === " " ? "&nbsp;" : parrafos[pIdx][charIdx];
+                    currentP.appendChild(span);
+
+                    charIdx++;
+                    if (charIdx < parrafos[pIdx].length) {
+                        setTimeout(type, 40);
+                    } else {
+                        pIdx++;
+                        charIdx = 0;
+                        setTimeout(type, 500); // Pausa entre párrafos
+                    }
+                    box.parentNode.scrollTop = box.parentNode.scrollHeight;
+                } else {
+                    // Inyectar emojis finales y empezar lluvia
+                    const finalEmojis = document.createElement('p');
+                    finalEmojis.style.fontSize = "1.5rem";
+                    finalEmojis.style.textAlign = "center";
+                    finalEmojis.innerText = "💗✨🫂💎👑";
+                    box.appendChild(finalEmojis);
+                    setInterval(createHeart, 300);
+                }
+            }
+            type();
+        }
+    </script>
+</body>
+
+</html>
