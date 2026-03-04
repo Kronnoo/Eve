@@ -15,7 +15,6 @@
             overflow: hidden; color: var(--texto); position: relative;
         }
 
-        /* Fondo de Emojis */
         #emoji-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.5; }
         .emoji-drop { position: absolute; font-size: 1.5rem; animation: fall linear infinite; }
         @keyframes fall { from { transform: translateY(-10vh); } to { transform: translateY(110vh); } }
@@ -33,30 +32,26 @@
         h1 { font-family: 'Dancing Script', cursive; color: var(--lila); font-size: 2.3rem; text-align: center; margin-bottom: 15px; }
         p { line-height: 1.6; font-weight: 500; font-size: 0.95rem; margin-bottom: 15px; }
 
-        /* Login e Inputs */
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 15px; border: 1px solid var(--lila); text-align: center; outline: none; }
-        .main-btn { background: var(--lila); color: white; border: none; padding: 15px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 15px; border: 1px solid var(--lila); text-align: center; outline: none; font-family: inherit; }
+        .main-btn { background: var(--lila); color: white; border: none; padding: 15px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; margin-top: 10px; }
 
-        /* Imágenes y GIF */
         .img-fase { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; margin-bottom: 15px; border: 3px solid white; }
         .gif-final { width: 100%; max-width: 250px; border-radius: 20px; margin: 15px auto; display: block; }
 
-        /* El botón No Imposible */
-        .area-peticion { width: 100%; min-height: 150px; position: relative; display: flex; justify-content: center; align-items: center; gap: 20px; }
+        .area-peticion { width: 100%; min-height: 180px; position: relative; display: flex; justify-content: center; align-items: center; gap: 20px; }
         #btnSi { background: #66bb6a; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; z-index: 12; transition: 0.2s; cursor: pointer; }
         #btnNo { background: #ef5350; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; position: absolute; z-index: 100; transition: 0.1s; cursor: pointer; }
 
-        /* Menú y Frasco (Estilos de tu código) */
         .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
         .menu-card { background: white; padding: 15px; border-radius: 25px; text-align: center; border: 2px solid var(--lila-claro); cursor: pointer; transition: 0.3s; }
-        .menu-card:hover { transform: translateY(-3px); border-color: var(--lila); }
+        
         .jar-scene { position: relative; width: 100%; height: 250px; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 20px; }
         .jar-body { width: 120px; height: 160px; background: rgba(255, 255, 255, 0.4); border: 4px solid white; border-radius: 20px 20px 40px 40px; position: relative; z-index: 2; display: flex; flex-wrap: wrap; padding: 10px; overflow: hidden; }
         .jar-lid { width: 130px; height: 20px; background: var(--lila); position: absolute; top: 75px; z-index: 3; border-radius: 10px; border: 2px solid white; transition: 0.5s; }
         .letter { position: absolute; width: 280px; background: white; padding: 15px; border-radius: 15px; border: 2px solid var(--lila); opacity: 0; bottom: 20px; transition: 0.5s; z-index: 1; text-align: center; font-weight: 600; }
         .letter.fly { opacity: 1; bottom: 100px; z-index: 20; transform: scale(1.05); }
         .jar-open .jar-lid { transform: translateY(-30px) rotate(-15deg); }
-        .btn-back { background: none; border: none; color: var(--lila); font-weight: 700; cursor: pointer; margin-bottom: 10px; text-align: left; }
+        .btn-back { background: none; border: none; color: var(--lila); font-weight: 700; cursor: pointer; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -64,13 +59,12 @@
     <div id="emoji-bg"></div>
 
     <div class="app-container">
-        
         <section id="p-login" class="screen active" style="justify-content: center;">
             <div style="font-size: 60px; text-align: center; margin-bottom: 20px;">🔓</div>
             <h1>Para mi niña hermosa💗</h1>
             <p style="text-align: center;">Introduce los datos para entrar a mi corazón:</p>
             <input type="text" id="userInput" placeholder="Tu nombre (Eve)">
-            <input type="text" id="passInput" placeholder="Nuestra fecha (dd/mm/aa)">
+            <input type="text" id="passInput" placeholder="Nuestra fecha (17/09/24)">
             <button class="main-btn" onclick="checkLogin()">Entrar ➔</button>
             <p id="error" style="color: red; font-size: 0.8rem; display: none; margin-top: 10px; text-align: center;">Datos incorrectos, mi amor... ❤️</p>
         </section>
@@ -101,7 +95,6 @@
 
         <section id="p-menu" class="screen">
             <h1>¡Eres mi Novia! 😍</h1>
-            <p style="text-align: center;">Me haces el más feliz. Ahora puedes explorar todo lo que preparé:</p>
             <div class="menu-grid">
                 <div class="menu-card" onclick="irA('p-intenciones')"><span>✍️</span><p>Intenciones</p></div>
                 <div class="menu-card" onclick="irA('p-destino')"><span>💍</span><p>Destino</p></div>
@@ -114,10 +107,8 @@
         <section id="p-intenciones" class="screen">
             <button class="btn-back" onclick="irA('p-menu')">← Volver</button>
             <h1>Mis Intenciones ✨</h1>
-            <div style="overflow-y: auto;">
-                <p>Evelyn, mis intenciones contigo son de una vida entera. Quiero estar a tu lado en las risas y en los días pesados. 💜</p>
-                <p>Sueño con el día en que ya no existan los mensajes de distancia, sino los susurros al oído cada mañana. Te amo hoy y siempre. 💗</p>
-            </div>
+            <p>Evelyn, mis intenciones contigo son de una vida entera. Quiero estar a tu lado en las risas y en los días pesados. 💜</p>
+            <p>Sueño con el día en que ya no existan los mensajes de distancia, sino los susurros al oído cada mañana. Te amo hoy y siempre. 💗</p>
         </section>
 
         <section id="p-refugios" class="screen">
@@ -135,4 +126,103 @@
         </section>
 
         <section id="p-frasco" class="screen">
-            <button class="btn-back" onclick="irA('p-menu')">← Volver
+            <button class="btn-back" onclick="irA('p-menu')">← Volver</button>
+            <h1>Frasco de Cartas ✨</h1>
+            <div class="jar-scene" id="escenaFrasco" onclick="abrirCartita()">
+                <div class="jar-lid" id="tapa"></div>
+                <div class="jar-body" id="cuerpoFrasco"></div>
+                <div class="letter" id="carta"></div>
+            </div>
+            <p style="text-align: center; color: #888;">Toca el frasco para leer una razón de amor...</p>
+        </section>
+    </div>
+
+    <script>
+        let escalaSi = 1;
+        const textos = {
+            text1: "Desde aquel 17 de septiembre, mi vida tomó un color diferente. No fue casualidad empezar a ser tan cercanos; fue el destino dándome la oportunidad de conocer al ser más maravilloso. ✨🌸",
+            text2: "Lo que hemos compartido, y especialmente lo de ayer, me confirmó que la confianza que tenemos es sagrada. Quiero cuidarte y ser ese hombro donde siempre puedas descansar. 🫂💜",
+            text3: "He pensado tanto en esto, que incluso imaginé pedirte matrimonio de una vez. Pero quiero que hagamos las cosas bien. Por eso... Evelyn, ¿quieres ser mi novia? 💖💍"
+        };
+
+        function checkLogin() {
+            const user = document.getElementById('userInput').value;
+            const pass = document.getElementById('passInput').value;
+            if(user.toLowerCase().includes("eve") && pass === "17/09/24") {
+                irA('fase1');
+                typeWriter(textos.text1, 'text1', 'btn1');
+                crearLluvia();
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function typeWriter(text, elementId, btnId) {
+            let i = 0;
+            const el = document.getElementById(elementId);
+            el.innerHTML = "";
+            const timer = setInterval(() => {
+                if(i < text.length) { el.innerHTML += text.charAt(i); i++; }
+                else { 
+                    clearInterval(timer); 
+                    const btn = document.getElementById(btnId);
+                    btn.style.display = (btnId === 'areaJuego') ? 'flex' : 'block';
+                }
+            }, 50);
+        }
+
+        function showFase(n) {
+            irA('fase' + n);
+            typeWriter(textos['text' + n], 'text' + n, n === 3 ? 'areaJuego' : 'btn' + n);
+        }
+
+        function irA(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function moverNo() {
+            const btnNo = document.getElementById('btnNo');
+            const btnSi = document.getElementById('btnSi');
+            const area = document.getElementById('areaJuego');
+            btnNo.style.left = Math.random() * (area.clientWidth - 80) + 'px';
+            btnNo.style.top = Math.random() * (area.clientHeight - 40) + 'px';
+            escalaSi += 0.2;
+            btnSi.style.transform = `scale(${escalaSi})`;
+        }
+
+        function activarMenuPrincipal() { irA('p-menu'); }
+
+        const razones = [
+            "Tu sonrisa ilumina mis días más grises. ☀️",
+            "Tu forma de cuidarme me hace sentir especial. 🫂",
+            "Eres mi pensamiento favorito al despertar. 🌸",
+            "Tu mirada me da la paz que no encuentro en otro lugar. ✨",
+            "Amo cómo podemos ser nosotros mismos sin juzgarnos. 💜"
+        ];
+
+        function abrirCartita() {
+            const escena = document.getElementById('escenaFrasco');
+            const carta = document.getElementById('carta');
+            if(escena.classList.contains('jar-open')) return;
+            
+            carta.innerText = razones[Math.floor(Math.random()*razones.length)];
+            escena.classList.add('jar-open');
+            setTimeout(() => { carta.classList.add('fly'); }, 300);
+            setTimeout(() => { carta.classList.remove('fly'); escena.classList.remove('jar-open'); }, 4000);
+        }
+
+        function crearLluvia() {
+            const bg = document.getElementById('emoji-bg');
+            for (let i = 0; i < 15; i++) {
+                let e = document.createElement('div');
+                e.className = 'emoji-drop';
+                e.innerText = ['🌸', '💖', '✨'][Math.floor(Math.random()*3)];
+                e.style.left = Math.random() * 100 + 'vw';
+                e.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                bg.appendChild(e);
+            }
+        }
+    </script>
+</body>
+</html>
