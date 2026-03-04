@@ -3,216 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para mi Niña Consentida ✨</title>
+    <title>Para mi Niña Hermosa ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --lila: #e1bee7; --rosa: #fce4ec; --texto: #4a148c; --acento: #9c27b0;
-        }
+        :root { --lila: #7e57c2; --rosa: #f48fb1; --lila-claro: #f3e5f5; --texto: #4a3475; --acento: #9c27b0; }
         * { box-sizing: border-box; margin: 0; padding: 0; touch-action: manipulation; }
         
         body { 
-            height: 100vh; width: 100vw; 
-            background: linear-gradient(135deg, var(--rosa) 0%, var(--lila) 100%); 
-            font-family: 'Quicksand', sans-serif; 
-            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; width: 100vw; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
+            font-family: 'Quicksand', sans-serif; display: flex; justify-content: center; align-items: center; 
             overflow: hidden; color: var(--texto); position: relative;
         }
 
-        /* Lluvia de emojis de fondo */
-        #emoji-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 1; opacity: 0.5;
-        }
-        .emoji-drop {
-            position: absolute; font-size: 1.5rem; animation: fall linear infinite;
-        }
+        /* Fondo de Emojis */
+        #emoji-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.5; }
+        .emoji-drop { position: absolute; font-size: 1.5rem; animation: fall linear infinite; }
         @keyframes fall { from { transform: translateY(-10vh); } to { transform: translateY(110vh); } }
 
-        .container {
-            width: 92%; max-width: 450px; background: rgba(255, 255, 255, 0.85);
-            padding: 25px; border-radius: 35px; text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); backdrop-filter: blur(12px);
-            z-index: 10; border: 2px solid white; position: relative;
+        .app-container { 
+            width: 95%; max-width: 420px; height: 92vh; background: rgba(255, 255, 255, 0.9); 
+            border-radius: 40px; padding: 25px; display: flex; flex-direction: column;
+            box-shadow: 0 25px 60px rgba(126, 87, 194, 0.2); z-index: 10; border: 4px solid white; backdrop-filter: blur(10px);
         }
 
-        .screen { display: none; flex-direction: column; align-items: center; min-height: 450px; }
-        .active { display: flex; animation: fadeIn 0.8s ease; }
+        .screen { display: none; flex-direction: column; height: 100%; animation: fadeIn 0.6s ease both; overflow-y: auto; }
+        .screen.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        h1 { font-family: 'Dancing Script', cursive; color: var(--lila); font-size: 2.3rem; text-align: center; margin-bottom: 15px; }
+        p { line-height: 1.6; font-weight: 500; font-size: 0.95rem; margin-bottom: 15px; }
 
-        h1 { font-family: 'Dancing Script', cursive; color: var(--acento); font-size: 2.2rem; margin-bottom: 10px; }
-        
-        .img-gustos { 
-            width: 100%; height: 160px; object-fit: cover; border-radius: 20px;
-            margin-bottom: 15px; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        /* Login e Inputs */
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 15px; border: 1px solid var(--lila); text-align: center; outline: none; }
+        .main-btn { background: var(--lila); color: white; border: none; padding: 15px; border-radius: 30px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; }
 
-        .typewriter-text { 
-            line-height: 1.6; font-weight: 500; font-size: 0.95rem; min-height: 120px;
-            margin-bottom: 20px; color: #5e35b1;
-        }
+        /* Imágenes y GIF */
+        .img-fase { width: 100%; height: 160px; object-fit: cover; border-radius: 20px; margin-bottom: 15px; border: 3px solid white; }
+        .gif-final { width: 100%; max-width: 250px; border-radius: 20px; margin: 15px auto; display: block; }
 
-        input { 
-            width: 85%; padding: 12px; margin: 8px 0; border-radius: 15px; 
-            border: 1px solid var(--lila); outline: none; text-align: center; font-family: inherit;
-        }
-        
-        .btn-next { 
-            background: var(--acento); color: white; border: none; 
-            padding: 12px 30px; border-radius: 50px; font-weight: 700; 
-            cursor: pointer; transition: 0.3s; margin-top: auto;
-        }
+        /* El botón No Imposible */
+        .area-peticion { width: 100%; min-height: 150px; position: relative; display: flex; justify-content: center; align-items: center; gap: 20px; }
+        #btnSi { background: #66bb6a; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; z-index: 12; transition: 0.2s; cursor: pointer; }
+        #btnNo { background: #ef5350; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; position: absolute; z-index: 100; transition: 0.1s; cursor: pointer; }
 
-        .area-peticion {
-            width: 100%; min-height: 180px; position: relative; 
-            display: flex; justify-content: center; align-items: center; gap: 20px;
-        }
-
-        #btnSi { background: #66bb6a; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; z-index: 12; transition: 0.2s; }
-        #btnNo { background: #ef5350; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; position: absolute; z-index: 100; transition: 0.1s; }
-
-        #aviso { position: fixed; top: 10%; background: var(--acento); color: white; padding: 10px 20px; border-radius: 20px; display: none; z-index: 1000; }
+        /* Menú y Frasco (Estilos de tu código) */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .menu-card { background: white; padding: 15px; border-radius: 25px; text-align: center; border: 2px solid var(--lila-claro); cursor: pointer; transition: 0.3s; }
+        .menu-card:hover { transform: translateY(-3px); border-color: var(--lila); }
+        .jar-scene { position: relative; width: 100%; height: 250px; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 20px; }
+        .jar-body { width: 120px; height: 160px; background: rgba(255, 255, 255, 0.4); border: 4px solid white; border-radius: 20px 20px 40px 40px; position: relative; z-index: 2; display: flex; flex-wrap: wrap; padding: 10px; overflow: hidden; }
+        .jar-lid { width: 130px; height: 20px; background: var(--lila); position: absolute; top: 75px; z-index: 3; border-radius: 10px; border: 2px solid white; transition: 0.5s; }
+        .letter { position: absolute; width: 280px; background: white; padding: 15px; border-radius: 15px; border: 2px solid var(--lila); opacity: 0; bottom: 20px; transition: 0.5s; z-index: 1; text-align: center; font-weight: 600; }
+        .letter.fly { opacity: 1; bottom: 100px; z-index: 20; transform: scale(1.05); }
+        .jar-open .jar-lid { transform: translateY(-30px) rotate(-15deg); }
+        .btn-back { background: none; border: none; color: var(--lila); font-weight: 700; cursor: pointer; margin-bottom: 10px; text-align: left; }
     </style>
 </head>
 <body>
 
-    <div id="aviso">¡Casi! Pero no puedes decir que no... 😜</div>
     <div id="emoji-bg"></div>
 
-    <div class="container">
+    <div class="app-container">
         
-        <section id="login" class="screen active" style="justify-content: center;">
-            <h1>Hola, mi niña... ✨</h1>
-            <p style="margin-bottom: 20px;">He guardado algo muy especial aquí para ti. Solo tú puedes entrar.</p>
+        <section id="p-login" class="screen active" style="justify-content: center;">
+            <div style="font-size: 60px; text-align: center; margin-bottom: 20px;">🔓</div>
+            <h1>Para mi niña hermosa💗</h1>
+            <p style="text-align: center;">Introduce los datos para entrar a mi corazón:</p>
             <input type="text" id="userInput" placeholder="Tu nombre (Eve)">
             <input type="text" id="passInput" placeholder="Nuestra fecha (dd/mm/aa)">
-            <button class="btn-next" onclick="checkLogin()">Abrir mi corazón ➔</button>
-            <p id="error" style="color: #d32f2f; font-size: 0.8rem; display: none; margin-top: 10px;">Esa no es la fecha correcta, amor. Intenta de nuevo... ❤️</p>
+            <button class="main-btn" onclick="checkLogin()">Entrar ➔</button>
+            <p id="error" style="color: red; font-size: 0.8rem; display: none; margin-top: 10px; text-align: center;">Datos incorrectos, mi amor... ❤️</p>
         </section>
 
-        <section id="p1" class="screen">
-            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=500" class="img-gustos">
-            <h1>Donde todo cambió... ⏳</h1>
-            <div id="text1" class="typewriter-text"></div>
-            <button id="btn1" class="btn-next" onclick="showScreen(2)" style="display:none;">Continuar ➔</button>
+        <section id="fase1" class="screen">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=500" class="img-fase">
+            <h1>Donde todo inició... ⏳</h1>
+            <div id="text1" style="min-height: 120px;"></div>
+            <button id="btn1" class="main-btn" onclick="showFase(2)" style="display:none; margin-top: auto;">Continuar ➔</button>
         </section>
 
-        <section id="p2" class="screen">
-            <img src="foto2.png" class="img-gustos">
-            <h1>Mi lugar seguro eres tú 🫂</h1>
-            <div id="text2" class="typewriter-text"></div>
-            <button id="btn2" class="btn-next" onclick="showScreen(3)" style="display:none;">Sigue leyendo, amor... ➔</button>
+        <section id="fase2" class="screen">
+            <img src="https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=500" class="img-fase">
+            <h1>Mi lugar seguro 🫂</h1>
+            <div id="text2" style="min-height: 120px;"></div>
+            <button id="btn2" class="main-btn" onclick="showFase(3)" style="display:none; margin-top: auto;">Sigue leyendo... ➔</button>
         </section>
 
-        <section id="p3" class="screen">
-            <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=500" class="img-gustos">
-            <h1>Lo que siempre supe 💍</h1>
-            <div id="text3" class="typewriter-text"></div>
-            <button id="btn3" class="btn-next" onclick="showScreen(4)" style="display:none;">Un último paso... ➔</button>
-        </section>
-
-        <section id="p4" class="screen">
-            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=500" class="img-gustos">
-            <h1>Evelyn... 💖</h1>
-            <div id="text4" class="typewriter-text"></div>
+        <section id="fase3" class="screen">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=500" class="img-fase">
+            <h1>¿Me harías el honor? 💍</h1>
+            <div id="text3" style="min-height: 120px;"></div>
             <div class="area-peticion" id="areaJuego" style="display:none;">
-                <button id="btnSi" onclick="finalizar()">¡SÍ, ACEPTO! 💖</button>
-                <button id="btnNo" onmouseover="moverNo()" onclick="accionarNo()">NO ❌</button>
+                <button id="btnSi" onclick="activarMenuPrincipal()">¡SÍ, QUIERO! 💖</button>
+                <button id="btnNo" onmouseover="moverNo()" onclick="moverNo()">NO ❌</button>
             </div>
         </section>
 
-        <section id="p5" class="screen" style="justify-content: center;">
-            <h1>¡Gracias por eso💗💗🙀</h1>
-            <p>Me haces el hombre más afortunado del universo. Prometo cuidarte y amarte cada segundo. ¡Bienvenida a nuestra nueva etapa!Te amo mucho mi vida 💗❤️✨</p>
-            <div style="font-size: 3.5rem; margin-top: 20px;">👩‍❤️‍👨💍♾️</div>
+        <section id="p-menu" class="screen">
+            <h1>¡Eres mi Novia! 😍</h1>
+            <p style="text-align: center;">Me haces el más feliz. Ahora puedes explorar todo lo que preparé:</p>
+            <div class="menu-grid">
+                <div class="menu-card" onclick="irA('p-intenciones')"><span>✍️</span><p>Intenciones</p></div>
+                <div class="menu-card" onclick="irA('p-destino')"><span>💍</span><p>Destino</p></div>
+                <div class="menu-card" onclick="irA('p-refugios')"><span>🏠</span><p>Refugios</p></div>
+                <div class="menu-card" onclick="irA('p-frasco')"><span>🏺</span><p>Frasco</p></div>
+            </div>
+            <img src="https://tenor.com/view/kiss-gif-kiss-gif-couple-cat-kiss-cat-cat-love-gif-8652318762219175687.gif" class="gif-final">
         </section>
 
-    </div>
+        <section id="p-intenciones" class="screen">
+            <button class="btn-back" onclick="irA('p-menu')">← Volver</button>
+            <h1>Mis Intenciones ✨</h1>
+            <div style="overflow-y: auto;">
+                <p>Evelyn, mis intenciones contigo son de una vida entera. Quiero estar a tu lado en las risas y en los días pesados. 💜</p>
+                <p>Sueño con el día en que ya no existan los mensajes de distancia, sino los susurros al oído cada mañana. Te amo hoy y siempre. 💗</p>
+            </div>
+        </section>
 
-    <script>
-        let escalaSi = 1;
-        const textos = {
-            text1: "Aquel 17 de septiembre no fue un día cualquiera... fue el día en que mi destino se cruzó con el tuyo. 🌸 Empezamos a ser cercanos y, sin darme cuenta, te fuiste metiendo en mis pensamientos y en mi corazón. Cada palabra tuya se volvió mi parte favorita del día... ✨",
-            text2: "Lo que hemos vivido, y especialmente lo de ayer, me hizo entender que la confianza que tenemos es algo fuera de este mundo. 🫂 Me siento tan cómodo contigo, tan 'yo', que solo quiero protegerte y hacerte feliz siempre. Eres mi lugar seguro, Evelyn. 💜",
-            text3: "Te confieso un secreto... 💍 He estado tan seguro de lo que siento, que desde hace tiempo que me dijiste que porque nunca lo pedí... pensé en pedirte matrimonio directamente. No necesito 'probar' nada, porque sé que eres tú. Pero quiero que vivamos cada momento, que seas mi novia y caminemos juntos hacia ese futuro... 🚀",
-            text4: "Por todo esto, por las risas, por la confianza y por el amor que te tengo... Evelyn, ¿me harías el honor más grande de mi vida y aceptarías ser mi novia? ✨ (P.D. Sé que vas a intentar darle al NO, pero a que no puedes... 🤭) O quizás si, pero quiero ver que lo intentes..."
-        };
+        <section id="p-refugios" class="screen">
+            <button class="btn-back" onclick="irA('p-menu')">← Volver</button>
+            <h1>Mis Refugios 🏠</h1>
+            <p><b>👁️ Tus Ojos:</b> Mi ventana favorita al mundo.</p>
+            <p><b>🫂 Tus Brazos:</b> Donde el ruido del mundo desaparece.</p>
+            <p><b>👄 Tus Labios:</b> Besarte es como volver a casa.</p>
+        </section>
 
-        function crearLluvia() {
-            const bg = document.getElementById('emoji-bg');
-            const emojis = ['🌸', '✨', '💖', '🫂', '💜', '🐱'];
-            for (let i = 0; i < 20; i++) {
-                let e = document.createElement('div');
-                e.className = 'emoji-drop';
-                e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                e.style.left = Math.random() * 100 + 'vw';
-                e.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                e.style.opacity = Math.random();
-                bg.appendChild(e);
-            }
-        }
+        <section id="p-destino" class="screen">
+            <button class="btn-back" onclick="irA('p-menu')">← Volver</button>
+            <h1>Nuestro Destino 💍</h1>
+            <p>Mi destino es cualquier lugar donde estés tú. No quiero un camino fácil, quiero un camino contigo. 💗✨🫂</p>
+        </section>
 
-        function typeWriter(text, elementId, callback) {
-            let i = 0;
-            const element = document.getElementById(elementId);
-            element.innerHTML = "";
-            const timer = setInterval(() => {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(timer);
-                    if (callback) callback();
-                }
-            }, 45);
-        }
-
-        function checkLogin() {
-            const user = document.getElementById('userInput').value;
-            const pass = document.getElementById('passInput').value;
-            if(user.toLowerCase().includes("eve") && pass === "17/09/24") {
-                showScreen(1);
-                crearLluvia();
-            } else {
-                document.getElementById('error').style.display = 'block';
-            }
-        }
-
-        function showScreen(n) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('p' + n).classList.add('active');
-            typeWriter(textos['text' + n], 'text' + n, () => {
-                const btn = document.getElementById('btn' + n) || document.getElementById('areaJuego');
-                btn.style.display = (n === 4) ? 'flex' : 'block';
-            });
-        }
-
-        function accionarNo() {
-            const aviso = document.getElementById('aviso');
-            aviso.style.display = 'block';
-            setTimeout(() => aviso.style.display = 'none', 1000);
-            moverNo();
-        }
-
-        function moverNo() {
-            const btnNo = document.getElementById('btnNo');
-            const btnSi = document.getElementById('btnSi');
-            const area = document.getElementById('areaJuego');
-            const maxX = area.clientWidth - btnNo.clientWidth;
-            const maxY = area.clientHeight - btnNo.clientHeight;
-            
-            btnNo.style.left = Math.random() * maxX + 'px';
-            btnNo.style.top = Math.random() * maxY + 'px';
-            
-            escalaSi += 0.2;
-            btnSi.style.transform = `scale(${escalaSi})`;
-        }
-
-        function finalizar() {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('p5').classList.add('active');
-        }
-    </script>
-</body>
-</html>
+        <section id="p-frasco" class="screen">
+            <button class="btn-back" onclick="irA('p-menu')">← Volver
