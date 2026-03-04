@@ -2,197 +2,216 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Niña Hermosa ✨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para mi Niña Consentida ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --lila: #7e57c2; --rosa: #f48fb1; --lila-claro: #f3e5f5; --texto: #4a3475; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { 
+            --lila: #e1bee7; --rosa: #fce4ec; --texto: #4a148c; --acento: #9c27b0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; touch-action: manipulation; }
         
         body { 
-            height: 100vh; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
-            font-family: 'Quicksand', sans-serif; display: flex; justify-content: center; align-items: center; overflow: hidden;
+            height: 100vh; width: 100vw; 
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--lila) 100%); 
+            font-family: 'Quicksand', sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            overflow: hidden; color: var(--texto); position: relative;
         }
 
-        .app-container { 
-            width: 95%; max-width: 420px; height: 92vh; background: rgba(255, 255, 255, 0.97); 
-            border-radius: 45px; padding: 25px; display: flex; flex-direction: column;
-            box-shadow: 0 25px 60px rgba(126, 87, 194, 0.2); position: relative; border: 4px solid white;
+        /* Lluvia de emojis de fondo */
+        #emoji-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1; opacity: 0.5;
+        }
+        .emoji-drop {
+            position: absolute; font-size: 1.5rem; animation: fall linear infinite;
+        }
+        @keyframes fall { from { transform: translateY(-10vh); } to { transform: translateY(110vh); } }
+
+        .container {
+            width: 92%; max-width: 450px; background: rgba(255, 255, 255, 0.85);
+            padding: 25px; border-radius: 35px; text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); backdrop-filter: blur(12px);
+            z-index: 10; border: 2px solid white; position: relative;
         }
 
-        .screen { display: none; flex-direction: column; height: 100%; animation: fadeIn 0.6s ease both; }
-        .screen.active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .screen { display: none; flex-direction: column; align-items: center; min-height: 450px; }
+        .active { display: flex; animation: fadeIn 0.8s ease; }
 
-        /* --- MENÚ --- */
-        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .menu-card { 
-            background: white; padding: 20px; border-radius: 25px; text-align: center;
-            border: 2px solid var(--lila-claro); cursor: pointer; transition: 0.3s;
-        }
-        .menu-card:hover { transform: translateY(-5px); border-color: var(--lila); background: var(--lila-claro); }
-        .menu-card span { font-size: 2rem; display: block; margin-bottom: 10px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- TEXTOS --- */
-        .scroll-box { overflow-y: auto; flex-grow: 1; padding-right: 10px; margin-bottom: 20px; text-align: left; }
-        .scroll-box p { line-height: 1.8; color: var(--texto); margin-bottom: 18px; font-size: 1.05rem; }
+        h1 { font-family: 'Dancing Script', cursive; color: var(--acento); font-size: 2.2rem; margin-bottom: 10px; }
         
-        .refugio-item { 
-            background: #fff; border-radius: 25px; padding: 20px; margin-bottom: 20px; 
-            border-left: 5px solid var(--lila); box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        .img-gustos { 
+            width: 100%; height: 160px; object-fit: cover; border-radius: 20px;
+            margin-bottom: 15px; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .refugio-item b { color: var(--lila); font-size: 1.2rem; display: block; margin-bottom: 8px; }
 
-        /* --- FRASCO ANIMADO --- */
-        .jar-scene { position: relative; width: 100%; height: 280px; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 20px; }
-        .jar-body {
-            width: 140px; height: 180px; background: rgba(255, 255, 255, 0.4);
-            border: 4px solid white; border-radius: 20px 20px 50px 50px;
-            position: relative; backdrop-filter: blur(4px); z-index: 2;
-            display: flex; flex-wrap: wrap; align-content: flex-end; padding: 15px; gap: 5px; overflow: hidden;
+        .typewriter-text { 
+            line-height: 1.6; font-weight: 500; font-size: 0.95rem; min-height: 120px;
+            margin-bottom: 20px; color: #5e35b1;
         }
-        .jar-lid {
-            width: 150px; height: 25px; background: var(--lila);
-            position: absolute; top: 75px; z-index: 3; border-radius: 10px;
-            border: 3px solid white; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .mini-paper { width: 18px; height: 12px; border-radius: 2px; opacity: 0.6; }
-        .jar-open .jar-lid { transform: translateY(-45px) rotate(-20deg); opacity: 0.9; }
 
-        .letter {
-            position: absolute; width: 40px; height: 30px; background: white;
-            bottom: 40px; border: 2px solid var(--lila); border-radius: 5px;
-            z-index: 1; opacity: 0; transition: 0.8s all cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: flex; justify-content: center; align-items: center; padding: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        input { 
+            width: 85%; padding: 12px; margin: 8px 0; border-radius: 15px; 
+            border: 1px solid var(--lila); outline: none; text-align: center; font-family: inherit;
         }
-        .letter.fly { opacity: 1; bottom: 140px; width: 300px; height: auto; min-height: 120px; z-index: 10; transform: scale(1.1); }
-        #reasonText { font-size: 1.05rem; color: var(--texto); font-weight: 600; text-align: center; display: none; line-height: 1.5; }
-        .letter.fly #reasonText { display: block; }
+        
+        .btn-next { 
+            background: var(--acento); color: white; border: none; 
+            padding: 12px 30px; border-radius: 50px; font-weight: 700; 
+            cursor: pointer; transition: 0.3s; margin-top: auto;
+        }
 
-        .btn-back { background: none; border: none; color: var(--lila); font-weight: 700; cursor: pointer; margin-bottom: 15px; }
-        .main-btn { background: var(--lila); color: white; border: none; padding: 18px; border-radius: 30px; font-weight: 700; cursor: pointer; }
-        h1 { font-family: 'Dancing Script', cursive; color: var(--lila); font-size: 2.8rem; text-align: center; margin-bottom: 10px; }
+        .area-peticion {
+            width: 100%; min-height: 180px; position: relative; 
+            display: flex; justify-content: center; align-items: center; gap: 20px;
+        }
+
+        #btnSi { background: #66bb6a; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; z-index: 12; transition: 0.2s; }
+        #btnNo { background: #ef5350; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; position: absolute; z-index: 100; transition: 0.1s; }
+
+        #aviso { position: fixed; top: 10%; background: var(--acento); color: white; padding: 10px 20px; border-radius: 20px; display: none; z-index: 1000; }
     </style>
 </head>
 <body>
 
-    <audio id="musica" loop><source src="up.mp3" type="audio/mpeg"></audio>
+    <div id="aviso">¡Casi! Pero no puedes decir que no... 😜</div>
+    <div id="emoji-bg"></div>
 
-    <div class="app-container">
+    <div class="container">
         
-        <section id="pantalla-inicio" class="screen active" style="justify-content: center; align-items: center;">
-            <div style="font-size: 80px; margin-bottom: 20px;">🔓</div>
-            <h1>Para mi niña hermosa💗</h1>
-            <button class="main-btn" style="width: 80%;" onclick="iniciarApp()">Entrar💗</button>
+        <section id="login" class="screen active" style="justify-content: center;">
+            <h1>Hola, mi niña... ✨</h1>
+            <p style="margin-bottom: 20px;">He guardado algo muy especial aquí para ti. Solo tú puedes entrar.</p>
+            <input type="text" id="userInput" placeholder="Tu nombre (Eve)">
+            <input type="text" id="passInput" placeholder="Nuestra fecha (dd/mm/aa)">
+            <button class="btn-next" onclick="checkLogin()">Abrir mi corazón ➔</button>
+            <p id="error" style="color: #d32f2f; font-size: 0.8rem; display: none; margin-top: 10px;">Esa no es la fecha correcta, amor. Intenta de nuevo... ❤️</p>
         </section>
 
-        <section id="pantalla-menu" class="screen">
-            <h1>Hola Amooor💗💗 ✨</h1>
-            <div class="menu-grid">
-                <div class="menu-card" onclick="irA('pantalla-intenciones')"><span>✍️</span><p>Intenciones</p></div>
-                <div class="menu-card" onclick="irA('pantalla-destino')"><span>💍</span><p>Destino</p></div>
-                <div class="menu-card" onclick="irA('pantalla-refugios')"><span>🏠</span><p>Refugios</p></div>
-                <div class="menu-card" onclick="irA('pantalla-frasco')"><span>🏺</span><p>Frasco</p></div>
-            </div>
-            <p style="margin-top: auto; text-align: center; font-size: 0.8rem; color: #aaa;">Contigo todo es mejor 💜</p>
+        <section id="p1" class="screen">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=500" class="img-gustos">
+            <h1>Donde todo cambió... ⏳</h1>
+            <div id="text1" class="typewriter-text"></div>
+            <button id="btn1" class="btn-next" onclick="showScreen(2)" style="display:none;">Continuar ➔</button>
         </section>
 
-        <section id="pantalla-intenciones" class="screen">
-            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
-            <h1>Mis Intenciones ✨</h1>
-            <div class="scroll-box">
-                <p>Evelyn, quería que supieras que mis intenciones contigo no son de un momento, son de una vida entera. Mi plan no es solo estar contigo cuando todo es risas, sino quedarme a tu lado cuando el mundo se sienta pesado y la calma parezca lejos. 💜</p>
-                <p>Sueño despierto con el día en que ya no tenga que mandarte mensajes de <b>"Buenos días"</b> o <b>"Buenas noches"</b> por el celular. Esos textos son lindos, pero se quedan cortos comparados con las ganas que tengo de susurrártelo al oído cada mañana al verte despertar. 🏠</p>
-                <p>Quiero que desayunemos juntos todos los días, compartir el café, las metas y el silencio, sabiendo que finalmente estamos en casa porque estamos juntos. Te prometí que nos íbamos a quedar, que no te soltaría, y hoy te lo cumplo con más fuerza que nunca porque no hay un lugar en el mundo donde prefiera estar que no sea a tu lado. ☕✨</p>
-                <p>No necesito buscar en ningún otro lado, porque contigo encontré todo lo que no sabía que estaba buscando. Te amo hoy, mañana y siempre. 💗</p>
-            </div>
+        <section id="p2" class="screen">
+            <img src="https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=500" class="img-gustos">
+            <h1>Mi lugar seguro eres tú 🫂</h1>
+            <div id="text2" class="typewriter-text"></div>
+            <button id="btn2" class="btn-next" onclick="showScreen(3)" style="display:none;">Sigue leyendo, amor... ➔</button>
         </section>
 
-        <section id="pantalla-refugios" class="screen">
-            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
-            <h1>Mis Refugios 🏠</h1>
-            <div class="scroll-box">
-                <div class="refugio-item">
-                    <b>👁️ Tus Ojos</b>
-                    <p>Son mi ventana favorita al mundo. Me encanta perderme en ellos porque me transmiten una paz que no encuentro en ningún otro lugar. En tu mirada encuentro la calma que necesito y la seguridad de que todo estará bien.</p>
-                </div>
-                <div class="refugio-item">
-                    <b>🫂 Tus Brazos</b>
-                    <p>Es el lugar donde el ruido del mundo desaparece por completo. Cuando me abrazas, siento que nada malo puede pasarme; es mi fortaleza personal y mi refugio cálido donde puedo ser yo mismo.</p>
-                </div>
-                <div class="refugio-item">
-                    <b>👄 Tus Labios</b>
-                    <p>Son el refugio de mis palabras y mis suspiros. Besarte es como volver a casa; es ese recordatorio dulce de por qué vale la pena luchar por nosotros cada día. Son la suavidad que me calma.</p>
-                </div>
+        <section id="p3" class="screen">
+            <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?q=80&w=500" class="img-gustos">
+            <h1>Lo que siempre supe 💍</h1>
+            <div id="text3" class="typewriter-text"></div>
+            <button id="btn3" class="btn-next" onclick="showScreen(4)" style="display:none;">Un último paso... ➔</button>
+        </section>
+
+        <section id="p4" class="screen">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=500" class="img-gustos">
+            <h1>Evelyn... 💖</h1>
+            <div id="text4" class="typewriter-text"></div>
+            <div class="area-peticion" id="areaJuego" style="display:none;">
+                <button id="btnSi" onclick="finalizar()">¡SÍ, ACEPTO! 💖</button>
+                <button id="btnNo" onmouseover="moverNo()" onclick="accionarNo()">NO ❌</button>
             </div>
         </section>
 
-        <section id="pantalla-destino" class="screen">
-            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
-            <h1>Nuestro Destino 💍</h1>
-            <div class="scroll-box">
-                <p><b>La Promesa de Mañana:</b> Mi destino no es un lugar en el mapa, es cualquier lugar donde estés t💗ú. Caminar de tu mano significa aceptar que el camino no siempre será plano, pero que enfrentaremos cada reto con la certeza de que somos un equipo💗💗🫂. No quiero un destino fácil, quiero un destino contigo, donde cada paso valga la pena simplemente porque vas a mi lado💗💗.</p>
-                <p><b>Construcción y Crecimiento:</b> Quiero que nos enseñemos a ser mejores versiones de nosotros mismos cada segundo. Mi meta es que nuestra historia sea ese refugio sagrado donde siempre queramos volver, sin importar qué tan fuerte sople el viento afuera. Estoy comprometido a cuidar lo que tenemos y a hacer que nuestro amor crezca sólido💗✨🫂💗.</p>
-                <p><b>Una Vida de Elecciones:</b> Te elijo hoy y te elegiré mañana. Mi destino es cumplir cada palabra que te he dicho, porque una vida entera a tu lado es el único futuro que me emociona vivir y el único puerto donde realmente quiero anclar mi corazón. 💗✨</p>
-            </div>
+        <section id="p5" class="screen" style="justify-content: center;">
+            <h1>¡Gracias por eso💗💗🙀</h1>
+            <p>Me haces el hombre más afortunado del universo. Prometo cuidarte y amarte cada segundo. ¡Bienvenida a nuestra nueva etapa!Te amo mucho mi vida 💗❤️✨</p>
+            <div style="font-size: 3.5rem; margin-top: 20px;">👩‍❤️‍👨💍♾️</div>
         </section>
 
-        <section id="pantalla-frasco" class="screen">
-            <button class="btn-back" onclick="irA('pantalla-menu')">← Volver</button>
-            <h1>Frasco de Cartas ✨</h1>
-            <div class="jar-scene" id="escenaFrasco" onclick="abrirCartita()">
-                <div class="jar-lid" id="tapa"></div>
-                <div class="jar-body" id="cuerpoFrasco"></div>
-                <div class="letter" id="carta"><p id="reasonText"></p></div>
-            </div>
-            <p style="text-align: center; color: #888;">Toca el frasco para abrir una cartita...</p>
-        </section>
     </div>
 
     <script>
-        function iniciarApp() {
-            document.getElementById('musica').play().catch(() => {});
-            irA('pantalla-menu');
+        let escalaSi = 1;
+        const textos = {
+            text1: "Aquel 17 de septiembre no fue un día cualquiera... fue el día en que mi destino se cruzó con el tuyo. 🌸 Empezamos a ser cercanos y, sin darme cuenta, te fuiste metiendo en mis pensamientos y en mi corazón. Cada palabra tuya se volvió mi parte favorita del día... ✨",
+            text2: "Lo que hemos vivido, y especialmente lo de ayer, me hizo entender que la confianza que tenemos es algo fuera de este mundo. 🫂 Me siento tan cómodo contigo, tan 'yo', que solo quiero protegerte y hacerte feliz siempre. Eres mi lugar seguro, Evelyn. 💜",
+            text3: "Te confieso un secreto... 💍 He estado tan seguro de lo que siento, que desde hace tiempo que me dijiste que porque nunca lo pedí... pensé en pedirte matrimonio directamente. No necesito 'probar' nada, porque sé que eres tú. Pero quiero que vivamos cada momento, que seas mi novia y caminemos juntos hacia ese futuro... 🚀",
+            text4: "Por todo esto, por las risas, por la confianza y por el amor que te tengo... Evelyn, ¿me harías el honor más grande de mi vida y aceptarías ser mi novia? ✨ (P.D. Sé que vas a intentar darle al NO, pero a que no puedes... 🤭) O quizás si, pero quiero ver que lo intentes..."
+        };
+
+        function crearLluvia() {
+            const bg = document.getElementById('emoji-bg');
+            const emojis = ['🌸', '✨', '💖', '🫂', '💜', '🐱'];
+            for (let i = 0; i < 20; i++) {
+                let e = document.createElement('div');
+                e.className = 'emoji-drop';
+                e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                e.style.left = Math.random() * 100 + 'vw';
+                e.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                e.style.opacity = Math.random();
+                bg.appendChild(e);
+            }
         }
 
-        function irA(id) {
+        function typeWriter(text, elementId, callback) {
+            let i = 0;
+            const element = document.getElementById(elementId);
+            element.innerHTML = "";
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    if (callback) callback();
+                }
+            }, 45);
+        }
+
+        function checkLogin() {
+            const user = document.getElementById('userInput').value;
+            const pass = document.getElementById('passInput').value;
+            if(user.toLowerCase().includes("eve") && pass === "17/09/24") {
+                showScreen(1);
+                crearLluvia();
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function showScreen(n) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+            document.getElementById('p' + n).classList.add('active');
+            typeWriter(textos['text' + n], 'text' + n, () => {
+                const btn = document.getElementById('btn' + n) || document.getElementById('areaJuego');
+                btn.style.display = (n === 4) ? 'flex' : 'block';
+            });
         }
 
-        const cuerpo = document.getElementById('cuerpoFrasco');
-        const colores = ['#f48fb1', '#ce93d8', '#b39ddb', '#f3e5f5'];
-        for(let i=0; i<15; i++) {
-            let p = document.createElement('div');
-            p.className = 'mini-paper';
-            p.style.backgroundColor = colores[Math.floor(Math.random()*colores.length)];
-            p.style.transform = `rotate(${Math.random()*40 - 20}deg)`;
-            cuerpo.appendChild(p);
+        function accionarNo() {
+            const aviso = document.getElementById('aviso');
+            aviso.style.display = 'block';
+            setTimeout(() => aviso.style.display = 'none', 1000);
+            moverNo();
         }
 
-        const sujetos = ["Tu sonrisa", "Tu mirada", "Tu forma de ser", "Tu voz", "Tu ternura", "Tu paciencia", "Tu apoyo"];
-        const verbos = ["me llena de", "me transmite", "me regala", "me inspira una", "me provoca una", "ilumina mi", "es mi fuente de"];
-        const complementos = ["paz infinita 🌸", "alegría constante ✨", "seguridad total 💜", "felicidad pura 💗", "amor incondicional 🫂", "calma en la tormenta 🏠"];
-
-        let animando = false;
-        function abrirCartita() {
-            if(animando) return;
-            animando = true;
-            const escena = document.getElementById('escenaFrasco');
-            const carta = document.getElementById('carta');
-            const texto = document.getElementById('reasonText');
-
-            texto.innerText = `${sujetos[Math.floor(Math.random()*sujetos.length)]} ${verbos[Math.floor(Math.random()*verbos.length)]} ${complementos[Math.floor(Math.random()*complementos.length)]}`;
+        function moverNo() {
+            const btnNo = document.getElementById('btnNo');
+            const btnSi = document.getElementById('btnSi');
+            const area = document.getElementById('areaJuego');
+            const maxX = area.clientWidth - btnNo.clientWidth;
+            const maxY = area.clientHeight - btnNo.clientHeight;
             
-            escena.classList.add('jar-open');
-            setTimeout(() => { carta.classList.add('fly'); }, 300);
+            btnNo.style.left = Math.random() * maxX + 'px';
+            btnNo.style.top = Math.random() * maxY + 'px';
             
-            setTimeout(() => {
-                carta.classList.remove('fly');
-                escena.classList.remove('jar-open');
-                setTimeout(() => { animando = false; }, 800);
-            }, 4500);
+            escalaSi += 0.2;
+            btnSi.style.transform = `scale(${escalaSi})`;
+        }
+
+        function finalizar() {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('p5').classList.add('active');
         }
     </script>
 </body>
