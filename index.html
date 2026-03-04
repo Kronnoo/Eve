@@ -42,7 +42,7 @@
             height: 100%; 
             pointer-events: none; 
             z-index: 1; 
-            opacity: 0.5; 
+            opacity: 0.6; 
         }
 
         .emoji-drop { 
@@ -60,7 +60,7 @@
             width: 95%; 
             max-width: 420px; 
             height: 92vh; 
-            background: rgba(255, 255, 255, 0.95); 
+            background: rgba(255, 255, 255, 0.96); 
             border-radius: 40px; 
             padding: 25px; 
             display: flex; 
@@ -75,8 +75,7 @@
             display: none; 
             flex-direction: column; 
             height: 100%; 
-            animation: fadeIn 0.4s ease; 
-            overflow-y: auto; 
+            animation: fadeIn 0.5s ease; 
         }
 
         .screen.active { 
@@ -84,8 +83,8 @@
         }
 
         @keyframes fadeIn { 
-            from { opacity: 0; transform: scale(0.95); } 
-            to { opacity: 1; transform: scale(1); } 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
         }
 
         h1 { 
@@ -96,11 +95,18 @@
             margin-bottom: 15px; 
         }
 
+        .typewriter-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
         p { 
             line-height: 1.6; 
             font-weight: 500; 
-            font-size: 0.95rem; 
+            font-size: 1rem; 
             margin-bottom: 15px; 
+            text-align: left;
         }
 
         input { 
@@ -112,6 +118,7 @@
             text-align: center; 
             outline: none; 
             font-size: 1rem; 
+            background: white;
         }
 
         .main-btn { 
@@ -123,37 +130,42 @@
             font-weight: 700; 
             cursor: pointer; 
             width: 100%; 
-            margin-top: 10px; 
+            margin-top: auto; 
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(126, 87, 194, 0.3);
         }
 
         .img-fase { 
             width: 100%; 
-            height: 160px; 
+            height: 180px; 
             object-fit: cover; 
-            border-radius: 20px; 
+            border-radius: 25px; 
             margin-bottom: 15px; 
-            border: 3px solid white; 
+            border: 4px solid white; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .area-peticion { 
             width: 100%; 
-            min-height: 200px; 
+            min-height: 180px; 
             position: relative; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
+            margin-top: auto;
         }
 
         #btnSi { 
             background: #66bb6a; 
             color: white; 
             border: none; 
-            padding: 15px 30px; 
+            padding: 15px 35px; 
             border-radius: 50px; 
             font-weight: 700; 
             z-index: 10; 
-            transition: 0.2s; 
-            cursor: pointer; 
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            cursor: pointer;
+            font-size: 1.1rem;
         }
 
         #btnNo { 
@@ -169,6 +181,14 @@
             transition: 0.1s; 
             right: 20px; 
         }
+
+        #p-final img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 20px;
+            margin: 15px auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -177,46 +197,59 @@
 
     <div class="app-container">
         <section id="p-login" class="screen active" style="justify-content: center;">
-            <div style="font-size: 60px; text-align: center; margin-bottom: 10px;">🔓</div>
+            <div style="font-size: 70px; text-align: center; margin-bottom: 10px;">🔐</div>
             <h1>Hola mi niña... 💗</h1>
-            <p style="text-align: center;">Introduce los datos para entrar:</p>
-            <input type="text" id="userInput" placeholder="Tu nombre (Eve)">
+            <p style="text-align: center;">Este lugar es solo para nosotros. 👩‍❤️‍👨 Por favor, identifícate:</p>
+            <input type="text" id="userInput" placeholder="¿Cómo te digo de cariño? (Eve)">
             <input type="text" id="passInput" placeholder="Nuestra fecha (17/09/24)">
-            <button class="main-btn" onclick="validarYEntrar()">Entrar ➔</button>
-            <p id="error" style="color: red; font-size: 0.8rem; display: none; margin-top: 10px; text-align: center;">Datos incorrectos, mi amor... ❤️</p>
+            <button class="main-btn" onclick="validarYEntrar()">Abrir mi corazón ➔</button>
+            <p id="error" style="color: #d32f2f; font-size: 0.85rem; display: none; margin-top: 15px; text-align: center; font-weight: 600;">Esa no es la fecha o el nombre, amor... Inténtalo de nuevo ❤️</p>
         </section>
 
         <section id="fase1" class="screen">
             <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=500" class="img-fase">
             <h1>Donde todo inició... ⏳</h1>
-            <div id="text1" style="min-height: 120px;"></div>
-            <button id="btn1" class="main-btn" onclick="irAFase(2)" style="display:none;">Continuar ➔</button>
+            <div class="typewriter-container">
+                <div id="text1"></div>
+            </div>
+            <button id="btn1" class="main-btn" onclick="irAFase(2)" style="display:none;">Continuar la historia ➔</button>
         </section>
 
         <section id="fase2" class="screen">
             <img src="https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=500" class="img-fase">
             <h1>Mi lugar seguro 🫂</h1>
-            <div id="text2" style="min-height: 120px;"></div>
-            <button id="btn2" class="main-btn" onclick="irAFase(3)" style="display:none;">Sigue leyendo... ➔</button>
+            <div class="typewriter-container">
+                <div id="text2"></div>
+            </div>
+            <button id="btn2" class="main-btn" onclick="irAFase(3)" style="display:none;">Sigue leyendo, amor... ➔</button>
         </section>
 
         <section id="fase3" class="screen">
             <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=500" class="img-fase">
-            <h1>¿Me harías el honor? 💍</h1>
-            <div id="text3" style="min-height: 100px;"></div>
+            <h1>Evelyn... 💍</h1>
+            <div class="typewriter-container">
+                <div id="text3"></div>
+            </div>
             <div class="area-peticion" id="areaBotones" style="display:none;">
-                <button id="btnSi" onclick="alert('¡Dijo que sí! ❤️')">¡SÍ, ACEPTO! 💖</button>
+                <button id="btnSi" onclick="mostrarFinal()">¡SÍ, ACEPTO! 💖</button>
                 <button id="btnNo" onmouseover="escapar()" onclick="escapar()">NO ❌</button>
             </div>
+        </section>
+
+        <section id="p-final" class="screen" style="justify-content: center; text-align: center;">
+            <h1>¡Gracias por existir! 😍✨</h1>
+            <p>Me haces el hombre más feliz de este planeta. No puedo esperar a vivir mil aventuras más a tu lado. ❤️</p>
+            <img src="https://tenor.com/view/kiss-gif-kiss-gif-couple-cat-kiss-cat-cat-love-gif-8652318762219175687.gif" alt="Besitos">
+            <p style="font-weight: 700; color: var(--lila); margin-top: 10px;">¡TE AMO CON TODA MI ALMA! ♾️💍</p>
         </section>
     </div>
 
     <script>
         let escala = 1;
         const frases = {
-            t1: "Desde aquel 17 de septiembre, mi vida tomó un color diferente. No fue casualidad empezar a ser tan cercanos; fue el destino dándome la oportunidad de conocerte. ✨🌸",
-            t2: "Lo que hemos compartido me ha confirmado que nuestra confianza es algo único. Quiero ser tu hogar y tu refugio siempre. 🫂💜",
-            t3: "Evelyn, por todo lo que somos y lo que seremos... ¿Quieres ser mi novia? 💖💍"
+            t1: "Todo empezó aquel **17 de septiembre**... 🗓️ Al principio no imaginaba que te convertirías en lo más importante de mis días. 🌸 Cada mensaje, cada risa y cada momento que pasamos juntos fue construyendo algo que hoy es mi mayor tesoro. ✨ No fue casualidad, fue el destino diciendo que tú tenías que estar en mi vida. 💖",
+            t2: "Lo que hemos compartido me ha demostrado que contigo puedo ser yo mismo. 🫂 Eres la persona que me calma en los días de tormenta y la que ilumina mis mejores momentos. 🌈 Especialmente después de lo que hemos vivido últimamente, mi confianza en ti es total. 💜 Eres mi hogar, mi paz y mi refugio favorito en todo el mundo. 🏠✨",
+            t3: "He pensado en este momento mil veces... 💭 Quiero que seamos equipo, que nos cuidemos y que construyamos un futuro increíble juntos. 💍 Por eso, frente a este pedacito de mi corazón que hice para ti... Evelyn, mi niña hermosa... **¿Quieres ser mi novia oficialmente?** 💖💍✨"
         };
 
         function irAPantalla(id) {
@@ -247,7 +280,7 @@
                     clearInterval(t); 
                     document.getElementById(botonId).style.display = botonId === 'areaBotones' ? 'flex' : 'block';
                 }
-            }, 50);
+            }, 40);
         }
 
         function irAFase(n) {
@@ -258,20 +291,32 @@
         function escapar() {
             const b = document.getElementById('btnNo');
             const a = document.getElementById('areaBotones');
-            b.style.left = Math.random() * (a.clientWidth - 80) + 'px';
-            b.style.top = Math.random() * (a.clientHeight - 40) + 'px';
-            escala += 0.2;
+            // Generar posiciones aleatorias dentro del área
+            const newX = Math.random() * (a.clientWidth - 80);
+            const newY = Math.random() * (a.clientHeight - 40);
+            
+            b.style.left = newX + 'px';
+            b.style.top = newY + 'px';
+            
+            // Hacer crecer el botón SI
+            escala += 0.25;
             document.getElementById('btnSi').style.transform = `scale(${escala})`;
+        }
+
+        function mostrarFinal() {
+            irAPantalla('p-final');
         }
 
         function crearLluvia() {
             const bg = document.getElementById('emoji-bg');
-            for (let i = 0; i < 15; i++) {
+            const emojis = ['🌸', '💖', '✨', '🫂', '💍', '💜', '🐱'];
+            for (let i = 0; i < 20; i++) {
                 let e = document.createElement('div');
                 e.className = 'emoji-drop';
-                e.innerText = ['🌸', '💖', '✨'][Math.floor(Math.random()*3)];
+                e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                 e.style.left = Math.random() * 100 + 'vw';
-                e.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                e.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                e.style.opacity = Math.random();
                 bg.appendChild(e);
             }
         }
