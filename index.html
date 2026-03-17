@@ -3,322 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para mi Niña Hermosa ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>Site Notification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Dancing+Script:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --lila: #7e57c2; 
-            --rosa: #f48fb1; 
-            --lila-claro: #f3e5f5; 
-            --texto: #4a3475; 
+        :root {
+            --bluey-blue: #b3e5fc;
+            --bingo-orange: #ffcc80;
+            --chilli-cream: #fff9c4;
+            --bandit-blue: #5c6bc0;
+            --texto: #455a64;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            touch-action: manipulation; 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            height: 100vh; width: 100vw;
+            background: linear-gradient(135deg, var(--bluey-blue) 0%, #e1bee7 100%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; color: var(--texto);
         }
+
+        .app-container {
+            width: 92%; max-width: 400px; height: 85vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 40px; padding: 25px;
+            display: flex; flex-direction: column;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            z-index: 10; border: 4px solid white;
+            backdrop-filter: blur(5px);
+        }
+
+        .screen { display: none; flex-direction: column; height: 100%; animation: fadeIn 0.4s ease; }
+        .screen.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { font-family: 'Dancing Script', cursive; color: var(--bandit-blue); font-size: 2rem; text-align: center; margin-bottom: 15px; }
         
-        body { 
-            height: 100vh; 
-            width: 100vw; 
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); 
-            font-family: 'Quicksand', sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            overflow: hidden; 
-            color: var(--texto); 
-            position: relative;
-        }
+        .img-gif { width: 65%; max-width: 180px; border-radius: 20px; margin: 0 auto 15px auto; display: block; }
 
-        /* Lluvia de emojis de fondo */
-        #emoji-bg { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            pointer-events: none; 
-            z-index: 1; 
-            opacity: 0.6; 
+        .message-box { 
+            flex-grow: 1; overflow-y: auto; padding: 15px; 
+            background: var(--chilli-cream); border-radius: 20px; 
+            border: 2px dashed var(--bingo-orange); margin-bottom: 15px; 
         }
+        .message-box p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 12px; }
 
-        .emoji-drop { 
-            position: absolute; 
-            font-size: 1.5rem; 
-            animation: fall linear infinite; 
-        }
+        .area-botones { width: 100%; display: flex; gap: 15px; margin-top: auto; }
 
-        @keyframes fall { 
-            from { transform: translateY(-10vh); } 
-            to { transform: translateY(110vh); } 
-        }
+        .btn-si, .btn-no { flex: 1; padding: 12px; border-radius: 30px; border: none; font-weight: 700; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        .btn-si { background: #66bb6a; color: white; }
+        .btn-no { background: #ef5350; color: white; }
+        .btn-continuar { background: var(--bandit-blue); color: white; padding: 14px; border-radius: 30px; border: none; font-weight: 700; cursor: pointer; width: 100%; }
 
-        .app-container { 
-            width: 95%; 
-            max-width: 420px; 
-            height: 92vh; 
-            background: rgba(255, 255, 255, 0.96); 
-            border-radius: 40px; 
-            padding: 25px; 
-            display: flex; 
-            flex-direction: column;
-            box-shadow: 0 25px 60px rgba(126, 87, 194, 0.2); 
-            z-index: 10; 
-            border: 4px solid white; 
-            backdrop-filter: blur(10px);
+        /* --- PANTALLA DE ERROR REALISTA --- */
+        #p-error { 
+            background: #f1f1f1; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: 1000; font-family: 'Inter', sans-serif; color: #333; padding: 40px 20px; text-align: center;
         }
-
-        .screen { 
-            display: none; 
-            flex-direction: column; 
-            height: 100%; 
-            animation: fadeIn 0.5s ease; 
-        }
-
-        .screen.active { 
-            display: flex; 
-        }
-
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-
-        h1 { 
-            font-family: 'Dancing Script', cursive; 
-            color: var(--lila); 
-            font-size: 2.3rem; 
-            text-align: center; 
-            margin-bottom: 15px; 
-        }
-
-        .typewriter-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        p { 
-            line-height: 1.6; 
-            font-weight: 500; 
-            font-size: 1rem; 
-            margin-bottom: 15px; 
-            text-align: left;
-        }
-
-        input { 
-            width: 100%; 
-            padding: 15px; 
-            margin: 10px 0; 
-            border-radius: 15px; 
-            border: 2px solid var(--lila-claro); 
-            text-align: center; 
-            outline: none; 
-            font-size: 1rem; 
-            background: white;
-        }
-
-        .main-btn { 
-            background: var(--lila); 
-            color: white; 
-            border: none; 
-            padding: 18px; 
-            border-radius: 30px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            width: 100%; 
-            margin-top: auto; 
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(126, 87, 194, 0.3);
-        }
-
-        .img-fase { 
-            width: 100%; 
-            height: 180px; 
-            object-fit: cover; 
-            border-radius: 25px; 
-            margin-bottom: 15px; 
-            border: 4px solid white; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        .github-logo { width: 60px; filter: grayscale(1); opacity: 0.3; margin-bottom: 20px; }
+        .error-code { font-size: 80px; font-weight: 700; color: #d1d1d1; margin-bottom: 10px; }
+        .error-msg-real { font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: #444; }
+        .error-desc { font-size: 0.9rem; color: #666; margin-bottom: 30px; line-height: 1.4; }
         
-        .area-peticion { 
-            width: 100%; 
-            min-height: 180px; 
-            position: relative; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            margin-top: auto;
+        /* Spinner de carga */
+        .loader {
+            border: 4px solid #f3f3f3; border-top: 4px solid var(--bandit-blue);
+            border-radius: 50%; width: 40px; height: 40px;
+            animation: spin 1s linear infinite; margin: 20px auto; display: none;
         }
-
-        #btnSi { 
-            background: #66bb6a; 
-            color: white; 
-            border: none; 
-            padding: 15px 35px; 
-            border-radius: 50px; 
-            font-weight: 700; 
-            z-index: 10; 
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-
-        #btnNo { 
-            background: #ef5350; 
-            color: white; 
-            border: none; 
-            padding: 12px 25px; 
-            border-radius: 50px; 
-            font-weight: 700; 
-            position: absolute; 
-            z-index: 100; 
-            cursor: pointer; 
-            transition: 0.1s; 
-            right: 20px; 
-        }
-
-        #p-final img {
-            width: 100%;
-            max-width: 250px;
-            border-radius: 20px;
-            margin: 15px auto;
-            display: block;
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <div id="emoji-bg"></div>
-
     <div class="app-container">
-        <section id="p-login" class="screen active" style="justify-content: center;">
-            <div style="font-size: 70px; text-align: center; margin-bottom: 10px;">🔐</div>
-            <h1>Hola mi niña... 💗</h1>
-            <p style="text-align: center;">Este lugar es solo para nosotros. 👩‍❤️‍👨 Por favor, identifícate:</p>
-            <input type="text" id="userInput" placeholder="¿Cómo te digo de cariño? (Eve)">
-            <input type="text" id="passInput" placeholder="Nuestra fecha...?">
-            <button class="main-btn" onclick="validarYEntrar()">Abrir mi corazón ➔</button>
-            <p id="error" style="color: #d32f2f; font-size: 0.85rem; display: none; margin-top: 15px; text-align: center; font-weight: 600;">Esa no es la fecha o el nombre, amor... Inténtalo de nuevo ❤️</p>
+        <section id="p-explicacion" class="screen active">
+            <h1>Para mi niña hermosa... 💗😿</h1>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHp5a2t5dmNkNjg0OTIwejl2bzd3cnhjMTRwaGVoMXVqOTZ3dzRpdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ruyS8Zw9sBqE5UjOnY/giphy.gif" class="img-gif">
+            <div class="message-box">
+                <p>Evelyn, lamento mucho si mis acciones te causaron inseguridad o tristeza. Mi intención nunca será lastimarte, al contrario, eres lo más valioso que tengo. ❤️</p>
+                <p>Me comprometo de todo corazón a ser una mejor persona para ti, a cuidar más nuestros detalles y a demostrarte cada día que puedes confiar en mí plenamente.</p>
+                <p>Quiero aprender de esto y que nuestra relación sea cada vez más fuerte. Gracias por tu paciencia y por estar conmigo siempre. 🧡✨</p>
+            </div>
+            <button class="btn-continuar" onclick="irAPantalla('p-pregunta')">Continuar ➔</button>
         </section>
 
-        <section id="fase1" class="screen">
-            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=500" class="img-fase">
-            <h1>Donde todo inició... ⏳</h1>
-            <div class="typewriter-container">
-                <div id="text1"></div>
-            </div>
-            <button id="btn1" class="main-btn" onclick="irAFase(2)" style="display:none;">Continuar la historia ➔</button>
-        </section>
-
-        <section id="fase2" class="screen">
-            <img src="https://images.unsplash.com/photo-1516589174184-c68526572af0?q=80&w=500" class="img-fase">
-            <h1>Mi lugar seguro 🫂</h1>
-            <div class="typewriter-container">
-                <div id="text2"></div>
-            </div>
-            <button id="btn2" class="main-btn" onclick="irAFase(3)" style="display:none;">Sigue leyendo, amor... ➔</button>
-        </section>
-
-        <section id="fase3" class="screen">
-            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=500" class="img-fase">
-            <h1>Evelyn... 💍</h1>
-            <div class="typewriter-container">
-                <div id="text3"></div>
-            </div>
-            <div class="area-peticion" id="areaBotones" style="display:none;">
-                <button id="btnSi" onclick="mostrarFinal()">¡SÍ, ACEPTO! 💖</button>
-                <button id="btnNo" onmouseover="escapar()" onclick="escapar()">NO ❌</button>
+        <section id="p-pregunta" class="screen" style="justify-content: center;">
+            <h1>¿Me perdonas? 🥺</h1>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTlmc2JxYm80OGk3anZtdThkaHk4MGt6d20wbXY4MmZsdG1iOGZjNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/jnvlNj9fDf9MT89rMn/giphy.gif" class="img-gif">
+            <p style="text-align: center; margin-bottom: 20px;">Hagamos las paces, ¿sí? Prometo esforzarme para no arruinar las cosas. .💗</p>
+            
+            <div id="loading" class="loader"></div>
+            <div class="area-botones" id="botones-pregunta">
+                <button class="btn-si" onclick="irAPantalla('p-final')">SÍ ❤️</button>
+                <button class="btn-no" onclick="simularError()">NO ❌</button>
             </div>
         </section>
 
-        <section id="p-final" class="screen" style="justify-content: center; text-align: center;">
-            <h1>¡Gracias por eso💗💗🙀🙀🫂 😍✨</h1>
-            <p>Me haces el hombre más feliz de este planeta. No puedo esperar a vivir mil aventuras más a tu lado. Te amo mi niña preciosa💗❤️</p>
-            <img src="https://tenor.com/view/kiss-gif-kiss-gif-couple-cat-kiss-cat-cat-love-gif-8652318762219175687.gif" alt="Besitos">
-            <p style="font-weight: 700; color: var(--lila); margin-top: 10px;">¡TE AMO CON TODA MI ALMA! ♾️💍</p>
+        <section id="p-final" class="screen" style="justify-content: center; align-items: center; text-align: center;">
+            <h1>¡Sabía que sí! 😍✨</h1>
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcm05dWM5emk5Z2I5YjRnb2EybnNoZmRxaWU4eGE5ZGZ1MHNtajN1cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/T70hpBP1L0N7U0jtkq/giphy.gif" class="img-gif">
+            <p>Me haces el hombre más feliz. Gracias por confiar en mi y darme la oportunidad de mejorar para ti. Te amo muchísimo. ❤️</p>
+            <p style="font-weight: 700; color: var(--bandit-blue); margin-top: 10px;">¡Juntos siempre! ♾️🐾</p>
         </section>
     </div>
 
-    <script>
-        let escala = 1;
-        const frases = {
-            t1: "Todo empezó aquel **17 de septiembre**... 🗓️ Al principio no imaginaba que te convertirías en lo más importante de mis días. 🌸 Cada mensaje, cada risa y cada momento que pasamos juntos fue construyendo algo que hoy es mi mayor tesoro. ✨ No fue casualidad, fue el destino diciendo que tú tenías que estar en mi vida. 💖",
-            t2: "Lo que hemos compartido me ha demostrado que contigo puedo ser yo mismo. 🫂 Eres la persona que me calma en los días de tormenta y la que ilumina mis mejores momentos. 🌈 Especialmente después de lo que hemos vivido últimamente, mi confianza en ti es total. 💜 Eres mi hogar, mi paz y mi refugio favorito en todo el mundo. 🏠✨",
-            t3: "He pensado en este momento mil veces... 💭 Quiero que seamos equipo, que nos cuidemos y que construyamos un futuro increíble juntos. 💍 Por eso, frente a este pedacito de mi corazón que hice para ti... Evelyn, mi niña hermosa... **¿Quieres ser mi novia oficialmente?** 💖💍✨"
-        };
+    <section id="p-error" style="display: none;">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="github-logo">
+        <div class="error-code">404</div>
+        <div class="error-msg-real">File not found</div>
+        <p class="error-desc">The server can't find the file you requested. The link may be broken, or the site may be down for maintenance.</p>
+        <button onclick="window.location.reload()" style="background: #2ea44f; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Reload Site</button>
+        <p style="margin-top: 40px; color: #999; font-size: 0.7rem;">GitHub Pages Service Status: <span style="color: #66bb6a;">Degraded Performance</span></p>
+    </section>
 
+    <script>
         function irAPantalla(id) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
         }
 
-        function validarYEntrar() {
-            const u = document.getElementById('userInput').value;
-            const p = document.getElementById('passInput').value;
-            if(u.toLowerCase().includes("eve") && p === "17/09/24") {
-                irAFase(1);
-                crearLluvia();
-            } else {
-                document.getElementById('error').style.display = 'block';
-            }
-        }
+        function simularError() {
+            // Escondemos los botones y mostramos un cargando para que parezca que procesa
+            document.getElementById('botones-pregunta').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
 
-        function escribir(texto, elemento, botonId) {
-            let i = 0;
-            const el = document.getElementById(elemento);
-            el.innerHTML = "";
-            const t = setInterval(() => {
-                if(i < texto.length) { 
-                    el.innerHTML += texto.charAt(i); 
-                    i++; 
-                } else { 
-                    clearInterval(t); 
-                    document.getElementById(botonId).style.display = botonId === 'areaBotones' ? 'flex' : 'block';
-                }
-            }, 40);
-        }
-
-        function irAFase(n) {
-            irAPantalla('fase' + n);
-            escribir(frases['t' + n], 'text' + n, n === 3 ? 'areaBotones' : 'btn' + n);
-        }
-
-        function escapar() {
-            const b = document.getElementById('btnNo');
-            const a = document.getElementById('areaBotones');
-            // Generar posiciones aleatorias dentro del área
-            const newX = Math.random() * (a.clientWidth - 80);
-            const newY = Math.random() * (a.clientHeight - 40);
-            
-            b.style.left = newX + 'px';
-            b.style.top = newY + 'px';
-            
-            // Hacer crecer el botón SI
-            escala += 0.25;
-            document.getElementById('btnSi').style.transform = `scale(${escala})`;
-        }
-
-        function mostrarFinal() {
-            irAPantalla('p-final');
-        }
-
-        function crearLluvia() {
-            const bg = document.getElementById('emoji-bg');
-            const emojis = ['🌸', '💖', '✨', '🫂', '💍', '💜', '🐱'];
-            for (let i = 0; i < 20; i++) {
-                let e = document.createElement('div');
-                e.className = 'emoji-drop';
-                e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                e.style.left = Math.random() * 100 + 'vw';
-                e.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                e.style.opacity = Math.random();
-                bg.appendChild(e);
-            }
+            setTimeout(() => {
+                // Después de 1.5 segundos, mostramos el error de pantalla completa
+                document.querySelector('.app-container').style.display = 'none';
+                document.getElementById('p-error').style.display = 'block';
+                document.body.style.background = "#f1f1f1"; // Fondo gris de error
+            }, 1500);
         }
     </script>
 </body>
