@@ -1,270 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi única niña soñada, Evelyn 🐾</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --soft-blue: #e3f2fd;
-            --soft-orange: #fff3e0;
-            --deep-blue: #3f51b5;
-            --text-color: #546e7a;
-            --accent-pink: #f8bbd0;
-            --si-green: #a5d6a7;
-            --duda-red: #ef9a9a;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            background-color: #fafafa;
-            background-image: radial-gradient(var(--soft-blue) 1px, transparent 1px);
-            background-size: 30px 30px;
-            font-family: 'Quicksand', sans-serif;
-            color: var(--text-color);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        .scroll-container {
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section {
-            margin-bottom: 120px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.2s ease-out;
-            text-align: center;
-        }
-
-        .section.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: var(--deep-blue);
-            margin-bottom: 25px;
-        }
-
-        .gif-frame {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 30px;
-            border: 8px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .gif-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .text-block {
-            background: white;
-            padding: 45px;
-            border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.03);
-            line-height: 2;
-            font-size: 1.15rem;
-            border-bottom: 5px solid var(--soft-blue);
-            text-align: justify;
-        }
-
-        .highlight {
-            color: var(--deep-blue);
-            font-weight: 700;
-        }
-
-        .divider {
-            font-size: 2rem;
-            margin: 40px 0;
-            color: var(--accent-pink);
-        }
-
-        .question-zone {
-            background: white;
-            padding: 50px;
-            border-radius: 45px;
-            border: 3px dashed var(--accent-pink);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
-            margin-top: 40px;
-        }
-
-        .options-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 35px;
-        }
-
-        .btn-option {
-            flex: 1;
-            max-width: 220px;
-            padding: 18px;
-            border-radius: 35px;
-            border: none;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .btn-si { background-color: var(--si-green); color: white; }
-        .btn-duda { background-color: var(--duda-red); color: white; }
-
-        .btn-option:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.12); }
-
-        #overlay-carta, #overlay-duda {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            z-index: 1000;
-            padding: 40px;
-            overflow-y: auto;
-            text-align: center;
-            animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        @keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-        .pata-icon { width: 35px; opacity: 0.4; margin: 10px; }
-
-    </style>
+    <title>FisioSalud | Movimientos que cambian vidas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="scroll-container">
-        
-        <div class="section">
-            <div class="gif-frame">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWNuenZjczdpdHdhcWZ0c2pwMGJ3enY5eHlya2xla2Z6eGY5eXAwMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/1FkCqpyObTuo0/giphy.gif" alt="Abrazo Bluey">
-            </div>
-            <h1>Evelyn, mi niña...</h1>
-            <div class="text-block">
-                <p>Me dolió en el alma leer tus palabras, pero me dolió más darme cuenta de que tienes razón. Me dijiste que sientes que ya no me importa lo que hagas o dejes de hacer, y me parte el corazón haberte hecho sentir tan invisible. Perdóname por haber descuidado lo más valioso que tengo. Sé perfectamente que <span class="highlight">tú nunca te fuiste</span>; has estado aquí todo este tiempo, poniendo el pecho, aguantando mis errores, mis bromas que no dan risa y esos cambios en mí que tanto te han lastimado. Mientras tú luchabas por nosotros, yo no supe ser ese refugio de paz que te prometí un día.</p>
-            </div>
-            <div class="divider">🐾</div>
+    <header>
+        <div class="container header-content">
+            <p class="logo">Fisio<span>Salud</span></p>
+            <nav>
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Beneficios</a>
+                <a href="#especialidades">Terapias</a>
+                <a href="#faq">Entrevista</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="section">
-            <div class="gif-frame">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGdwZHVxMXBmMWkzeWthZnh3bzdpeHUzYTY5anlpNnEzc293eGdtOCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/OOTUh0PZlJwoXpg94f/giphy.gif" alt="Bluey triste">
-            </div>
-            <div class="text-block">
-                <p>Me mata saber que sientes que debes <span class="highlight">guardarte tus cosas</span> para "no perjudicar lo que aún sobra de nosotros". Evelyn, si tú te callas para que estemos bien, entonces no estamos bien de verdad. No quiero un amor de apariencias donde tú tengas que sufrir en silencio para que yo no me enoje o para que no peleemos. Eso es injusto para ti. Me odio por haberte llevado al punto de "negar" lo que sientes por miedo a mi reacción. De ahora en adelante, quiero que este sea un lugar seguro. Dime lo que piensas, dime en qué te fallo, dime cuándo te sientes sola. Prefiero enfrentar la verdad más dura contigo que perderte en un silencio que nos termine de romper.</p>
-            </div>
-            <div class="divider">🦴</div>
-        </div>
-
-        <div class="section">
-            <div class="gif-frame">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzRmd3p5NnY0YjU5Mnl2aGRnZHR1dDBzazMzbTJtcTJ1NHhhZzE4eiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Zl7u48zLVFgLpRwq6f/giphy.gif" alt="Bluey contenta">
-            </div>
-            <div class="question-zone">
-                <h1 style="font-size: 2.8rem;">Cuidar lo que tenemos</h1>
-                <p style="text-align: justify; margin-bottom: 20px;">
-                    No quiero que te sientas sola estando a mi lado, porque esa es la soledad más triste que existe. Reconozco que he cambiado, que mis inseguridades y mis actitudes te han alejado, pero mi amor por ti sigue intacto. Quiero volver a ser el hombre del que te enamoraste, pero mejorado: uno que sepa escucharte sin juzgar, que te dé prioridad sobre sus miedos y que te trate con la ternura y el respeto infinito que una mujer como tú merece.
-                </p>
-                <p class="highlight" style="font-size: 1.2rem; margin-top: 15px;">¿Me permitirías demostrarte con hechos que realmente quiero ser ese hombre para ti? ❤️</p>
-                
-                <div class="options-container">
-                    <button class="btn-option btn-si" onclick="showCarta()">SÍ, TE DOY LA OPORTUNIDAD ❤️</button>
-                    <button class="btn-option btn-duda" onclick="showDuda()">AÚN TENGO DUDAS... 🥺</button>
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container hero-container">
+                <div class="hero-text">
+                    <span class="tag">Bienvenido a FisioSalud</span>
+                    <h1>El arte de recuperar tu <span class="color-acento">bienestar</span></h1>
+                    <p>No solo tratamos lesiones, rehabilitamos vidas. Descubre cómo la fisioterapia profesional puede devolverte la libertad de movimiento que perdiste.</p>
+                    <div class="hero-btns">
+                        <a href="#especialidades" class="btn btn-primary">Nuestras Terapias</a>
+                        <a href="#faq" class="btn btn-outline">Leer Entrevista</a>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img src="fisioterapia-hombre-mayor-y-fisioterapeuta-25210097.jpg" alt="Fisioterapia avanzada">
                 </div>
             </div>
-        </div>
+        </section>
 
-    </div>
-
-    <div id="overlay-carta">
-        <div style="max-width: 550px; margin: 0 auto; padding-top: 20px;">
-            <h1>Mi Niña Soñada ✨</h1>
-            <div class="text-block" style="box-shadow: none; border: none; padding: 20px;">
-                <p>Evelyn, eres y siempre serás la persona por la que vale la pena luchar. Gracias por tener la paciencia que has tenido, por no soltarme la mano cuando más difícil me puse y por seguir creyendo en nosotros a pesar de todo. <br><br>
-                A partir de hoy, mi compromiso es contigo y con tu paz mental. Prometo trabajar cada día en mis celos, en mis respuestas y en esa forma de ser que te ha herido. No quiero que vuelvas a sentir que "ya no me importa"; al contrario, quiero que te canses de saber cuánto te amo y cuánto me importas. <br><br>
-                Te amo con cada parte de mi alma, hoy, mañana y siempre. Gracias por ser mi niña, mi compañera y mi sueño hecho realidad.</p>
+        <section id="nosotros" class="container section">
+            <div class="section-header">
+                <h2 class="section-title">¿Por qué la Fisioterapia?</h2>
+                <p>La rehabilitación física es el pilar fundamental para una vida activa y saludable.</p>
             </div>
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXF6Z3IwZHpjMng0Z3E3ZXg0cnllOGpraHE0YnBlcWI5dDRtanVjNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/naAaDvbAoOYdW/giphy.gif" style="width: 200px; border-radius: 40px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-            <div style="margin-top: 30px;">
-                <img src="https://cdn-icons-png.flaticon.com/512/107/107068.png" class="pata-icon">
-                <img src="https://cdn-icons-png.flaticon.com/512/107/107068.png" class="pata-icon">
-                <img src="https://cdn-icons-png.flaticon.com/512/107/107068.png" class="pata-icon">
+            <div class="grid-3">
+                <div class="benefit-card">
+                    <div class="icon">⚡</div>
+                    <h3>Alivio del Dolor</h3>
+                    <p>Técnicas manuales y tecnología para reducir la inflamación sin excesos de fármacos.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🏃</div>
+                    <h3>Movilidad Total</h3>
+                    <p>Recupera el rango de movimiento en articulaciones clave como rodillas, espalda y cuello.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Prevención</h3>
+                    <p>Te enseñamos a cuidar tu cuerpo para que las lesiones no vuelvan a aparecer jamás.</p>
+                </div>
             </div>
-            <button class="btn-option" style="background: var(--deep-blue); color: white; margin-top: 30px; width: 100%;" onclick="closeOverlays()">Te amo mucho ❤️</button>
-        </div>
-    </div>
+        </section>
 
-    <div id="overlay-duda">
-        <div style="max-width: 550px; margin: 0 auto; padding-top: 20px;">
-            <h1>Entiendo tu miedo... 🥺</h1>
-            <div class="text-block" style="box-shadow: none; border: none; padding: 20px;">
-                <p>Sé que las palabras se las lleva el viento y que mis acciones te han dado motivos de sobra para desconfiar. Entiendo perfectamente que tengas dudas, porque te he fallado y la confianza no se reconstruye con una página web, sino con tiempo y hechos constantes. <br><br>
-                No te voy a presionar, ni te voy a pedir que olvides todo de golpe. Solo quiero que sepas que me voy a quedar aquí, trabajando en mis errores y demostrándote poco a poco que mi intención de cambio es real. Respeto tu tiempo, respeto tu dolor y estaré aquí esperando, esforzándome para que un día vuelvas a sentirte segura a mi lado.</p>
+        <section id="especialidades" class="bg-light section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nuestras Especialidades</h2>
+                    <p>Haz clic en las imágenes para conocer más sobre cada tratamiento en portales especializados.</p>
+                </div>
+                <div class="grid-4">
+                    <a href="https://www.fisioterapia-online.com/fisioterapia-deportiva" target="_blank" class="card-link">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?auto=format&fit=crop&w=500" alt="Deportiva">
+                            <div class="card-body">
+                                <h3>Deportiva</h3>
+                                <p>Optimización para atletas y recuperación de esguinces.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.fisioterapia-online.com/fisioterapia-geriatrica" target="_blank" class="card-link">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=500" alt="Geriátrica">
+                            <div class="card-body">
+                                <h3>Geriátrica</h3>
+                                <p>Mejorando la autonomía y calidad de vida en el adulto mayor.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.fisioterapia-online.com/fisioterapia-neurologica" target="_blank" class="card-link">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500" alt="Neurológica">
+                            <div class="card-body">
+                                <h3>Neurológica</h3>
+                                <p>Rehabilitación del sistema nervioso y control motor.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.fisioterapia-online.com/fisioterapia-traumatologica" target="_blank" class="card-link">
+                        <div class="card">
+                            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=500" alt="Traumatológica">
+                            <div class="card-body">
+                                <h3>Traumatológica</h3>
+                                <p>Post-cirugías, fracturas y problemas de columna.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <img src="https://media.giphy.com/media/T70hpBP1L0N7U0jtkq/giphy.gif" style="width: 200px; border-radius: 40px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-            <br>
-            <button class="btn-option" style="background: #ccc; color: white; margin-top: 35px; width: 100%;" onclick="closeOverlays()">Cerrar y darnos tiempo ❤️</button>
+        </section>
+
+        <section id="faq" class="container section">
+            <div class="section-header">
+                <h2 class="section-title">Charla con el Experto</h2>
+                <p>Todo lo que necesitas saber desde la voz de un profesional.</p>
+            </div>
+            <div class="accordion">
+                <details>
+                    <summary>1. ¿Qué es la fisioterapia?</summary>
+                    <p>Es una rama de la salud que se dedica a ayudar a las personas a recuperarse de lesiones, dolores o problemas de movimiento. Trabajamos para que el cuerpo vuelva a moverse bien y con menos dolor. Usamos ejercicios, estiramientos, masajes terapéuticos y aparatos que ayudan a mejorar la recuperación.</p>
+                </details>
+                <details>
+                    <summary>2. ¿Qué datos del paciente ocupas para poder atenderlo?</summary>
+                    <p>Necesito conocer datos básicos como edad, si tiene alguna enfermedad, si toma medicamentos y cuál es el problema que lo trae a consulta. También pregunto desde cuándo tiene el dolor y si fue por una caída, deporte o malas posturas.</p>
+                </details>
+                <details>
+                    <summary>3. ¿Cuál es tu enfoque principal?</summary>
+                    <p>Ayudar al paciente a recuperar su movilidad y que pueda volver a hacer sus actividades normales sin dolor. También prevenir que la lesión vuelva a ocurrir enseñando hábitos saludables.</p>
+                </details>
+                <details>
+                    <summary>4. ¿Cómo abordas la evaluación y el tratamiento?</summary>
+                    <p>Primero hago una evaluación física con movimientos para ver movilidad y fuerza. Luego preparo un plan que incluye ejercicios, terapia manual o equipos de rehabilitación según las necesidades.</p>
+                </details>
+                <details>
+                    <summary>5. ¿Qué tipo de pacientes tratas con más frecuencia?</summary>
+                    <p>Dolores de espalda, cuello o rodillas. También esguinces, lesiones deportivas y personas con dolores por pasar muchas horas sentadas frente a una computadora.</p>
+                </details>
+                <details>
+                    <summary>6. ¿Cómo mides el progreso de cada paciente?</summary>
+                    <p>Cuando el paciente siente menos dolor, se mueve con más facilidad, recupera fuerza y vuelve a hacer actividades como caminar o subir escaleras sin problemas.</p>
+                </details>
+                <details>
+                    <summary>7. ¿Qué aparatos utilizas para la rehabilitación?</summary>
+                    <p>Bandas elásticas, pelotas terapéuticas, aparatos de electroterapia, ultrasonido terapéutico y equipos para fortalecimiento.</p>
+                </details>
+                <details>
+                    <summary>8. En promedio, ¿cuánto tiempo dura una sesión?</summary>
+                    <p>Por lo general una sesión dura entre 45 minutos y una hora.</p>
+                </details>
+                <details>
+                    <summary>9. ¿Cómo sabes qué tipo de tratamiento utilizar?</summary>
+                    <p>Se decide con la evaluación inicial revisando cómo se mueve el paciente, dónde siente dolor y su condición física, además del diagnóstico médico.</p>
+                </details>
+                <details>
+                    <summary>10. ¿Qué habilidades consideras más importantes?</summary>
+                    <p>La paciencia, saber escuchar, tener empatía y explicar bien los ejercicios para que el paciente los entienda.</p>
+                </details>
+                <details>
+                    <summary>11. ¿Qué errores cometen comúnmente los pacientes?</summary>
+                    <p>Dejar de hacer los ejercicios cuando empiezan a sentirse un poco mejor o regresar muy rápido a actividades físicas intensas.</p>
+                </details>
+                <details>
+                    <summary>12. ¿Qué tan importante es que el paciente siga las indicaciones en casa?</summary>
+                    <p>Es muy importante. Gran parte de la recuperación depende de lo que el paciente haga en casa para fortalecer el cuerpo.</p>
+                </details>
+                <details>
+                    <summary>13. ¿En qué áreas se puede especializar un fisioterapeuta?</summary>
+                    <p>Deportiva, neurológica, pediátrica, geriátrica o traumatológica. Mi especialidad es musculoesquelética y deportiva.</p>
+                </details>
+                <details>
+                    <summary>14. ¿Cómo motivas a los pacientes que se desaniman?</summary>
+                    <p>Les muestro el progreso que ya han logrado y establecemos metas cortas para que vean que poco a poco están mejorando.</p>
+                </details>
+                <details>
+                    <summary>15. ¿La tecnología ha cambiado la fisioterapia?</summary>
+                    <p>Sí, existen equipos más modernos para tratar el dolor y herramientas digitales que ayudan a controlar mejor el progreso.</p>
+                </details>
+                <details>
+                    <summary>16. ¿Utilizas alguna aplicación digital en tu trabajo?</summary>
+                    <p>Sí, para registrar el avance de los pacientes, organizar citas y enseñar ejercicios para casa.</p>
+                </details>
+                <details>
+                    <summary>17. ¿Las animaciones ayudarían a explicar mejor los ejercicios?</summary>
+                    <p>Sí, ayudan mucho porque el paciente entiende visualmente cómo hacer el movimiento correcto y puede repetirlo en casa sin confundirse.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-logo logo">Fisio<span>Salud</span></p>
+            <p>Hecho con dedicación y amor por el grupo 402 Programación | &copy; Cecytem plantel Metepec 2</p>
         </div>
-    </div>
+    </footer>
 
-    <script>
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        sections.forEach(section => observer.observe(section));
-
-        // Función para enviar la respuesta a tu servidor Python
-        function enviarRespuesta(opcion) {
-            // Cambia 'localhost' por la IP de tu PC si lo pruebas desde el cel
-            fetch('192.168.100.8', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ respuesta: opcion }),
-            })
-            .then(response => console.log('Dato enviado'))
-            .catch((error) => console.error('Error:', error));
-        }
-
-        function showCarta() {
-            enviarRespuesta('SI - Acepto la oportunidad'); // <--- ENVÍA EL DATO
-            closeOverlays();
-            document.getElementById('overlay-carta').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        function showDuda() {
-            enviarRespuesta('DUDA - Aun tiene dudas'); // <--- ENVÍA EL DATO
-            closeOverlays();
-            document.getElementById('overlay-duda').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        function closeOverlays() {
-            document.getElementById('overlay-carta').style.display = 'none';
-            document.getElementById('overlay-duda').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
