@@ -1,204 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FisioSalud | Movimientos que cambian vidas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <title>Para mi única verdad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #d81b60; --bg: #fdf2f4; --card: #ffffff; }
+        body, html { margin: 0; padding: 0; font-family: 'Quicksand', sans-serif; background: var(--bg); color: #444; scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* Intro */
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: white; text-align: center; padding: 20px; box-sizing: border-box; position: relative; z-index: 10; }
+        #hero h1 { font-size: 3.5rem; color: var(--accent); font-family: 'Dancing Script', cursive; margin-bottom: 10px; }
+        
+        .btn-love { 
+            padding: 18px 45px; background: var(--accent); color: white; border: none; 
+            border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(216, 27, 96, 0.2); transition: 0.3s;
+        }
+        .btn-love:hover { transform: scale(1.05); background: #ad144b; }
 
+        /* Contenedor de la historia */
+        .story-container { max-width: 800px; margin: 0 auto; padding: 100px 20px; }
+        
+        .section { 
+            background: var(--card); padding: 60px; border-radius: 40px; margin-bottom: 80px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.06); opacity: 0; transform: translateY(50px);
+            transition: 1.5s all cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        .section.active { opacity: 1; transform: translateY(0); }
+
+        h2 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: var(--accent); margin-bottom: 30px; border-bottom: 2px solid var(--bg); display: inline-block; padding-bottom: 10px; }
+        
+        .text-content { line-height: 2.2; font-size: 1.25rem; text-align: justify; white-space: pre-line; }
+        .highlight { color: var(--accent); font-weight: 700; border-bottom: 2px dashed var(--accent); }
+
+        .gif-container { width: 100%; display: flex; justify-content: center; margin-bottom: 40px; }
+        .gif-box { width: 220px; height: 220px; border-radius: 35px; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 5px solid var(--bg); }
+
+        /* Modales / Ventanas de Respuesta */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background: white; padding: 50px; border-radius: 40px; max-width: 650px; width: 90%;
+            text-align: center; position: relative; animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh; overflow-y: auto;
+        }
+        @keyframes modalPop { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .btn-close { margin-top: 30px; padding: 12px 30px; border-radius: 50px; border: 1px solid #ccc; background: none; cursor: pointer; }
+
+        /* Botones Finales */
+        .choice-container { text-align: center; margin-top: 60px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .btn-no { background: #f0f0f0; color: #777; border: none; padding: 18px 45px; border-radius: 50px; cursor: pointer; font-weight: 700; transition: 0.3s; font-size: 1.1rem; }
+    </style>
+</head>
 <body>
 
-    <header>
-        <div class="container header-content">
-            <p class="logo">Fisio<span>Salud</span></p>
-            <nav>
-                <a href="#inicio">Inicio</a>
-                <a href="#nosotros">Beneficios</a>
-                <a href="#especialidades">Terapias</a>
-                <a href="#faq">Entrevista</a>
-            </nav>
+    <!-- INTRO -->
+    <section id="hero">
+        <h1>Lo que nunca supe explicarte...</h1>
+        <p style="font-size: 1.3rem; max-width: 600px; color: #666;">Me tomó mucho tiempo entender mis propios errores y el peso de mis miedos. Por favor, lee cada palabra con el corazón.</p>
+        <button class="btn-love" onclick="document.querySelector('.story-container').scrollIntoView({behavior: 'smooth'})">Abrir mi corazón ❤️</button>
+    </section>
+
+    <!-- HISTORIA -->
+    <main class="story-container">
+        
+        <!-- SECCIÓN 1 -->
+        <div class="section">
+            <div class="gif-container">
+                <img src="https://media1.tenor.com/m/KFiUJSB2ndcAAAAC/cute-cat-cat.gif" class="gif-box">
+            </div>
+            <h2>El porqué de mi cambio</h2>
+            <div class="text-content">
+                Me duele en el alma saber que sientes que mi interés ha sido fingido, porque la verdad es que eres lo único real que tengo en mi vida. Si me viste diferente, distante o incluso frío, no fue porque dejara de quererte; al contrario, fue por una mezcla de miedos que me paralizaron y que no supe explicarte. 
+                
+                A veces, cuando más quiero a alguien, me da terror fallar o que las cosas externas nos alcancen y nos hagan daño. Me cerré intentando "protegernos" a mi manera egoísta, creyendo que si guardaba mis problemas, no te afectarían, pero terminé cometiendo el peor de los errores: alejándote a ti, que eres mi único refugio y mi paz. 
+
+                <span class="highlight">Perdóname por no haber sido lo suficientemente transparente.</span> Pasé noches pensando en cómo decirte que me sentía perdido, pero el miedo a que me vieras débil me hizo actuar como alguien que no soy. Prefiero mil veces ser vulnerable contigo que perderte por intentar parecer alguien que no tiene miedo. Eres la única persona ante la que quiero ser yo mismo, sin filtros.
+            </div>
         </div>
-    </header>
 
-    <main>
-        <section id="inicio" class="hero">
-            <div class="container hero-container">
-                <div class="hero-text">
-                    <span class="tag">Bienvenido a FisioSalud</span>
-                    <h1>El arte de recuperar tu <span class="color-acento">bienestar</span></h1>
-                    <p>No solo tratamos lesiones, rehabilitamos vidas. Descubre cómo la fisioterapia profesional puede devolverte la libertad de movimiento que perdiste.</p>
-                    <div class="hero-btns">
-                        <a href="#especialidades" class="btn btn-primary">Nuestras Terapias</a>
-                        <a href="#faq" class="btn btn-outline">Leer Entrevista</a>
-                    </div>
-                </div>
-                <div class="hero-img">
-                    <img src="fisioterapia-hombre-mayor-y-fisioterapeuta-25210097.jpg" alt="Fisioterapia avanzada">
-                </div>
+        <!-- SECCIÓN 2 -->
+        <div class="section">
+            <div class="gif-container">
+                <img src="https://media1.tenor.com/m/EGneBJlyNGoAAAAd/cat-crying-cat.gif" class="gif-box">
             </div>
-        </section>
-
-        <section id="nosotros" class="container section">
-            <div class="section-header">
-                <h2 class="section-title">¿Por qué la Fisioterapia?</h2>
-                <p>La rehabilitación física es el pilar fundamental para una vida activa y saludable.</p>
+            <h2>Sobre mis bromas...</h2>
+            <div class="text-content">
+                Entiendo perfectamente que te cansaras de que jugara con la idea de que "ya no me querías" o que "me ibas a dejar". Hoy me doy cuenta de que lo que para mí era una forma torpe y desesperada de buscar que me reafirmaras tu amor, para ti era una falta de respeto constante a tus sentimientos. 
+                
+                Lo hacía porque me aterraba la idea de que realmente te cansaras de mí, pero irónicamente, con mis palabras estaba provocando exactamente eso. Estaba saboteando lo más bonito que tenía por puro miedo al abandono. <span class="highlight">Ya entendí que contigo no se juega de esa manera.</span> Tu amor es sagrado y no merece ser cuestionado por mis inseguridades infantiles. Prometo cuidar tu paz mental y no volver a poner en duda tu cariño con palabras vacías. Aprendí la lección viendo el dolor en tus ojos, y te juro que mi único objetivo ahora es verlos brillar de felicidad, no de cansancio.
             </div>
-            <div class="grid-3">
-                <div class="benefit-card">
-                    <div class="icon">⚡</div>
-                    <h3>Alivio del Dolor</h3>
-                    <p>Técnicas manuales y tecnología para reducir la inflamación sin excesos de fármacos.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">🏃</div>
-                    <h3>Movilidad Total</h3>
-                    <p>Recupera el rango de movimiento en articulaciones clave como rodillas, espalda y cuello.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">🛡️</div>
-                    <h3>Prevención</h3>
-                    <p>Te enseñamos a cuidar tu cuerpo para que las lesiones no vuelvan a aparecer jamás.</p>
-                </div>
+        </div>
+
+        <!-- SECCIÓN 3 -->
+        <div class="section">
+            <div class="gif-container">
+                <img src="https://media1.tenor.com/m/5W3O1UxUHcIAAAAC/cat-holding-a-rose-hand-emoji-charles-scarlet-wing.gif" class="gif-box">
             </div>
-        </section>
+            <h2>La propuesta que siempre estuvo ahí</h2>
+            <div class="text-content">
+                Hay algo que me ha pesado mucho tiempo y que hoy quiero enfrentar de frente: <span class="highlight">nunca te pedí formalmente que fueras mi novia.</span> 
 
-        <section id="especialidades" class="bg-light section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Nuestras Especialidades</h2>
-                    <p>Haz clic en las imágenes para conocer más sobre cada tratamiento en portales especializados.</p>
-                </div>
-                <div class="grid-4">
-                    <a href="https://www.fisioterapia-online.com/fisioterapia-deportiva" target="_blank" class="card-link">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?auto=format&fit=crop&w=500" alt="Deportiva">
-                            <div class="card-body">
-                                <h3>Deportiva</h3>
-                                <p>Optimización para atletas y recuperación de esguinces.</p>
-                            </div>
-                        </div>
-                    </a>
+                Esa idea siempre ha estado en mi mente, quemándome el pecho cada vez que te veía sonreír, pero dejé que el miedo al momento "perfecto" me ganara. Quería que fuera algo de película, algo increíble, y en esa espera absurda descuidé el presente. Me sentía insuficiente o pensaba que las circunstancias no eran las ideales, y al final dejé que pasara el tiempo sin darte el lugar y la importancia que te mereces ante el mundo. 
 
-                    <a href="https://www.fisioterapia-online.com/fisioterapia-geriatrica" target="_blank" class="card-link">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=500" alt="Geriátrica">
-                            <div class="card-body">
-                                <h3>Geriátrica</h3>
-                                <p>Mejorando la autonomía y calidad de vida en el adulto mayor.</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="https://www.fisioterapia-online.com/fisioterapia-neurologica" target="_blank" class="card-link">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=500" alt="Neurológica">
-                            <div class="card-body">
-                                <h3>Neurológica</h3>
-                                <p>Rehabilitación del sistema nervioso y control motor.</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="https://www.fisioterapia-online.com/fisioterapia-traumatologica" target="_blank" class="card-link">
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=500" alt="Traumatológica">
-                            <div class="card-body">
-                                <h3>Traumatológica</h3>
-                                <p>Post-cirugías, fracturas y problemas de columna.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                Pero hoy, después de todo el ruido y de darme cuenta de que el momento perfecto es simplemente estar a tu lado, quiero que sepas que <span class="highlight">sí quiero que seas mi novia.</span> Quiero que tengamos ese lugar real, que seas tú la mujer con la que pueda compartirlo todo, sin títulos a medias y sin miedos ocultos. Quiero empezar bien, desde cero, construyendo la confianza que yo mismo descuidé. No quiero que seas solo un capítulo, quiero que seas toda mi historia.
             </div>
-        </section>
+        </div>
 
-        <section id="faq" class="container section">
-            <div class="section-header">
-                <h2 class="section-title">Charla con el Experto</h2>
-                <p>Todo lo que necesitas saber desde la voz de un profesional.</p>
+        <!-- SECCIÓN 4 -->
+        <div class="section">
+            <div class="gif-container">
+                <img src="https://media1.tenor.com/m/1Zyz6WPCNHkAAAAC/cat-hug.gif" class="gif-box">
             </div>
-            <div class="accordion">
-                <details>
-                    <summary>1. ¿Qué es la fisioterapia?</summary>
-                    <p>Es una rama de la salud que se dedica a ayudar a las personas a recuperarse de lesiones, dolores o problemas de movimiento. Trabajamos para que el cuerpo vuelva a moverse bien y con menos dolor. Usamos ejercicios, estiramientos, masajes terapéuticos y aparatos que ayudan a mejorar la recuperación.</p>
-                </details>
-                <details>
-                    <summary>2. ¿Qué datos del paciente ocupas para poder atenderlo?</summary>
-                    <p>Necesito conocer datos básicos como edad, si tiene alguna enfermedad, si toma medicamentos y cuál es el problema que lo trae a consulta. También pregunto desde cuándo tiene el dolor y si fue por una caída, deporte o malas posturas.</p>
-                </details>
-                <details>
-                    <summary>3. ¿Cuál es tu enfoque principal?</summary>
-                    <p>Ayudar al paciente a recuperar su movilidad y que pueda volver a hacer sus actividades normales sin dolor. También prevenir que la lesión vuelva a ocurrir enseñando hábitos saludables.</p>
-                </details>
-                <details>
-                    <summary>4. ¿Cómo abordas la evaluación y el tratamiento?</summary>
-                    <p>Primero hago una evaluación física con movimientos para ver movilidad y fuerza. Luego preparo un plan que incluye ejercicios, terapia manual o equipos de rehabilitación según las necesidades.</p>
-                </details>
-                <details>
-                    <summary>5. ¿Qué tipo de pacientes tratas con más frecuencia?</summary>
-                    <p>Dolores de espalda, cuello o rodillas. También esguinces, lesiones deportivas y personas con dolores por pasar muchas horas sentadas frente a una computadora.</p>
-                </details>
-                <details>
-                    <summary>6. ¿Cómo mides el progreso de cada paciente?</summary>
-                    <p>Cuando el paciente siente menos dolor, se mueve con más facilidad, recupera fuerza y vuelve a hacer actividades como caminar o subir escaleras sin problemas.</p>
-                </details>
-                <details>
-                    <summary>7. ¿Qué aparatos utilizas para la rehabilitación?</summary>
-                    <p>Bandas elásticas, pelotas terapéuticas, aparatos de electroterapia, ultrasonido terapéutico y equipos para fortalecimiento.</p>
-                </details>
-                <details>
-                    <summary>8. En promedio, ¿cuánto tiempo dura una sesión?</summary>
-                    <p>Por lo general una sesión dura entre 45 minutos y una hora.</p>
-                </details>
-                <details>
-                    <summary>9. ¿Cómo sabes qué tipo de tratamiento utilizar?</summary>
-                    <p>Se decide con la evaluación inicial revisando cómo se mueve el paciente, dónde siente dolor y su condición física, además del diagnóstico médico.</p>
-                </details>
-                <details>
-                    <summary>10. ¿Qué habilidades consideras más importantes?</summary>
-                    <p>La paciencia, saber escuchar, tener empatía y explicar bien los ejercicios para que el paciente los entienda.</p>
-                </details>
-                <details>
-                    <summary>11. ¿Qué errores cometen comúnmente los pacientes?</summary>
-                    <p>Dejar de hacer los ejercicios cuando empiezan a sentirse un poco mejor o regresar muy rápido a actividades físicas intensas.</p>
-                </details>
-                <details>
-                    <summary>12. ¿Qué tan importante es que el paciente siga las indicaciones en casa?</summary>
-                    <p>Es muy importante. Gran parte de la recuperación depende de lo que el paciente haga en casa para fortalecer el cuerpo.</p>
-                </details>
-                <details>
-                    <summary>13. ¿En qué áreas se puede especializar un fisioterapeuta?</summary>
-                    <p>Deportiva, neurológica, pediátrica, geriátrica o traumatológica. Mi especialidad es musculoesquelética y deportiva.</p>
-                </details>
-                <details>
-                    <summary>14. ¿Cómo motivas a los pacientes que se desaniman?</summary>
-                    <p>Les muestro el progreso que ya han logrado y establecemos metas cortas para que vean que poco a poco están mejorando.</p>
-                </details>
-                <details>
-                    <summary>15. ¿La tecnología ha cambiado la fisioterapia?</summary>
-                    <p>Sí, existen equipos más modernos para tratar el dolor y herramientas digitales que ayudan a controlar mejor el progreso.</p>
-                </details>
-                <details>
-                    <summary>16. ¿Utilizas alguna aplicación digital en tu trabajo?</summary>
-                    <p>Sí, para registrar el avance de los pacientes, organizar citas y enseñar ejercicios para casa.</p>
-                </details>
-                <details>
-                    <summary>17. ¿Las animaciones ayudarían a explicar mejor los ejercicios?</summary>
-                    <p>Sí, ayudan mucho porque el paciente entiende visualmente cómo hacer el movimiento correcto y puede repetirlo en casa sin confundirse.</p>
-                </details>
+            <h2>Prefiero mil veces arreglarlo contigo</h2>
+            <div class="text-content">
+                Podría ser fácil tirar la toalla e intentar "empezar de nuevo" con alguien más, pero no tendría sentido porque no quiero a nadie más. Prefiero mil veces pelear contra el mundo, contra mis propios errores y contra el tiempo diez mil veces antes que buscar el amor en alguien que no eres tú. Tú tienes una luz que no he visto en nadie más, y renunciar a eso sería el error más grande de mi vida.
+
+                Arreglar lo nuestro es mi prioridad absoluta porque nadie me hace sentir lo que tú, y nadie me conoce como tú lo haces. <span class="highlight">No te voy a soltar</span>, a menos que tú decidas que ya no hay nada que rescatar. Estoy dispuesto a aprender, a cambiar lo que haga falta y a escucharte más que nunca. Por mi parte, me voy a romper el alma esforzándome cada segundo hasta que vuelvas a confiar en el hombre que te adora y que cometió errores, pero que nunca, ni por un instante, dejó de amarte. Dame la oportunidad de ser el hombre que siempre mereciste.
             </div>
-        </section>
+        </div>
+
+        <!-- FINAL -->
+        <div class="section">
+            <h2>La decisión es tuya</h2>
+            <div class="text-content" style="text-align: center;">
+                He sido más honesto de lo que he sido nunca en mi vida. No quiero presionarte, respeto profundamente lo que sientas y la decisión que tomes después de leer este desorden de sentimientos. Sé que he agotado tu paciencia, pero mi amor por ti sigue intacto. Eres libre de elegir tu camino, y yo siempre respetaré tu voluntad, sea cual sea.
+            </div>
+            
+            <div class="choice-container">
+                <button class="btn-love" onclick="openModal('modal-si')">1 sola oportunidad...</button>
+                <button class="btn-no" onclick="openModal('modal-no')">No, lo lamento</button>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p class="footer-logo logo">Fisio<span>Salud</span></p>
-            <p>Hecho con dedicación y amor por el grupo 402 Programación | &copy; Cecytem plantel Metepec 2</p>
+    <!-- VENTANA SI -->
+    <div id="modal-si" class="modal">
+        <div class="modal-content">
+            <div class="gif-container">
+                <img src="https://media1.tenor.com/m/o_5RQarGvJ0AAAAC/kiss.gif" class="gif-box">
+            </div>
+            <h2>¡Gracias por no rendirte! ❤️</h2>
+            <p class="text-content" style="text-align: center;">No tienes idea de lo que esto significa para mí. Me has devuelto el aire. Te prometo con mi vida que no solo verás palabras, sino hechos reales que respalden todo lo que escribí. Me voy a esforzar cada día para que te sientas la mujer más amada, respetada y segura del mundo. ¡Te amo!</p>
+            <button class="btn-close" onclick="closeModal('modal-si')">Cerrar y hablar conmigo</button>
         </div>
-    </footer>
+    </div>
 
+    <!-- VENTANA NO -->
+    <div id="modal-no" class="modal">
+        <div class="modal-content">
+            <div class="gif-container">
+                <img src="https://media.tenor.com/RUd2klwr7t4AAAAi/haleys-ouo.gif" class="gif-box">
+            </div>
+            <h2>Lo entiendo y lo respeto ❤️</h2>
+            <p class="text-content" style="text-align: center;">Me duele en el alma, y es un vacío que me costará llenar, pero acepto tu decisión porque amarte también significa respetar tu felicidad por encima de la mía. Gracias por todo el tiempo, por cada risa, por el amor que me diste y por haberme permitido conocer a una mujer tan increíble como tú. Me llevo lo mejor de nosotros conmigo.</p>
+            <button class="btn-close" onclick="closeModal('modal-no')">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Animación al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+        // Funciones de las Ventanas (Modales)
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    </script>
 </body>
 </html>
