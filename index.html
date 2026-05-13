@@ -2,181 +2,107 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi única verdad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Para Evelyn</title>
     <style>
-        :root { --accent: #d81b60; --bg: #fdf2f4; --card: #ffffff; }
-        body, html { margin: 0; padding: 0; font-family: 'Quicksand', sans-serif; background: var(--bg); color: #444; scroll-behavior: smooth; overflow-x: hidden; }
-        
-        /* Intro */
-        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: white; text-align: center; padding: 20px; box-sizing: border-box; position: relative; z-index: 10; }
-        #hero h1 { font-size: 3.5rem; color: var(--accent); font-family: 'Dancing Script', cursive; margin-bottom: 10px; }
-        
-        .btn-love { 
-            padding: 18px 45px; background: var(--accent); color: white; border: none; 
-            border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(216, 27, 96, 0.2); transition: 0.3s;
+        body { 
+            background: #fff0f5; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
         }
-        .btn-love:hover { transform: scale(1.05); background: #ad144b; }
-
-        /* Contenedor de la historia */
-        .story-container { max-width: 800px; margin: 0 auto; padding: 100px 20px; }
-        
-        .section { 
-            background: var(--card); padding: 60px; border-radius: 40px; margin-bottom: 80px;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.06); opacity: 0; transform: translateY(50px);
-            transition: 1.5s all cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        .card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            max-width: 500px; 
+            text-align: center; 
         }
-        .section.active { opacity: 1; transform: translateY(0); }
-
-        h2 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: var(--accent); margin-bottom: 30px; border-bottom: 2px solid var(--bg); display: inline-block; padding-bottom: 10px; }
-        
-        .text-content { line-height: 2.2; font-size: 1.25rem; text-align: justify; white-space: pre-line; }
-        .highlight { color: var(--accent); font-weight: 700; border-bottom: 2px dashed var(--accent); }
-
-        .gif-container { width: 100%; display: flex; justify-content: center; margin-bottom: 40px; }
-        .gif-box { width: 220px; height: 220px; border-radius: 35px; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 5px solid var(--bg); }
-
-        /* Modales / Ventanas de Respuesta */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
-            backdrop-filter: blur(8px);
+        h1 { color: #d81b60; font-family: 'Dancing Script', cursive; min-height: 1.5em; }
+        #typewriter { 
+            color: #555; 
+            line-height: 1.6; 
+            font-size: 1.1rem; 
+            margin-bottom: 20px;
+            min-height: 120px; /* Evita que el contenido salte al escribir */
         }
-        .modal-content {
-            background: white; padding: 50px; border-radius: 40px; max-width: 650px; width: 90%;
-            text-align: center; position: relative; animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-height: 90vh; overflow-y: auto;
+        .photo-container {
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 5px solid #fce4ec;
         }
-        @keyframes modalPop { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        .btn-close { margin-top: 30px; padding: 12px 30px; border-radius: 50px; border: 1px solid #ccc; background: none; cursor: pointer; }
-
-        /* Botones Finales */
-        .choice-container { text-align: center; margin-top: 60px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .btn-no { background: #f0f0f0; color: #777; border: none; padding: 18px 45px; border-radius: 50px; cursor: pointer; font-weight: 700; transition: 0.3s; font-size: 1.1rem; }
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .love-text {
+            color: #e91e63;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #d81b60;
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- INTRO -->
-    <section id="hero">
-        <h1>Lo que nunca supe explicarte...</h1>
-        <p style="font-size: 1.3rem; max-width: 600px; color: #666;">Me tomó mucho tiempo entender mis propios errores y el peso de mis miedos. Por favor, lee cada palabra con el corazón.</p>
-        <button class="btn-love" onclick="document.querySelector('.story-container').scrollIntoView({behavior: 'smooth'})">Abrir mi corazón ❤️</button>
-    </section>
-
-    <!-- HISTORIA -->
-    <main class="story-container">
+    <div class="card">
+        <h1>Evelyn...</h1>
         
-        <!-- SECCIÓN 1 -->
-        <div class="section">
-            <div class="gif-container">
-                <img src="https://media1.tenor.com/m/KFiUJSB2ndcAAAAC/cute-cat-cat.gif" class="gif-box">
-            </div>
-            <h2>El porqué de mi cambio</h2>
-            <div class="text-content">
-                Me duele en el alma saber que sientes que mi interés ha sido fingido, porque la verdad es que eres lo único real que tengo en mi vida. Si me viste diferente, distante o incluso frío, no fue porque dejara de quererte; al contrario, fue por una mezcla de miedos que me paralizaron y que no supe explicarte. 
-                
-                A veces, cuando más quiero a alguien, me da terror fallar o que las cosas externas nos alcancen y nos hagan daño. Me cerré intentando "protegernos" a mi manera egoísta, creyendo que si guardaba mis problemas, no te afectarían, pero terminé cometiendo el peor de los errores: alejándote a ti, que eres mi único refugio y mi paz. 
-
-                <span class="highlight">Perdóname por no haber sido lo suficientemente transparente.</span> Pasé noches pensando en cómo decirte que me sentía perdido, pero el miedo a que me vieras débil me hizo actuar como alguien que no soy. Prefiero mil veces ser vulnerable contigo que perderte por intentar parecer alguien que no tiene miedo. Eres la única persona ante la que quiero ser yo mismo, sin filtros.
-            </div>
+        <div id="typewriter"></div>
+        
+        <div class="photo-container">
+            <!-- Asegúrate de que el nombre del archivo sea exacto -->
+            <img src="Mi amor.png" alt="Nosotros">
         </div>
 
-        <!-- SECCIÓN 2 -->
-        <div class="section">
-            <div class="gif-container">
-                <img src="https://media1.tenor.com/m/EGneBJlyNGoAAAAd/cat-crying-cat.gif" class="gif-box">
-            </div>
-            <h2>Sobre mis bromas...</h2>
-            <div class="text-content">
-                Entiendo perfectamente que te cansaras de que jugara con la idea de que "ya no me querías" o que "me ibas a dejar". Hoy me doy cuenta de que lo que para mí era una forma torpe y desesperada de buscar que me reafirmaras tu amor, para ti era una falta de respeto constante a tus sentimientos. 
-                
-                Lo hacía porque me aterraba la idea de que realmente te cansaras de mí, pero irónicamente, con mis palabras estaba provocando exactamente eso. Estaba saboteando lo más bonito que tenía por puro miedo al abandono. <span class="highlight">Ya entendí que contigo no se juega de esa manera.</span> Tu amor es sagrado y no merece ser cuestionado por mis inseguridades infantiles. Prometo cuidar tu paz mental y no volver a poner en duda tu cariño con palabras vacías. Aprendí la lección viendo el dolor en tus ojos, y te juro que mi único objetivo ahora es verlos brillar de felicidad, no de cansancio.
-            </div>
-        </div>
-
-        <!-- SECCIÓN 3 -->
-        <div class="section">
-            <div class="gif-container">
-                <img src="https://media1.tenor.com/m/5W3O1UxUHcIAAAAC/cat-holding-a-rose-hand-emoji-charles-scarlet-wing.gif" class="gif-box">
-            </div>
-            <h2>La propuesta que siempre estuvo ahí</h2>
-            <div class="text-content">
-                Hay algo que me ha pesado mucho tiempo y que hoy quiero enfrentar de frente: <span class="highlight">nunca te pedí formalmente que fueras mi novia.</span> 
-
-                Esa idea siempre ha estado en mi mente, quemándome el pecho cada vez que te veía sonreír, pero dejé que el miedo al momento "perfecto" me ganara. Quería que fuera algo de película, algo increíble, y en esa espera absurda descuidé el presente. Me sentía insuficiente o pensaba que las circunstancias no eran las ideales, y al final dejé que pasara el tiempo sin darte el lugar y la importancia que te mereces ante el mundo. 
-
-                Pero hoy, después de todo el ruido y de darme cuenta de que el momento perfecto es simplemente estar a tu lado, quiero que sepas que <span class="highlight">sí quiero que seas mi novia.</span> Quiero que tengamos ese lugar real, que seas tú la mujer con la que pueda compartirlo todo, sin títulos a medias y sin miedos ocultos. Quiero empezar bien, desde cero, construyendo la confianza que yo mismo descuidé. No quiero que seas solo un capítulo, quiero que seas toda mi historia.
-            </div>
-        </div>
-
-        <!-- SECCIÓN 4 -->
-        <div class="section">
-            <div class="gif-container">
-                <img src="https://media1.tenor.com/m/1Zyz6WPCNHkAAAAC/cat-hug.gif" class="gif-box">
-            </div>
-            <h2>Prefiero mil veces arreglarlo contigo</h2>
-            <div class="text-content">
-                Podría ser fácil tirar la toalla e intentar "empezar de nuevo" con alguien más, pero no tendría sentido porque no quiero a nadie más. Prefiero mil veces pelear contra el mundo, contra mis propios errores y contra el tiempo diez mil veces antes que buscar el amor en alguien que no eres tú. Tú tienes una luz que no he visto en nadie más, y renunciar a eso sería el error más grande de mi vida.
-
-                Arreglar lo nuestro es mi prioridad absoluta porque nadie me hace sentir lo que tú, y nadie me conoce como tú lo haces. <span class="highlight">No te voy a soltar</span>, a menos que tú decidas que ya no hay nada que rescatar. Estoy dispuesto a aprender, a cambiar lo que haga falta y a escucharte más que nunca. Por mi parte, me voy a romper el alma esforzándome cada segundo hasta que vuelvas a confiar en el hombre que te adora y que cometió errores, pero que nunca, ni por un instante, dejó de amarte. Dame la oportunidad de ser el hombre que siempre mereciste.
-            </div>
-        </div>
-
-        <!-- FINAL -->
-        <div class="section">
-            <h2>La decisión es tuya</h2>
-            <div class="text-content" style="text-align: center;">
-                He sido más honesto de lo que he sido nunca en mi vida. No quiero presionarte, respeto profundamente lo que sientas y la decisión que tomes después de leer este desorden de sentimientos. Sé que he agotado tu paciencia, pero mi amor por ti sigue intacto. Eres libre de elegir tu camino, y yo siempre respetaré tu voluntad, sea cual sea.
-            </div>
-            
-            <div class="choice-container">
-                <button class="btn-love" onclick="openModal('modal-si')">1 sola oportunidad...</button>
-                <button class="btn-no" onclick="openModal('modal-no')">No, lo lamento</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- VENTANA SI -->
-    <div id="modal-si" class="modal">
-        <div class="modal-content">
-            <div class="gif-container">
-                <img src="https://media1.tenor.com/m/o_5RQarGvJ0AAAAC/kiss.gif" class="gif-box">
-            </div>
-            <h2>¡Gracias por no rendirte! ❤️</h2>
-            <p class="text-content" style="text-align: center;">No tienes idea de lo que esto significa para mí. Me has devuelto el aire. Te prometo con mi vida que no solo verás palabras, sino hechos reales que respalden todo lo que escribí. Me voy a esforzar cada día para que te sientas la mujer más amada, respetada y segura del mundo. ¡Te amo!</p>
-            <button class="btn-close" onclick="closeModal('modal-si')">Cerrar y hablar conmigo</button>
-        </div>
-    </div>
-
-    <!-- VENTANA NO -->
-    <div id="modal-no" class="modal">
-        <div class="modal-content">
-            <div class="gif-container">
-                <img src="https://media.tenor.com/RUd2klwr7t4AAAAi/haleys-ouo.gif" class="gif-box">
-            </div>
-            <h2>Lo entiendo y lo respeto ❤️</h2>
-            <p class="text-content" style="text-align: center;">Me duele en el alma, y es un vacío que me costará llenar, pero acepto tu decisión porque amarte también significa respetar tu felicidad por encima de la mía. Gracias por todo el tiempo, por cada risa, por el amor que me diste y por haberme permitido conocer a una mujer tan increíble como tú. Me llevo lo mejor de nosotros conmigo.</p>
-            <button class="btn-close" onclick="closeModal('modal-no')">Cerrar</button>
-        </div>
+        <div class="love-text">Te amo mi amor 💗💗</div>
     </div>
 
     <script>
-        // Animación al hacer scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
+        const textElement = document.getElementById('typewriter');
+        const message = "Me quedé pensando en lo que me dijiste hoy. Quiero que sepas que te escuché fuerte y claro. No te lo dije en ese momento porque quiero que cuando lo haga sea especial, como tú te mereces. Quiero que sepas que mi meta es clara: Eres tú y nadie más. ♾️🐾";
+        
+        let index = 0;
 
-        document.querySelectorAll('.section').forEach(s => observer.observe(s));
+        function type() {
+            if (index < message.length) {
+                textElement.innerHTML = message.slice(0, index + 1) + '<span class="cursor">|</span>';
+                index++;
+                setTimeout(type, 50); // Velocidad de escritura
+            } else {
+                // Al terminar, quitamos el cursor o lo dejamos estático
+                textElement.innerHTML = message;
+            }
+        }
 
-        // Funciones de las Ventanas (Modales)
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        // Iniciar el efecto cuando cargue la página
+        window.onload = type;
     </script>
 </body>
 </html>
