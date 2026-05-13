@@ -28,26 +28,28 @@
             line-height: 1.6; 
             font-size: 1.1rem; 
             margin-bottom: 20px;
-            min-height: 120px; /* Evita que el contenido salte al escribir */
-        }
-        .photo-container {
-            margin: 20px 0;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 5px solid #fce4ec;
-        }
-        .photo-container img {
-            width: 100%;
-            height: auto;
-            display: block;
+            min-height: 150px;
         }
         .love-text {
             color: #e91e63;
             font-size: 1.5rem;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
             display: inline-block;
             animation: heartbeat 1.2s infinite;
+        }
+        .photo-container {
+            margin: 10px auto;
+            max-width: 150px; /* Tamaño pequeño como pediste */
+            border-radius: 10px;
+            overflow: hidden;
+            border: 3px solid #fce4ec;
+        }
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
         @keyframes heartbeat {
             0% { transform: scale(1); }
@@ -75,13 +77,13 @@
         <h1>Evelyn...</h1>
         
         <div id="typewriter"></div>
-        
-        <div class="photo-container">
-            <!-- Asegúrate de que el nombre del archivo sea exacto -->
-            <img height = "160" src="Mi amor.png" alt="Nosotros">
-        </div>
 
         <div class="love-text">Te amo mi amor 💗💗</div>
+
+        <div class="photo-container">
+            <!-- He ajustado el nombre al archivo que subiste antes: 1000044951.jpg -->
+            <img src="1000044951.jpg" alt="Nosotros">
+        </div>
     </div>
 
     <script>
@@ -94,14 +96,12 @@
             if (index < message.length) {
                 textElement.innerHTML = message.slice(0, index + 1) + '<span class="cursor">|</span>';
                 index++;
-                setTimeout(type, 50); // Velocidad de escritura
+                setTimeout(type, 50);
             } else {
-                // Al terminar, quitamos el cursor o lo dejamos estático
                 textElement.innerHTML = message;
             }
         }
 
-        // Iniciar el efecto cuando cargue la página
         window.onload = type;
     </script>
 </body>
