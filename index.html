@@ -1,107 +1,187 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Para Evelyn</title>
-    <style>
-        body { 
-            background: #fff0f5; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            margin: 0; 
-            padding: 20px;
-        }
-        .card { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            max-width: 500px; 
-            text-align: center; 
-        }
-        h1 { color: #d81b60; font-family: 'Dancing Script', cursive; min-height: 1.5em; }
-        #typewriter { 
-            color: #555; 
-            line-height: 1.6; 
-            font-size: 1.1rem; 
-            margin-bottom: 20px;
-            min-height: 150px;
-        }
-        .love-text {
-            color: #e91e63;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: heartbeat 1.2s infinite;
-        }
-        .photo-container {
-            margin: 10px auto;
-            max-width: 150px; 
-            border-radius: 10px;
-            overflow: hidden;
-            border: 3px solid #fce4ec;
-        }
-        .photo-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.15); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            70% { transform: scale(1); }
-        }
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            background-color: #d81b60;
-            margin-left: 2px;
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi Pulguita 💗✨</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes pulse-heart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .animate-pulse-heart {
+      animation: pulse-heart 2s infinite ease-in-out;
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(2deg); }
+    }
+    .animate-float {
+      animation: float-slow 3.5s infinite ease-in-out;
+    }
+  </style>
 </head>
-<body>
-    <div class="card">
-        <h1>Evelyn...</h1>
-        
-        <div id="typewriter"></div>
+<body class="bg-gradient-to-br from-rose-100 via-pink-100 to-purple-200 min-h-screen flex items-center justify-center p-3 sm:p-6 text-gray-800">
 
-        <div class="love-text">Te amo mi amor 💗💗</div>
+  <div id="root"></div>
 
-        <div class="photo-container">
-            <img src="Mi amor.png" alt="Nosotros">
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [tab, setTab] = useState('nota');
+      const [reasonIndex, setReasonIndex] = useState(0);
+
+      const razones = [
+        "Aunque ande a las carreritas con el servicio, mi atención siempre quiere estar contigo. 🏃‍♂️💨",
+        "Verte sonreír cuando te entrego un detalle vale más que cualquier otra cosa en el mundo. ✨",
+        "Me encanta acompañarte y compartir esos minutos juntos aunque el ruido de la calle nos juegue chueco. 🎧",
+        "Pase lo que pase y transformemos lo que transformemos, mi cariño por ti no cambia. 💖"
+      ];
+
+      return (
+        <div class="max-w-md w-full bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-rose-200 overflow-hidden flex flex-col min-h-[620px] justify-between transition-all">
+          
+          {/* Header principal */}
+          <div class="bg-gradient-to-r from-rose-400 via-pink-500 to-purple-500 p-6 text-white text-center relative shadow-lg">
+            <div class="absolute top-2 right-3 text-lg opacity-40 animate-pulse">✨</div>
+            <div class="absolute bottom-2 left-3 text-lg opacity-40 animate-pulse">💖</div>
+            
+            <div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-2 border border-white/40 shadow-inner animate-float">
+              <span class="text-4xl animate-pulse-heart">💌</span>
+            </div>
+            
+            <h1 class="text-2xl font-black tracking-wide drop-shadow-sm">
+              Hola, Pulguita 💗✨
+            </h1>
+            <p class="text-rose-100 text-xs font-medium mt-1">
+              (O mi Eve hermosa... este mensajito es todo tuyo)
+            </p>
+          </div>
+
+          {/* Menú de pestañas */}
+          <div class="flex justify-around bg-rose-50/70 p-2 border-b border-rose-100">
+            <button
+              onClick={() => setTab('nota')}
+              class={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                tab === 'nota'
+                  ? 'bg-rose-500 text-white shadow-md scale-105'
+                  : 'text-rose-700 hover:bg-rose-100'
+              }`}
+            >
+              🌸 Lo de hoy
+            </button>
+            <button
+              onClick={() => setTab('detallitos')}
+              class={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                tab === 'detallitos'
+                  ? 'bg-pink-500 text-white shadow-md scale-105'
+                  : 'text-rose-700 hover:bg-pink-100'
+              }`}
+            >
+              🎁 Detallitos
+            </button>
+            <button
+              onClick={() => setTab('promesa')}
+              class={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                tab === 'promesa'
+                  ? 'bg-purple-500 text-white shadow-md scale-105'
+                  : 'text-rose-700 hover:bg-purple-100'
+              }`}
+            >
+              ✨ Para Siempre
+            </button>
+          </div>
+
+          {/* Cuerpo con el contenido */}
+          <div class="p-6 flex-1 flex flex-col justify-center items-center text-center">
+            
+            {/* Pestaña 1: La Disculpa sincera */}
+            {tab === 'nota' && (
+              <div class="space-y-4 animate-fade-in w-full">
+                <div class="inline-block bg-rose-100 text-rose-600 p-3 rounded-2xl shadow-sm">
+                  <span class="text-2xl">🥺💬</span>
+                </div>
+                <h2 class="text-lg font-bold text-gray-800">Una disculpa de corazón, Pulguita</h2>
+                <p class="text-xs sm:text-sm text-gray-650 leading-relaxed text-left bg-rose-50/50 p-4 rounded-2xl border border-rose-100">
+                  Perdóname por lo que pasó hoy. Entre las prisas del servicio, las horitas que todavía ando pendiente de cubrir por allá y el ruido del momento cuando fuiste por tus llaves, escuché cortado y no entendí bien si me habías dicho que sí o que no.
+                  <br/><br/>
+                  Jamás me iría nomás porque sí dejándote con la palabra en la boca. Cuando vi tu mensaje ya andaba en la presidencia y me dio muchísima pena. <b>Quiero que sepas que sigo aquí al pendiente de ti, como siempre.</b>
+                </p>
+              </div>
+            )}
+
+            {/* Pestaña 2: Los Detallitos */}
+            {tab === 'detallitos' && (
+              <div class="space-y-4 animate-fade-in w-full">
+                <div class="inline-block bg-pink-100 text-pink-600 p-3 rounded-2xl shadow-sm">
+                  <span class="text-2xl">🛍️✨</span>
+                </div>
+                <h2 class="text-lg font-bold text-gray-800">Sobre los detallitos de hoy...</h2>
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 p-4 rounded-2xl border border-pink-200 space-y-3 text-left">
+                  <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                    Ni se te ocurra volver a decirme que me los quieres pagar, ¡para nada! 🚫💵 
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                    Te los compré con todo el gusto del mundo simplemente porque te vi y quise sacarte una sonrisa. Verte feliz es más que suficiente pago para mí. Aceptármelos con cariño es el mejor regalo que me puedes hacer. 😉
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Pestaña 3: Promesa y Cariño */}
+            {tab === 'promesa' && (
+              <div class="space-y-4 animate-fade-in w-full">
+                <div class="inline-block bg-purple-100 text-purple-600 p-3 rounded-2xl shadow-sm">
+                  <span class="text-2xl">🌷💖</span>
+                </div>
+                <h2 class="text-lg font-bold text-purple-900">En cualquier escenario...</h2>
+                <p class="text-xs sm:text-sm text-gray-650 leading-relaxed bg-purple-50/60 p-4 rounded-2xl border border-purple-100">
+                  Sé que a veces las cosas cambian o los procesos nos hacen asimilar las etapas de manera diferente. Pero independiente de cualquier cosa o de lo que depare el camino...
+                </p>
+                <div class="p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-md text-xs sm:text-sm font-semibold italic">
+                  "Pase lo que pase, mi corazoncito siempre, pero siempre, va a guardar un lugar sumamente especial únicamente para ti."
+                </div>
+              </div>
+            )}
+
+            {/* Mini interacción interactiva: Clic para leer pensamientos */}
+            <div class="mt-6 w-full pt-4 border-t border-gray-100">
+              <div class="bg-gradient-to-r from-rose-50 to-purple-50 p-3 rounded-xl border border-rose-100 flex flex-col items-center">
+                <span class="text-[11px] font-semibold text-rose-500 uppercase tracking-wider mb-1">
+                  Toca la pantalla 💭
+                </span>
+                <p class="text-xs text-gray-700 italic min-h-[36px] flex items-center justify-center">
+                  "{razones[reasonIndex]}"
+                </p>
+                <button
+                  onClick={() => setReasonIndex((reasonIndex + 1) % razones.length)}
+                  class="mt-2 text-[11px] bg-white border border-rose-200 text-rose-600 px-3 py-1 rounded-full font-bold shadow-sm hover:bg-rose-50 transition-all"
+                >
+                  Toca para leer otro pensamiento ✨
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Footer tierno */}
+          <div class="bg-gray-50 p-3 text-center border-t border-gray-100">
+            <p class="text-xs text-rose-600 font-medium">
+              Aquí sigo para ti, Pulguita 💗
+            </p>
+          </div>
+
         </div>
-    </div>
+      );
+    }
 
-    <script>
-        const textElement = document.getElementById('typewriter');
-        const message = "Mi niña hermosa 💗😿: Me quedé pensando en lo que me dijiste hoy. Quiero que sepas que te escuché fuerte y claro. No te lo dije en ese momento porque quiero que cuando lo haga sea especial, como tú te mereces. Quiero que sepas que mi meta es clara: Eres tú y nadie más. Dejame hacer las cosas lo mejor que se puedan, cometeré errores, si, pero siempre mi meta sera clara. Casarme contigo y vivir una vida llena de amor y cariño 💗💗😽😽✨♾️🐾";
-        
-        let index = 0;
-
-        function type() {
-            if (index < message.length) {
-                textElement.innerHTML = message.slice(0, index + 1) + '<span class="cursor">|</span>';
-                index++;
-                setTimeout(type, 50);
-            } else {
-                textElement.innerHTML = message;
-            }
-        }
-
-        window.onload = type;
-    </script>
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
 </body>
 </html>
